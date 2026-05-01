@@ -1,0 +1,688 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #faf8f3;
+}
+
+body {
+  background: #faf8f3;
+  color: #1a1a1a;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: none;
+}
+
+main {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input,
+textarea,
+select,
+[role="button"] {
+  cursor: none;
+}
+
+/* ── Animations ─────────────────────────────────── */
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes buttonEntrance {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ── Fade-in animation ────────────────────────── */
+.fade-in {
+  opacity: 0;
+  animation: fadeSlideUp 0.6s ease both;
+}
+
+/* ── Scroll Reveal ─────────────────────────────── */
+.reveal {
+  opacity: 50;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+.d1 {
+  transition-delay: 0.07s;
+}
+
+.d2 {
+  transition-delay: 0.14s;
+}
+
+.d3 {
+  transition-delay: 0.21s;
+}
+
+.d4 {
+  transition-delay: 0.28s;
+}
+
+/* ── Hero Animations ─────────────────────────── */
+.ha {
+  animation: fadeSlideUp 0.65s ease both;
+}
+
+.h1 {
+  animation-delay: 0.05s;
+}
+
+.h2 {
+  animation-delay: 0.16s;
+}
+
+.h3 {
+  animation-delay: 0.27s;
+}
+
+.h4 {
+  animation-delay: 0.38s;
+}
+
+.h5 {
+  animation-delay: 0.49s;
+}
+
+/* ── Float effect ────────────────────────────── */
+.float {
+  animation: floatY 3.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── Buttons ─────────────────────────────────── */
+.btn-dark {
+  display: inline-block;
+  padding: 13px 30px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  transition: background 0.18s, transform 0.14s, box-shadow 0.18s;
+  will-change: transform;
+}
+
+.last-btn-dark {
+  /* Layout & Sizing */
+  display: inline-block;
+  padding: 16px 48px;
+  border-radius: 50px;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: -15px;
+  
+  /* Colors */
+  background: linear-gradient(135deg, #f88431 0%, #f76f3a 100%);
+  color: #1d1515;
+  
+  /* Typography */
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  
+  /* Animation & Transitions */
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, box-shadow, background;
+  animation: buttonEntrance 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.last-btn-dark::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
+}
+
+.last-btn-dark:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.last-btn-dark:hover {
+  background: linear-gradient(135deg, #f4885c 0%, #f07850 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 12px 40px rgba(245, 158, 95, 0.4),
+    0 4px 12px rgba(245, 158, 95, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.last-btn-dark:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 
+    0 6px 16px rgba(245, 158, 95, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.btn-dark:hover {
+  background: #2a2a2a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.16);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 13px 30px;
+  background: #fff;
+  color: #111;
+  border: 1.5px solid #181817;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.18s, transform 0.14s;
+  will-change: transform;
+}
+
+.btn-outline:hover {
+  border-color: #f1eb94;
+  transform: translateY(-2px);
+}
+
+/* ── Plan Cards ─────────────────────────────── */
+.plan-card {
+  background: #fff;
+  border: 1.5px solid #d4cfc2;
+  border-radius: 22px;
+  padding: 34px;
+  transition: box-shadow 0.22s, transform 0.22s;
+  will-change: transform;
+}
+
+.plan-card:hover {
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.09);
+  transform: translateY(-4px);
+}
+
+.plan-card.gold {
+  border-color: #c9a84c;
+  box-shadow: 0 6px 28px rgba(201, 168, 76, 0.2);
+}
+
+/* ── Ticker ─────────────────────────────────── */
+.ticker-wrap {
+  overflow: hidden;
+  background: #111;
+  padding: 11px 0;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+}
+
+.ticker-inner {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: ticker 28s linear infinite;
+}
+
+.ticker-item {
+  white-space: nowrap;
+  font-size: 12px;
+  color: #888;
+  font-weight: 600;
+  padding: 0 32px;
+  letter-spacing: 0.5px;
+}
+
+.ticker-item span {
+  color: #c9a84c;
+  margin-right: 8px;
+}
+
+.neon-glow-cyan {
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.5),
+    0 0 40px rgba(0, 212, 255, 0.2);
+}
+
+/* ── Gradient text ─────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #00ff88 0%, #00d4ff 50%, #bf5fff 100%);
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-static {
+  background: linear-gradient(to right, #00ff88, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass card ────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+}
+
+/* ── Aurora blob ───────────────────────────────────────── */
+.aurora-blob {
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: aurora var(--duration, 10s) ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* ── Shimmer border ────────────────────────────────────── */
+.shimmer-border {
+  position: relative;
+}
+
+.shimmer-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent 25%, rgba(0, 255, 136, 0.4) 50%, transparent 75%);
+  background-size: 300% 300%;
+  animation: shimmer 3s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  /* Standard property to achieve the cutout effect */
+  -webkit-mask-composite: destination-out;
+  /* Webkit specific */
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Input ─────────────────────────────────────────────── */
+.input {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #fff;
+  border-radius: 12px;
+  padding: 13px 16px;
+  width: 100%;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+  font-family: var(--font-body);
+}
+
+.input:focus {
+  border-color: rgba(0, 255, 136, 0.5);
+  box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.08), 0 0 20px rgba(0, 255, 136, 0.05);
+  background: rgba(0, 255, 136, 0.03);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Plan cards redesign ───────────────────────────────── */
+.plan-card-starter {
+  background: rgba(255, 255, 255, 0.028);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.plan-card-starter:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-4px);
+}
+
+.plan-card-growth {
+  background: linear-gradient(145deg, #05150c 0%, #060f1a 60%, #0b0520 100%);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  box-shadow: 0 0 60px rgba(0, 255, 136, 0.04), inset 0 0 40px rgba(0, 255, 136, 0.02);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.plan-card-growth:hover {
+  border-color: rgba(0, 255, 136, 0.4);
+  box-shadow: 0 0 80px rgba(0, 255, 136, 0.12), inset 0 0 40px rgba(0, 255, 136, 0.04);
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050507;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(0, 255, 136, 0.3), rgba(0, 212, 255, 0.2));
+  border-radius: 2px;
+}
+
+/* ── Utility classes for common patterns ────────────────── */
+
+/* Pill badge styles */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f2ece0;
+  border: 1px solid #ddd3b8;
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-size: 12px;
+  color: #7a6030;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c9a84c;
+  display: inline-block;
+}
+
+/* Section label */
+.section-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: #b8872c;
+  margin-bottom: 12px;
+}
+
+/* Card layouts */
+.card-white {
+  background: #fff;
+  border: 1px solid #ece7dd;
+  border-radius: 16px;
+  padding: 22px 20px;
+}
+
+.card-featured {
+  background: #fff;
+  border: 1px solid #e8e3d9;
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-dark {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 18px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Common text styles */
+.text-sm-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #aaa;
+}
+
+.text-subtitle {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.text-muted {
+  font-size: 11px;
+  color: #a99;
+}
+
+/* Form inputs */
+.form-input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #e4ddd0;
+  border-radius: 9px;
+  background: #fff;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.form-input:focus {
+  border-color: #c9a84c;
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.13);
+}
+
+.form-input::placeholder {
+  color: #ccc;
+}
+
+/* Feature list item */
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 9px;
+  font-size: 12px;
+}
+
+.feature-check {
+  font-size: 12px;
+  color: #1a6640;
+  font-weight: 800;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+/* Grid utilities */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.grid-2{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* ── Plan selected ring ───────────────────────────── */
+.plan-selected {
+  border-color: var(--neon) !important;
+  box-shadow: 0 0 0 1px var(--neon), 0 0 24px rgba(0, 255, 136, 0.15);
+}
+
+/* ── Ping animation ─────────────────────────────────── */
+.ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ── Tag pill ─────────────────────────────────────────── */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  background: rgba(0, 255, 136, 0.05);
+  color: #00ff88;
+}
+
+/* ── Glow button ─────────────────────────────────────── */
+.btn-neon {
+  position: relative;
+  overflow: hidden;
+  background: #00ff88;
+  color: #050507;
+  font-weight: 800;
+  border-radius: 999px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-neon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.btn-neon:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 255, 136, 0.4), 0 0 60px rgba(0, 255, 136, 0.15);
+}
+
+.btn-neon:hover::after {
+  opacity: 1;
+}
+
+.btn-neon:active {
+  transform: scale(0.98);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: 700;
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.btn-glass:hover {
+  border-color: rgba(0, 255, 136, 0.3);
+  background: rgba(0, 255, 136, 0.06);
+  transform: translateY(-2px);
+}
+
+/* ── Feature tick ─────────────────────────────────────── */
+.tick-neon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(0, 255, 136, 0.12);
+  color: #00ff88;
+  font-size: 10px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tick-dim {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
