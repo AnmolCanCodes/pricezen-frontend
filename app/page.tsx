@@ -158,7 +158,7 @@ export default function Home() {
 
           <p className="ha h3" style={{ fontSize: "clamp(15px,2vw,18px)", color: "#5a5040", maxWidth: 560, lineHeight: 1.75, marginBottom: 32, fontWeight: 500 }}>
             PriceZen watches up to 10 of your products across 4 competitors and tells you the exact{" "}
-            <strong style={{ color: "#111" }}>₹ impact</strong> when someone moves. Every Monday you get one clear action :- not a report to decipher, just a sentence telling you what to do.
+            <strong style={{ color: "#111" }}>₹ impact</strong> when someone moves. Every Monday you get one clear action. No lengthy report to study, just a sentence telling you what to do.
           </p>
 
           <div className="ha h4" style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center", marginBottom: 56 }}>
