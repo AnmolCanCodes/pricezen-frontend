@@ -47,8 +47,9 @@ const CSS = `
 .cookie-banner {
   position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   z-index: 9999;
   width: calc(100vw - 32px);
   max-width: 620px;
@@ -57,10 +58,11 @@ const CSS = `
 @media (max-width: 640px) {
   .cookie-banner {
     bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     width: calc(100% - 24px);
-    max-width: 100%;
+    max-width: 480px;
     border-radius: 14px;
   }
   .cookie-banner > div {
