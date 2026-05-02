@@ -56,15 +56,27 @@ const CSS = `
 }
 @media (max-width: 640px) {
   .cookie-banner {
-    bottom: 16px;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 32px);
-    max-width: 400px;
-    border-radius: 16px;
+    width: calc(100% - 24px);
+    max-width: 340px;
+    border-radius: 14px;
   }
   .cookie-banner > div {
-    border-radius: 16px !important;
+    border-radius: 14px !important;
+    padding: 14px 16px !important;
+  }
+  .cookie-banner p {
+    font-size: 11px !important;
+  }
+  .cb-accept {
+    padding: 9px 18px !important;
+    font-size: 12px !important;
+  }
+  .cb-decline {
+    padding: 9px 14px !important;
+    font-size: 11px !important;
   }
 }
 .cookie-banner.enter { animation: slideUp   0.42s cubic-bezier(0.34,1.3,0.64,1) both; }
@@ -231,7 +243,6 @@ export default function CookieBanner() {
                 }}>
                   Privacy Policy
                 </Link>.
-                We collect only essential data (email, product URLs, consent record) — never sold to third parties.
               </p>
             </div>
           </div>
