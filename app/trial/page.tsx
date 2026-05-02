@@ -153,9 +153,6 @@ function AvgWeeklyOrdersExplainer() {
       <p style={{ fontSize: 12, color: "#5a3a35", lineHeight: 1.7 }}>
         Your average weekly sales volume is used to calculate <strong>accurate rupee (₹) impact estimates</strong>, <strong>revenue at risk recommendations</strong>, and <strong>margin opportunity insights</strong> in our System. Without fair numbers, these calculations will be misleading.
       </p>
-      <p style={{ fontSize: 10, color: "#b86857", marginTop: 8, fontWeight: 700 }}>
-        💡 You are responsible for not providing accurate data. We recommend to set your average weekly orders from the last 4 weeks.
-      </p>
     </div>
   );
 }

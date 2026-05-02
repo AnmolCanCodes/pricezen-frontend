@@ -49,6 +49,44 @@ const CSS = `
   font-family:Arial,sans-serif;color:#333;line-height:1.6;
   max-width:740px;margin:0 auto;padding:24px 20px;
 }
+
+/* Mobile responsive scaling */
+@media (max-width: 768px) {
+  .email-shell {
+    transform: scale(0.85);
+    transform-origin: top center;
+    margin: 0 -7.5%;
+    width: 115%;
+  }
+  .email-body {
+    padding: 16px 12px;
+  }
+  .email-body table {
+    font-size: 11px;
+  }
+  .email-body th,
+  .email-body td {
+    padding: 6px 8px !important;
+  }
+}
+@media (max-width: 480px) {
+  .email-shell {
+    transform: scale(0.72);
+    transform-origin: top center;
+    margin: 0 -19.5%;
+    width: 139%;
+  }
+  .email-body {
+    padding: 12px 10px;
+  }
+  .email-body table {
+    font-size: 10px;
+  }
+  .email-body th,
+  .email-body td {
+    padding: 5px 6px !important;
+  }
+}
 `;
 
 /* ─── Email chrome wrapper ──────────────────────── */

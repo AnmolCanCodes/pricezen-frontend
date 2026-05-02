@@ -56,15 +56,15 @@ const CSS = `
 }
 @media (max-width: 640px) {
   .cookie-banner {
-    bottom: 0;
+    bottom: 16px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
-    max-width: 100%;
-    border-radius: 18px 18px 0 0;
+    width: calc(100% - 32px);
+    max-width: 400px;
+    border-radius: 16px;
   }
   .cookie-banner > div {
-    border-radius: 18px 18px 0 0 !important;
+    border-radius: 16px !important;
   }
 }
 .cookie-banner.enter { animation: slideUp   0.42s cubic-bezier(0.34,1.3,0.64,1) both; }
