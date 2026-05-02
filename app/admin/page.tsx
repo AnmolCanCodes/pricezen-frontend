@@ -1,6 +1,15 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 
+function setCookie(name: string, value: string, hours: number) {
+  const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Strict`;
+}
+
+function deleteCookie(name: string) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
 interface Client {
   id: number;
   email: string;
@@ -51,6 +60,9 @@ export default function AdminPage() {
       });
       const data = await res.json();
       if (!res.ok) {
+        if (res.status === 401) {
+          handleAuthError();
+        }
         throw new Error(data.detail || "Failed to load clients");
       }
       setClients(data || []);
@@ -75,6 +87,9 @@ export default function AdminPage() {
       });
       const data = await res.json();
       if (!res.ok) {
+        if (res.status === 401) {
+          handleAuthError();
+        }
         throw new Error(data.detail || "Activation failed");
       }
       setMessage(data.message || "Client activated");
@@ -98,6 +113,9 @@ export default function AdminPage() {
       });
       const data = await res.json();
       if (!res.ok) {
+        if (res.status === 401) {
+          handleAuthError();
+        }
         throw new Error(data.detail || "Deactivation failed");
       }
       setMessage(data.message || "Client deactivated");
@@ -116,7 +134,13 @@ export default function AdminPage() {
       return;
     }
     window.sessionStorage.setItem("admin_secret", secret.trim());
+    setCookie("admin_secret", secret.trim(), 8); // 8 hour session
     loadClients(secret.trim());
+  }
+
+  function handleAuthError() {
+    deleteCookie("admin_secret");
+    window.sessionStorage.removeItem("admin_secret");
   }
 
   return (
