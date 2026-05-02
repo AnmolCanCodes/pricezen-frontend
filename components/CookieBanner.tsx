@@ -60,7 +60,7 @@ const CSS = `
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 24px);
-    max-width: 340px;
+    max-width: 100%;
     border-radius: 14px;
   }
   .cookie-banner > div {

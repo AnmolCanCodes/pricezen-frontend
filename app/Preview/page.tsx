@@ -53,13 +53,14 @@ const CSS = `
 /* Mobile responsive scaling */
 @media (max-width: 768px) {
   .email-shell {
-    transform: scale(0.75);
-    transform-origin: top center;
-    margin: 0 -16.5%;
-    width: 133%;
+    transform: none;
+    margin: 0;
+    width: 100%;
+    overflow-x: auto;
   }
   .email-body {
     padding: 14px 10px;
+    min-width: 320px;
   }
   .email-body table {
     font-size: 10px;
@@ -71,13 +72,14 @@ const CSS = `
 }
 @media (max-width: 480px) {
   .email-shell {
-    transform: scale(0.62);
-    transform-origin: top center;
-    margin: 0 -31%;
-    width: 162%;
+    transform: none;
+    margin: 0;
+    width: 100%;
+    overflow-x: auto;
   }
   .email-body {
     padding: 10px 8px;
+    min-width: 300px;
   }
   .email-body table {
     font-size: 9px;
@@ -85,12 +87,6 @@ const CSS = `
   .email-body th,
   .email-body td {
     padding: 4px 5px !important;
-  }
-  .chrome-bar {
-    padding: 7px 10px !important;
-  }
-  .email-meta {
-    padding: 8px 12px !important;
   }
 }
 `;
