@@ -1,39 +1,45 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const BACKEND = process.env.BACKEND_URL || "http://localhost:8000";
+const BACKEND = process.env.BACKEND_URL ?? "http://localhost:8000";
 
 export async function POST(req: NextRequest) {
-  // Validate client_id — must be a positive integer, not null/string
-  const clientId = req.nextUrl.searchParams.get("client_id");
-  if (!clientId || !/^\d+$/.test(clientId) || parseInt(clientId) <= 0) {
+  const { searchParams } = new URL(req.url);
+  const clientId = searchParams.get("client_id");
+  const token    = searchParams.get("token");        // ← NEW
+
+  // Validate client_id is a real integer
+  if (!clientId || !/^\d+$/.test(clientId)) {
     return NextResponse.json(
-      { detail: "Invalid or missing client_id." },
+      { detail: "Invalid client_id" },
+      { status: 400 }
+    );
+  }
+
+  // Require token — never forward unsigned requests to backend
+  if (!token) {
+    return NextResponse.json(
+      { detail: "Missing payment token. Please use the link sent to your email." },
       { status: 400 }
     );
   }
 
   try {
     const res = await fetch(
-      `${BACKEND}/payment/create-order?client_id=${clientId}`,
+      `${BACKEND}/payment/create-order?client_id=${clientId}&token=${encodeURIComponent(token)}`,
       {
         method: "POST",
-        signal: AbortSignal.timeout(15000),   // 15s — don't let backend hang the UI
+        signal: AbortSignal.timeout(14000),
       }
     );
+
     const data = await res.json();
-
-    if (!res.ok) {
-      console.error(`[create-order] Backend error ${res.status}:`, data);
-    }
-
     return NextResponse.json(data, { status: res.status });
 
   } catch (err: any) {
-    const isTimeout = err?.name === "TimeoutError" || err?.name === "AbortError";
-    console.error("[create-order] Error:", err?.message || err);
+    console.error("[create-order route] Backend error:", err?.message);
     return NextResponse.json(
-      { detail: isTimeout ? "Payment gateway timed out. Please try again." : "Backend unreachable." },
-      { status: 503 }
+      { detail: "Payment service unavailable. Please try again." },
+      { status: 502 }
     );
   }
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -8,19 +8,27 @@ declare global {
   interface Window { Razorpay: any; }
 }
 
+// ── localStorage key for retry-safe verification (Issue 4 fix) ─
+const PENDING_VERIFY_KEY = "pricezen_pending_verify";
+
 function PaymentForm() {
   const params   = useSearchParams();
   const router   = useRouter();
+
   const rawId    = params.get("client_id");
-  // Validate client_id is a real integer — reject injected strings
+  const token    = params.get("token") ?? "";   // ← NEW: signed token
   const clientId = rawId && /^\d+$/.test(rawId) ? rawId : null;
 
-  const [loading,   setLoading]   = useState(false);
-  const [error,     setError]     = useState("");
-  const [success,   setSuccess]   = useState(false);
-  const [planLabel, setPlanLabel] = useState("");
-  const [amount,    setAmount]    = useState<number | null>(null);
-  const [brandName, setBrandName] = useState("");
+  const [loading,    setLoading]    = useState(false);
+  const [error,      setError]      = useState("");
+  const [success,    setSuccess]    = useState(false);
+  const [planLabel,  setPlanLabel]  = useState("");
+  const [amount,     setAmount]     = useState<number | null>(null);
+  const [brandName,  setBrandName]  = useState("");
+  const [retrying,   setRetrying]   = useState(false);
+
+  // Issue 5 fix: ref-based lock so even double-clicks can't double-fire
+  const isOpenRef = useRef(false);
 
   // Load Razorpay script once on mount
   useEffect(() => {
@@ -28,31 +36,71 @@ function PaymentForm() {
     script.src     = "https://checkout.razorpay.com/v1/checkout.js";
     script.async   = true;
     document.body.appendChild(script);
-    return () => {
-      if (document.body.contains(script)) document.body.removeChild(script);
-    };
+    return () => { if (document.body.contains(script)) document.body.removeChild(script); };
   }, []);
 
+  // Issue 4 fix: on mount, retry any pending verification from a previous session
+  useEffect(() => {
+    const pending = localStorage.getItem(PENDING_VERIFY_KEY);
+    if (!pending || !clientId) return;
+
+    const data = JSON.parse(pending) as {
+      razorpay_order_id:   string;
+      razorpay_payment_id: string;
+      razorpay_signature:  string;
+      client_id:           number;
+    };
+
+    // Only retry if it's for the same client
+    if (String(data.client_id) !== clientId) return;
+
+    setRetrying(true);
+    console.log("[Payment] Retrying pending verification…", data.razorpay_payment_id);
+
+    fetch("/api/payment/verify", {
+      method:  "POST",
+      headers: { "Content-Type": "application/json" },
+      body:    JSON.stringify(data),
+    })
+      .then(r => r.json())
+      .then(result => {
+        if (result.success) {
+          localStorage.removeItem(PENDING_VERIFY_KEY);
+          setSuccess(true);
+        }
+      })
+      .catch(e => console.warn("[Payment] Retry failed:", e))
+      .finally(() => setRetrying(false));
+  }, [clientId]);
+
   const startPayment = async () => {
+    // Issue 5 fix: ref lock — ignores calls while modal is open
+    if (isOpenRef.current || loading) return;
     if (!clientId) { setError("Invalid payment link. Please contact support."); return; }
+    if (!token)    { setError("Invalid payment link (missing token). Please contact support."); return; }
+
+    isOpenRef.current = true;
     setLoading(true);
     setError("");
 
     try {
-      // Step 1 — create order on backend
-      const res = await fetch(`/api/payment/create-order?client_id=${clientId}`, {
-        method: "POST",
-        signal: AbortSignal.timeout(15000),   // 15s timeout — don't hang forever
-      });
+      // Step 1 — create order, passing token for server-side validation
+      const res = await fetch(
+        `/api/payment/create-order?client_id=${clientId}&token=${encodeURIComponent(token)}`,
+        { method: "POST", signal: AbortSignal.timeout(15000) }
+      );
       const order = await res.json();
-      if (!res.ok) throw new Error(order.detail || "Could not create payment order.");
+      if (!res.ok) {
+        isOpenRef.current = false;
+        throw new Error(order.detail || "Could not create payment order.");
+      }
 
-      // Store plan info so success screen has it even without a re-fetch
       setPlanLabel(order.plan_label);
       setAmount(order.amount);
       setBrandName(order.brand_name);
 
       if (!window.Razorpay) {
+        isOpenRef.current = false;
         throw new Error("Payment script failed to load. Please refresh and try again.");
       }
 
@@ -62,46 +110,58 @@ function PaymentForm() {
         amount:      order.amount,
         currency:    order.currency,
         order_id:    order.order_id,
-        name:        "PriZen",
+        name:        "PriceZen",
         description: `${order.plan_label} Plan — Monthly`,
         prefill:     { name: order.brand_name },
         theme:       { color: "#00ff88" },
 
         handler: async (response: any) => {
-          // Step 3 — verify on backend (HMAC check happens server-side)
+          // Issue 4 fix: persist before verify so a crash/close can retry
+          const verifyPayload = {
+            razorpay_order_id:   response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature:  response.razorpay_signature,
+            client_id:           parseInt(clientId),
+          };
+          localStorage.setItem(PENDING_VERIFY_KEY, JSON.stringify(verifyPayload));
+
+          // Step 3 — verify signature on backend
           try {
             const verify = await fetch("/api/payment/verify", {
               method:  "POST",
               headers: { "Content-Type": "application/json" },
               signal:  AbortSignal.timeout(15000),
-              body: JSON.stringify({
-                razorpay_order_id:   response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature:  response.razorpay_signature,
-                client_id:           parseInt(clientId),
-              }),
+              body:    JSON.stringify(verifyPayload),
             });
             const result = await verify.json();
-            if (verify.ok) {
+            if (verify.ok && result.success) {
+              localStorage.removeItem(PENDING_VERIFY_KEY);
               setSuccess(true);
             } else {
-              setError(result.detail || "Payment verification failed. Please contact support.");
+              // Payment went through but verify failed — show payment ID so support can fix
+              setError(
+                `Payment received but confirmation failed. ` +
+                `Email pricezenalert@gmail.com with payment ID: ${response.razorpay_payment_id}. ` +
+                `We will activate your plan manually within 1 hour.`
+              );
             }
           } catch {
-            // Payment may have gone through even if verify call failed.
-            // Tell user to contact support rather than saying it failed.
-              setError(
-              "Payment received but confirmation timed out. " +
-              "Please email prizenalert@gmail.com with your payment ID: " +
-              response.razorpay_payment_id
+            // Timeout or network drop — pending payload is in localStorage, will retry on reload
+            setError(
+              `Payment received — confirmation timed out. ` +
+              `Refresh this page to retry, or email pricezenalert@gmail.com ` +
+              `with payment ID: ${response.razorpay_payment_id}`
             );
           }
+
+          isOpenRef.current = false;
           setLoading(false);
         },
 
         modal: {
           ondismiss: () => {
-            // User closed modal — not a failure, just reset loading
+            // User closed modal — not a failure
+            isOpenRef.current = false;
             setLoading(false);
           },
         },
@@ -110,13 +170,14 @@ function PaymentForm() {
       rzp.open();
 
     } catch (err: any) {
+      isOpenRef.current = false;
       setError(err.message || "Something went wrong. Please try again.");
       setLoading(false);
     }
   };
 
-  // ── Invalid link ────────────────────────────────────────────
-  if (!clientId) return (
+  // ── Invalid link ─────────────────────────────────────────────
+  if (!clientId || !token) return (
     <main style={{ minHeight:"100vh", display:"flex", alignItems:"center",
                    justifyContent:"center", background:"#060608", padding:"24px" }}>
       <div style={{ textAlign:"center" }}>
@@ -129,12 +190,19 @@ function PaymentForm() {
         </p>
         <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" }}>
           <Link href="/" style={{ color:"#00ff88", fontSize:"0.9em" }}>← Go Home</Link>
-  <a href="mailto:prizenalert@gmail.com"
-             style={{ color:"#888", fontSize:"0.9em" }}>
-            prizenalert@gmail.com
+          <a href="mailto:pricezenalert@gmail.com" style={{ color:"#888", fontSize:"0.9em" }}>
+            pricezenalert@gmail.com
           </a>
         </div>
       </div>
+    </main>
+  );
+
+  // ── Retrying pending verification ────────────────────────────
+  if (retrying) return (
+    <main style={{ minHeight:"100vh", display:"flex", alignItems:"center",
+                   justifyContent:"center", background:"#060608" }}>
+      <p style={{ color:"#555" }}>Confirming your previous payment…</p>
     </main>
   );
 
@@ -158,8 +226,7 @@ function PaymentForm() {
             <polyline points="6 16 13 23 26 9" />
           </svg>
         </div>
-        <h2 style={{ fontSize:"1.8rem", fontWeight:900,
-                     color:"#00ff88", marginBottom:8 }}>
+        <h2 style={{ fontSize:"1.8rem", fontWeight:900, color:"#00ff88", marginBottom:8 }}>
           Payment Successful!
         </h2>
         {planLabel && amount && (
@@ -178,10 +245,10 @@ function PaymentForm() {
           Check your email for a payment receipt and confirmation.
           Price monitoring starts within hours.
         </p>
-          <p style={{ color:"#555", fontSize:"0.82em", marginBottom:28 }}>
-          Questions? <a href="mailto:prizenalert@gmail.com"
-                        style={{ color:"#00ff88", textDecoration:"none" }}>
-            prizenalert@gmail.com
+        <p style={{ color:"#555", fontSize:"0.82em", marginBottom:28 }}>
+          Questions?{" "}
+          <a href="mailto:pricezenalert@gmail.com" style={{ color:"#00ff88", textDecoration:"none" }}>
+            pricezenalert@gmail.com
           </a>
         </p>
         <Link href="/" style={{
@@ -206,8 +273,7 @@ function PaymentForm() {
           borderRadius:20, padding:"32px 28px", textAlign:"center",
         }}>
           <div style={{ fontSize:40, marginBottom:16 }}>💳</div>
-          <h1 style={{ fontSize:"1.6rem", fontWeight:800,
-                       color:"#fff", marginBottom:8 }}>
+          <h1 style={{ fontSize:"1.6rem", fontWeight:800, color:"#fff", marginBottom:8 }}>
             Complete Your Plan
           </h1>
           <p style={{ color:"#555", fontSize:"0.88em", marginBottom:28, lineHeight:1.6 }}>
@@ -215,7 +281,6 @@ function PaymentForm() {
             UPI · Cards · Net Banking · Wallets — all supported.
           </p>
 
-          {/* Error display with retry button */}
           {error && (
             <div style={{
               padding:"12px 16px",
@@ -230,10 +295,10 @@ function PaymentForm() {
             </div>
           )}
 
-          {/* Pay button */}
+          {/* Issue 5 fix: disabled immediately on first click via isOpenRef + loading state */}
           <button
             onClick={startPayment}
-            disabled={loading}
+            disabled={loading || isOpenRef.current}
             style={{
               width:"100%", padding:"16px",
               background: loading ? "rgba(0,255,136,0.3)" : "#00ff88",
@@ -244,14 +309,13 @@ function PaymentForm() {
               transition:"background 0.2s",
             }}
           >
-            {loading ? "Opening payment..." : error ? "Try Again →" : "Pay Now →"}
+            {loading ? "Opening payment…" : error ? "Try Again →" : "Pay Now →"}
           </button>
 
           <p style={{ fontSize:"11px", color:"#2a2a2a", marginBottom:20 }}>
             🔒 256-bit SSL · Secured by Razorpay
           </p>
 
-          {/* What's included */}
           <div style={{
             padding:"14px 16px",
             background:"rgba(255,255,255,0.02)",
@@ -278,9 +342,9 @@ function PaymentForm() {
 
           <p style={{ marginTop:18, fontSize:"11px", color:"#333", lineHeight:1.7 }}>
             Questions?{" "}
-            <a href="mailto:prizenalert@gmail.com"
+            <a href="mailto:pricezenalert@gmail.com"
                style={{ color:"#00ff88", textDecoration:"none" }}>
-              prizenalert@gmail.com
+              pricezenalert@gmail.com
             </a>
           </p>
         </div>
@@ -294,7 +358,7 @@ export default function PaymentPage() {
     <Suspense fallback={
       <main style={{ minHeight:"100vh", display:"flex", alignItems:"center",
                      justifyContent:"center", background:"#060608" }}>
-        <p style={{ color:"#555" }}>Loading...</p>
+        <p style={{ color:"#555" }}>Loading…</p>
       </main>
     }>
       <PaymentForm />

@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         detail: isTimeout
-          ? "Verification timed out. If payment was deducted, email prizenalert@gmail.com with your payment details."
+          ? "Verification timed out. If payment was deducted, email pricezenalert@gmail.com with your payment details."
           : "Backend unreachable. Contact support if payment was deducted.",
       },
       { status: 503 }

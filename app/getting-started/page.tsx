@@ -221,7 +221,7 @@ export default function GettingStartedPage() {
           <div className="ha h4" style={{ marginBottom: 28 }}>
             <p style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, color: "#b8872c", marginBottom: 12 }}>Question 1 of 3</p>
             <h3 style={{ fontSize: 18, fontWeight: 800, color: "#0f0f0f", marginBottom: 6, letterSpacing: -0.4 }}>
-              Are you already a PriZen customer?
+              Are you already a PriceZen customer?
             </h3>
             <p style={{ fontSize: 13, color: "#888", marginBottom: 16, lineHeight: 1.6 }}>Just helps us understand where you are.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -235,7 +235,7 @@ export default function GettingStartedPage() {
                 icon="👋" selected={q1 === "no"}
                 onClick={() => { setQ1("no"); reset(2); }}
                 title="No, I'm new here"
-                sub="First time looking at PriZen :- figuring out where to start."
+                sub="First time looking at PriceZen :- figuring out where to start."
               />
             </div>
           </div>
@@ -358,7 +358,7 @@ export default function GettingStartedPage() {
 
           <p style={{ fontSize: 13, color: "#888", textAlign: "center" }}>
             Still on the fence?{" "}
-            <a href="mailto:prizenalert@gmail.com" style={{ color: "#b8872c", fontWeight: 800 }}>
+            <a href="mailto:pricezenalert@gmail.com" style={{ color: "#b8872c", fontWeight: 800 }}>
               Email us :- we&rsquo;ll tell you what most brands your size end up on →
             </a>
           </p>

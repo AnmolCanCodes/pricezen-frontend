@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
           <div className="pp fade-in d1" style={{ background: "#fff", border: "1px solid #ece7dd", borderRadius: 18, padding: "32px 28px", marginBottom: 24 }}>
 
             <h2>1. Who we are</h2>
-            <p>PriZen is a competitive pricing intelligence service for D2C brands in India. Operated by PriZen (independent service). Billing and compliance are handled under the legally registered name associated with our payment provider.</p>
+            <p>PriceZen is a competitive pricing intelligence service for D2C brands in India. Operated by PriceZen (independent service). Billing and compliance are handled under the legally registered name associated with our payment provider.</p>
 
             <h2>2. What data we collect</h2>
             <ul>
@@ -108,7 +108,7 @@ export default function PrivacyPolicyPage() {
               <li>Request deletion of your data (&ldquo;right to be forgotten&rdquo;).</li>
               <li>Withdraw consent at any time (terminates the service).</li>
             </ul>
-            <p>Email <a href="mailto:prizenalert@gmail.com">prizenalert@gmail.com</a> to exercise any of these rights.</p>
+            <p>Email <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a> to exercise any of these rights.</p>
 
             <h2>10. What we log when you accept the cookie banner</h2>
             <p>When you click &ldquo;Accept &amp; Continue&rdquo;, we record:</p>
@@ -128,7 +128,7 @@ export default function PrivacyPolicyPage() {
             <p>This Privacy Policy is governed by the laws of India.</p>
 
             <h2>13. Contact</h2>
-            <p>Questions? <a href="mailto:prizenalert@gmail.com">prizenalert@gmail.com</a> or <Link href="/contact">Contact page</Link>.</p>
+            <p>Questions? <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a> or <Link href="/contact">Contact page</Link>.</p>
           </div>
 
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>

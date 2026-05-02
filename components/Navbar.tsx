@@ -1,12 +1,12 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import PriZenLogo from "@/components/PriZen-logo.jpg";
+import PriceZenLogo from "@/components/PriceZen-logo.jpg";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
-  { label: "Why PriZen", href: "/#why"   },
+  { label: "Why PriceZen", href: "/#why"   },
   { label: "How it works", href: "/#how"   },
   { label: "Pricing",      href: "/#plans" },
   { label: "FAQ",          href: "/faq"    },
@@ -216,7 +216,7 @@ export default function Navbar() {
         <Link href="/" style={{ display:"flex", alignItems:"center", gap:2, textDecoration:"none", flexShrink:0 }}>
           {!logoError ? (
             <Image
-              src={PriZenLogo} alt="PriZen logo"
+              src={PriceZenLogo} alt="PriceZen logo"
               width={35} height={30}
               style={{ borderRadius:6, objectFit:"contain" }}
               onError={() => setLogoError(true)}
@@ -226,7 +226,7 @@ export default function Navbar() {
             <div style={{ width:30, height:30, borderRadius:8, background:"linear-gradient(135deg,#b8872c,#e6a535)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:900, color:"#fff" }}>P</div>
           )}
           <span style={{ fontWeight:900, fontSize:18, letterSpacing:-0.6, color:"#111" }}>
-            Pri<span style={{ color:"#b8872c" }}>Zen</span>
+            Price<span style={{ color:"#b8872c" }}>Zen</span>
           </span>
         </Link>
 

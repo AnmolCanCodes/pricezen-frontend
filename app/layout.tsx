@@ -20,12 +20,12 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PriZen :- Pricing Intelligence for D2C Brands",
+  title: "PriceZen :- Pricing Intelligence for D2C Brands",
   description:
     "Automated competitor price monitoring. Know when competitors move. Get rupee impact. Take one clear action. All delivered to your inbox.",
   keywords: ["price monitoring", "D2C", "competitor tracking", "pricing intelligence", "ecommerce pricing"],
   openGraph: {
-    title: "PriZen :- Stop Losing to Competitors",
+    title: "PriceZen :- Stop Losing to Competitors",
     description: "Stop losing sales to competitors who changed their price before you noticed.",
     type: "website",
   },

@@ -1,7 +1,7 @@
 // components/Footer.tsx
 import Link from "next/link";
 import Image from "next/image";
-import PriZenLogo from "@/components/PriZen-logo.jpg";
+import PriceZenLogo from "@/components/PriceZen-logo.jpg";
 
 const SOCIAL_ICONS = [
   {
@@ -42,13 +42,13 @@ export default function Footer() {
           <div>
             <Link href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
               <Image
-                src={PriZenLogo}
-                alt="PriZen"
+                src={PriceZenLogo}
+                alt="PriceZen"
                 width={28}
                 height={24}
                 style={{ borderRadius: 5, objectFit: "contain" }}
               />
-              <span style={{ fontWeight: 900, fontSize: 17, color: "#c9a84c", letterSpacing: -0.4 }}>PriZen</span>
+              <span style={{ fontWeight: 900, fontSize: 17, color: "#c9a84c", letterSpacing: -0.4 }}>PriceZen</span>
             </Link>
             <p style={{ fontSize: 12, color: "#555", lineHeight: 1.7 }}>
               Competitive pricing intelligence for D2C brands. Delivered to your inbox.
@@ -108,9 +108,9 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div style={{ borderTop: "1px solid #1e1e1e", paddingTop: 20, display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
-          <span style={{ fontSize: 11, color: "#444" }}>© 2026 PriZen · Built for D2C brands in India 🇮🇳</span>
+          <span style={{ fontSize: 11, color: "#444" }}>© 2026 PriceZen · Built for D2C brands in India 🇮🇳</span>
           <span style={{ fontSize: 11, color: "#333" }}>
-            <a href="mailto:prizenalert@gmail.com" style={{ color: "#555", textDecoration: "none" }}>prizenalert@gmail.com</a>
+            <a href="mailto:pricezenalert@gmail.com" style={{ color: "#555", textDecoration: "none" }}>pricezenalert@gmail.com</a>
           </span>
         </div>
       </div>

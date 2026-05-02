@@ -43,8 +43,8 @@ function EmailMockup() {
       <div style={{ background: "#f7f4ee", borderBottom: "1px solid #ede8de", padding: "13px 18px", display: "flex", alignItems: "center", gap: 10 }}>
         <div style={{ width: 34, height: 34, borderRadius: "50%", background: "linear-gradient(135deg,#c9a84c,#a06e1a)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 13, flexShrink: 0 }}>P</div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <p style={{ margin: 0, fontWeight: 700, fontSize: 12, color: "#1a1a1a" }}>PriZen</p>
-          <p style={{ margin: 0, fontSize: 11, color: "#999" }}>prizenalert@gmail.com · Monday, 10:00 AM</p>
+          <p style={{ margin: 0, fontWeight: 700, fontSize: 12, color: "#1a1a1a" }}>PriceZen</p>
+          <p style={{ margin: 0, fontSize: 11, color: "#999" }}>pricezenalert@gmail.com · Monday, 10:00 AM</p>
         </div>
         <div style={{ background: "#fde8e8", color: "#b91c1c", fontSize: 10, fontWeight: 800, borderRadius: 6, padding: "3px 9px", flexShrink: 0, letterSpacing: 0.3 }}>ACTION NEEDED</div>
       </div>
@@ -157,7 +157,7 @@ export default function Home() {
           </h1>
 
           <p className="ha h3" style={{ fontSize: "clamp(15px,2vw,18px)", color: "#5a5040", maxWidth: 560, lineHeight: 1.75, marginBottom: 32, fontWeight: 500 }}>
-            PriZen watches up to 10 of your products across 4 competitors and tells you the exact{" "}
+            PriceZen watches up to 10 of your products across 4 competitors and tells you the exact{" "}
             <strong style={{ color: "#111" }}>₹ impact</strong> when someone moves. Every Monday you get one clear action :- not a report to decipher, just a sentence telling you what to do.
           </p>
 
@@ -195,17 +195,17 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── WHY PriZen ───────────────────────────────── */}
+        {/* ── WHY PriceZen ───────────────────────────────── */}
         <section id="why" style={{ background: "#fff", borderTop: "1px solid #d4cfc2", borderBottom: "1px solid #d4cfc2", padding: "80px clamp(20px,4vw,48px)" }}>
           <div style={{ maxWidth: 1060, margin: "0 auto" }}>
             <div className="reveal" style={{ textAlign: "center", marginBottom: 52 }}>
-              <p style={{ fontSize: 15, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2.5, color: "#b8872c", marginBottom: 12 }}>Why PriZen</p>
+              <p style={{ fontSize: 15, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2.5, color: "#b8872c", marginBottom: 12 }}>Why PriceZen</p>
               <h2 style={{ fontSize: "clamp(26px,4vw,46px)", fontWeight: 900, letterSpacing: -1.2, marginBottom: 14, color: "#0f0f0f" }}>
                 Other tools hand you a spreadsheet.<br />
                 <span style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", color: "#b85c1a" }}>We hand you a decision.</span>
               </h2>
               <p style={{ fontSize: 16, color: "#777", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>
-                Most D2C founders find out a competitor dropped prices when a customer tells them :- or when the week's orders come in low. By then you&rsquo;ve already lost those sales. PriZen closes that gap.
+                Most D2C founders find out a competitor dropped prices when a customer tells them :- or when the week's orders come in low. By then you&rsquo;ve already lost those sales. PriceZen closes that gap.
               </p>
             </div>
 
@@ -239,7 +239,7 @@ export default function Home() {
                 {
                   icon: "📆",
                   title: "At the end of the month, you see the ROI",
-                  body: "The monthly report doesn't just recap :- it tells you how much revenue PriZen helped you protect or capture. If the number is bigger than ₹2,999, the plan paid for itself. Usually it's a lot bigger.",
+                  body: "The monthly report doesn't just recap :- it tells you how much revenue PriceZen helped you protect or capture. If the number is bigger than ₹2,999, the plan paid for itself. Usually it's a lot bigger.",
                 },
               ].map((c, i) => (
                 <div key={i} className={`reveal d${(i % 4) + 1}`}>
@@ -248,16 +248,16 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Manual vs PriZen */}
+            {/* Manual vs PriceZen */}
             <div className="reveal" style={{ marginTop: 48, background: "#faf8f3", border: "1px solid #d4cfc2", borderRadius: 20, padding: "32px 28px" }}>
-              <p style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, color: "#b8872c", marginBottom: 18 }}>Doing it yourself vs PriZen</p>
+              <p style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, color: "#b8872c", marginBottom: 18 }}>Doing it yourself vs PriceZen</p>
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 480 }}>
                   <thead>
                     <tr>
                       <th style={{ textAlign: "left", padding: "10px 16px", fontSize: 11, color: "#858383", fontWeight: 700, textTransform: "uppercase", letterSpacing: 1 }}>Task</th>
                       <th style={{ padding: "10px 16px", fontSize: 11, color: "#858383", fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, textAlign: "center" }}>Manual checking</th>
-                      <th style={{ padding: "10px 16px", fontSize: 11, color: "#b8872c", fontWeight: 800, textTransform: "uppercase", letterSpacing: 1, textAlign: "center", background: "#fffdf5" }}>PriZen</th>
+                      <th style={{ padding: "10px 16px", fontSize: 11, color: "#b8872c", fontWeight: 800, textTransform: "uppercase", letterSpacing: 1, textAlign: "center", background: "#fffdf5" }}>PriceZen</th>
                     </tr>
                   </thead>
                   <tbody>

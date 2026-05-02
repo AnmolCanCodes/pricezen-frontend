@@ -81,7 +81,7 @@ function EmailShell({ from, to, subject, date, children }: {
    ════════════════════════════════════════════════════════════ */
 function InstantAlertGrowth() {
   return (
-    <EmailShell from="prizenalert@gmail.com" to="you@yourbrand.com"
+    <EmailShell from="pricezenalert@gmail.com" to="you@yourbrand.com"
       subject="🚨 Price Alert :- 1 competitor · 16 Apr 14:41"
       date="Thursday, 16 Apr 2026 · 2:41 PM">
       <div className="email-body">
@@ -177,7 +177,7 @@ function InstantAlertGrowth() {
    ════════════════════════════════════════════════════════════ */
 function AlertStarter() {
   return (
-    <EmailShell from="prizenalert@gmail.com" to="you@yourbrand.com"
+    <EmailShell from="pricezenalert@gmail.com" to="you@yourbrand.com"
       subject="⚠️ Price Alert :- 1 competitor · 16 Apr"
       date="Thursday, 16 Apr 2026 · 10:05 AM">
       <div className="email-body">
@@ -270,7 +270,7 @@ function AlertStarter() {
    ════════════════════════════════════════════════════════════ */
 function WeeklyStarter() {
   return (
-    <EmailShell from="prizenalert@gmail.com" to="you@yourbrand.com"
+    <EmailShell from="pricezenalert@gmail.com" to="you@yourbrand.com"
       subject="📊 Weekly Report · 14 Apr 2026 · Starter"
       date="Monday, 14 Apr 2026 · 10:00 AM">
       <div className="email-body">
@@ -376,7 +376,7 @@ function WeeklyStarter() {
    ════════════════════════════════════════════════════════════ */
 function WeeklyGrowth() {
   return (
-    <EmailShell from="prizenalert@gmail.com" to="you@yourbrand.com"
+    <EmailShell from="pricezenalert@gmail.com" to="you@yourbrand.com"
       subject="📊 Weekly Report · 14 Apr 2026 · Growth · ⚠️ Revenue at Risk"
       date="Monday, 14 Apr 2026 · 10:00 AM">
       <div className="email-body">
@@ -498,7 +498,7 @@ function WeeklyGrowth() {
    ════════════════════════════════════════════════════════════ */
 function MonthlyGrowth() {
   return (
-    <EmailShell from="prizenalert@gmail.com" to="you@yourbrand.com"
+    <EmailShell from="pricezenalert@gmail.com" to="you@yourbrand.com"
       subject="📊 Monthly Report · April 2026 · Growth · ⚠️ Revenue at Risk"
       date="Monday, 28 Apr 2026 · 10:00 AM">
       <div className="email-body">

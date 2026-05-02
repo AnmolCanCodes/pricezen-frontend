@@ -123,7 +123,7 @@ export default function AdminPage() {
     <main style={{ minHeight: "100vh", padding: "32px", background: "#0f1115", color: "#f3f4f6", fontFamily: "Inter, sans-serif" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <header style={{ marginBottom: 24 }}>
-          <h1 style={{ fontSize: 32, marginBottom: 10 }}>PriZen Admin</h1>
+          <h1 style={{ fontSize: 32, marginBottom: 10 }}>PriceZen Admin</h1>
           <p style={{ color: "#a1a1aa", margin: 0 }}>Quick client signup table with activate buttons. Uses your backend /admin endpoints.</p>
         </header>
 

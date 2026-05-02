@@ -52,7 +52,7 @@ export default function ContactPage() {
                   <span style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", color: "#f0c040" }}>Pricing shouldn&apos;t be a guessing game.</span>
                 </p>
                 <p style={{ fontSize: 13, color: "#888", lineHeight: 1.75 }}>
-                  Whether you&apos;re a solo founder tracking 5 products or a growing team managing multiple categories :- we&apos;re here to help you get the most out of PriZen.
+                  Whether you&apos;re a solo founder tracking 5 products or a growing team managing multiple categories :- we&apos;re here to help you get the most out of PriceZen.
                 </p>
               </div>
 
@@ -61,9 +61,9 @@ export default function ContactPage() {
                 {
                   icon: "📧",
                   label: "Email us",
-                  value: "prizenalert@gmail.com",
+                  value: "pricezenalert@gmail.com",
                   sub: "We reply within a few hours",
-                  href: "mailto:prizenalert@gmail.com",
+                  href: "mailto:pricezenalert@gmail.com",
                 },
                 
                 {

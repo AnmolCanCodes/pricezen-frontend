@@ -29,7 +29,7 @@ const sections: Section[] = [
       },
       {
         q: "What does the monthly report include?",
-        a: <>The monthly intelligence report shows whether PriZen paid for itself — with an <strong>estimated ₹ figure for revenue protected or margin recovered</strong>. It covers 30-day price trends per product, your positioning history (cheapest / mid / premium), and one strategic recommendation for the coming month. Growth plan only.</>,
+        a: <>The monthly intelligence report shows whether PriceZen paid for itself — with an <strong>estimated ₹ figure for revenue protected or margin recovered</strong>. It covers 30-day price trends per product, your positioning history (cheapest / mid / premium), and one strategic recommendation for the coming month. Growth plan only.</>,
       },
     ],
   },
@@ -67,7 +67,7 @@ const sections: Section[] = [
       },
       {
         q: "Do I need to sign a contract?",
-        a: <>No contracts. PriZen is <strong>month-to-month</strong>. Cancel, upgrade, or pause anytime by emailing us. Cancellations take effect at the end of the current billing month.</>,
+        a: <>No contracts. PriceZen is <strong>month-to-month</strong>. Cancel, upgrade, or pause anytime by emailing us. Cancellations take effect at the end of the current billing month.</>,
       },
       {
         q: "What if I cancel — do I get a refund?",
@@ -88,7 +88,7 @@ const sections: Section[] = [
       },
       {
         q: "I'm not getting alerts even though prices changed?",
-        a: <>The most common reason is the price movement didn't cross your threshold %. If you set 5% and a competitor moved 3%, no alert fires — by design. Check your threshold setting. If the math looks right and alerts still aren't arriving, <a href="mailto:prizenalert@gmail.com" style={{ color: "#b8872c", fontWeight: 700 }}>email us</a> and we'll investigate within 24 hours.</>,
+        a: <>The most common reason is the price movement didn't cross your threshold %. If you set 5% and a competitor moved 3%, no alert fires — by design. Check your threshold setting. If the math looks right and alerts still aren't arriving, <a href="mailto:pricezenalert@gmail.com" style={{ color: "#b8872c", fontWeight: 700 }}>email us</a> and we'll investigate within 24 hours.</>,
       },
     ],
   },
@@ -173,7 +173,7 @@ export default function FAQPage() {
               <span style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", color: "#b85c1a" }}>questions.</span>
             </h1>
             <p style={{ fontSize: 15, color: "#777", maxWidth: 420, margin: "0 auto", lineHeight: 1.7 }}>
-              Everything you need to know about how PriZen works, what's included, and how to get started.
+              Everything you need to know about how PriceZen works, what's included, and how to get started.
             </p>
           </div>
 
@@ -224,7 +224,7 @@ export default function FAQPage() {
               <p style={{ fontWeight: 800, fontSize: 16, color: "#444", marginBottom: 8 }}>No matching questions.</p>
               <p style={{ fontSize: 13, color: "#888" }}>
                 Try different words, or{" "}
-                <a href="mailto:prizenalert@gmail.com" style={{ color: "#b8872c", fontWeight: 700 }}>email us directly →</a>
+                <a href="mailto:pricezenalert@gmail.com" style={{ color: "#b8872c", fontWeight: 700 }}>email us directly →</a>
               </p>
             </div>
           )}
@@ -235,7 +235,7 @@ export default function FAQPage() {
             <p style={{ fontSize: 16, color: "#fff", fontWeight: 700, lineHeight: 1.7, maxWidth: 440, margin: "0 auto 20px" }}>
               We typically respond within a few hours on weekdays. No bots, no ticket queue — just us.
             </p>
-            <a href="mailto:prizenalert@gmail.com" className="btn-dark" style={{ display: "inline-block", padding: "13px 32px", borderRadius: 50, fontSize: 14, fontWeight: 800 }}>
+            <a href="mailto:pricezenalert@gmail.com" className="btn-dark" style={{ display: "inline-block", padding: "13px 32px", borderRadius: 50, fontSize: 14, fontWeight: 800 }}>
               Email Us →
             </a>
           </div>
