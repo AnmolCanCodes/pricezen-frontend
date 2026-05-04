@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "PriceZen :- Pricing Intelligence for D2C Brands",
+  title: "PriceZen :- Pricing Intelligence for e-commerce brands",
   description:
     "Automated competitor price monitoring. Know when competitors move. Get rupee impact. Take one clear action. All delivered to your inbox.",
   keywords: ["price monitoring", "D2C", "competitor tracking", "pricing intelligence", "ecommerce pricing"],
