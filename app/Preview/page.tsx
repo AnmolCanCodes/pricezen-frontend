@@ -203,7 +203,6 @@ function InstantAlertGrowth() {
           </div>
         </div>
 
-        <p style={{ marginTop:16, color:"#555", fontSize:"0.92em" }}>📎 <em>Full price history attached as <strong>report.xlsx</strong>.</em></p>
         <p style={{ marginTop:8, color:"#aaa", fontSize:"0.82em" }}>Automated message from your price monitoring system.</p>
       </div>
     </EmailShell>
@@ -296,7 +295,6 @@ function AlertStarter() {
           </div>
         </div>
 
-        <p style={{ marginTop:20, color:"#555", fontSize:"0.92em" }}>📎 <em>Full price history attached as <strong>report.xlsx</strong>.</em></p>
         <p style={{ marginTop:8, color:"#aaa", fontSize:"0.82em" }}>Automated message from your price monitoring system.</p>
       </div>
     </EmailShell>
@@ -327,7 +325,7 @@ function WeeklyStarter() {
 
         {/* _weekly_stats_table() */}
         <h3 style={{ color:"#2c3e50", marginBottom:4 }}>7-Day Price Summary</h3>
-        <p style={{ margin:"0 0 10px 0", color:"#777", fontSize:"0.88em" }}>Snapshot of price activity over the past 7 days. Full data in attached <strong>report.xlsx</strong>.</p>
+        <p style={{ margin:"0 0 10px 0", color:"#777", fontSize:"0.88em" }}>Snapshot of price activity over the past 7 days. Full 30-day history in every email.</p>
         <table cellSpacing={0} cellPadding={0} style={{ width:"100%", maxWidth:700, borderCollapse:"collapse", marginBottom:20 }}>
           <thead>
             <tr style={{ background:"#2c3e50", color:"#fff", textAlign:"left" }}>
@@ -403,7 +401,6 @@ function WeeklyStarter() {
           </div>
         </div>
 
-        <p style={{ marginTop:20, color:"#555", fontSize:"0.92em" }}>📎 <em>Full price history attached as <strong>report.xlsx</strong>.</em></p>
         <p style={{ marginTop:8, color:"#aaa", fontSize:"0.82em" }}>Automated message from your price monitoring system.</p>
       </div>
     </EmailShell>
@@ -492,7 +489,7 @@ function WeeklyGrowth() {
 
         {/* _monthly_stats_table() :- 30-day history with Trend column */}
         <h3 style={{ color:"#2c3e50", marginBottom:4, marginTop:4 }}>📈 30-Day Price History</h3>
-        <p style={{ margin:"0 0 10px 0", color:"#777", fontSize:"0.88em" }}>⭐ = your product. Based on 30 days of recorded data. Full data in attached <strong>report.xlsx</strong>.</p>
+        <p style={{ margin:"0 0 10px 0", color:"#777", fontSize:"0.88em" }}>⭐ = your product. Based on 30 days of recorded data.</p>
         <table cellSpacing={0} cellPadding={0} style={{ width:"100%", maxWidth:700, borderCollapse:"collapse", marginBottom:20 }}>
           <thead>
             <tr style={{ background:"#2c3e50", color:"#fff", textAlign:"left" }}>
@@ -523,7 +520,7 @@ function WeeklyGrowth() {
           </tbody>
         </table>
 
-        <p style={{ marginTop:20, color:"#555", fontSize:"0.92em" }}>📎 <em>Full price history attached as <strong>report.xlsx</strong>.</em></p>
+        <p style={{ marginTop:20, color:"#555", fontSize:"0.92em" }}>📎 <em>Full price history attached.</em></p>
         <p style={{ marginTop:8, color:"#aaa", fontSize:"0.82em" }}>Automated message from your price monitoring system.</p>
       </div>
     </EmailShell>
@@ -660,7 +657,7 @@ function MonthlyGrowth() {
         <div style={{ marginTop:28, padding:"16px 20px", background:"#f8f9fa", borderRadius:6, borderLeft:"4px solid #2c3e50" }}>
           <p style={{ margin:"0 0 6px 0", color:"#2c3e50", fontWeight:"bold", fontSize:"0.9em" }}>About this report</p>
           <p style={{ margin:0, color:"#777", fontSize:"0.83em", lineHeight:1.7 }}>
-            This report covers the last 30 days of price monitoring across your products and competitors. Competitor changes that cross your threshold triggered instant alerts. Full data attached as <strong>report.xlsx</strong>.
+            This report covers the last 30 days of price monitoring across your products and competitors. Competitor changes that cross your threshold triggered instant alerts.
           </p>
         </div>
         <p style={{ marginTop:12, color:"#aaa", fontSize:"0.8em" }}>Automated monthly report from your price monitoring system.</p>

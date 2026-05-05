@@ -55,7 +55,7 @@ export default function TermsOfServicePage() {
               <li>Monitor competitor product pages at the frequency specified by your plan.</li>
               <li>Deliver price change alerts and weekly/monthly reports to your registered email.</li>
               <li>Provide estimated rupee impact calculations based on your self-reported order volume.</li>
-              <li>Attach downloadable <code>report.xlsx</code> files to all email reports.</li>
+              <li>Deliver full price history data in all email reports.</li>
             </ul>
             <p>We do <strong>not</strong> guarantee completeness, accuracy, or uninterrupted availability of data. External factors such as website changes, blocking, or downtime may affect data collection. Our rupee impact estimates are indicative :- not financial advice.</p>
 

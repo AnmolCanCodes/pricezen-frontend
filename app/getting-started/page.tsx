@@ -111,7 +111,7 @@ function Recommendation({ rec }: { rec: Rec }) {
         )}
         {isStarter && (
           <p style={{ fontSize: 14, color: "#444", lineHeight: 1.8, marginBottom: 20 }}>
-            For a focused catalogue, Starter does everything it needs to. You get hourly monitoring, instant alerts when a threshold is crossed, the weekly Monday report, and report.xlsx every time. Clean and simple. The 10-day trial gives you the full Starter experience :- no card, no risk.
+            For a focused catalogue, Starter does everything it needs to. You get hourly monitoring, instant alerts when a threshold is crossed, and the weekly Monday report. Clean and simple. The 10-day trial gives you the full Starter experience :- no card, no risk.
           </p>
         )}
 
@@ -296,7 +296,7 @@ export default function GettingStartedPage() {
                   icon="📬" selected={q3 === "basic"}
                   onClick={() => setQ3("basic")}
                   title="Just the alert and the data is enough"
-                  sub="Starter sends you the price change, your new market position, two action options, and report.xlsx."
+                  sub="Starter sends you the price change, your new market position, and two clear action options."
                 />
               </div>
             </div>
@@ -334,7 +334,7 @@ export default function GettingStartedPage() {
                     ["Rupee ₹ impact per alert", false, true],
                     ["30-day price trend", false, true],
                     ["Monthly intelligence report", false, true],
-                    ["report.xlsx on every email", true, true],
+                    ["Full price history on every email", true, true],
                     ["Free 10-day trial", true, true],
                   ].map(([label, s, g], i) => {
                     const cell = (v: boolean | string) =>

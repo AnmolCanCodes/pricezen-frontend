@@ -73,12 +73,10 @@ function EmailMockup() {
           <p style={{ margin: 0, fontSize: 12, color: "#fff", lineHeight: 1.6 }}>Drop Sunscreen SPF 50 to <span style={{ color: "#f0c040", fontWeight: 800 }}>₹415</span> :- recover ~₹8,200 in weekly volume with zero margin loss.</p>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#f7f4ee", border: "1px solid #e4ddd0", borderRadius: 9, padding: "9px 13px" }}>
-          <div style={{ width: 26, height: 32, background: "#1d6f42", borderRadius: 4, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 9, fontWeight: 900, color: "#fff", flexShrink: 0 }}>XLS</div>
           <div style={{ flex: 1 }}>
-            <p style={{ margin: "0 0 1px", fontSize: 11, fontWeight: 700, color: "#1a1a1a" }}>report_week14.xlsx</p>
-            <p style={{ margin: 0, fontSize: 10, color: "#aaa" }}>30-day price history · all products</p>
+            <p style={{ margin: "0 0 1px", fontSize: 11, fontWeight: 700, color: "#1a1a1a" }}>30-Day Price History</p>
+            <p style={{ margin: 0, fontSize: 10, color: "#aaa" }}>All your products & competitors · tracked hourly</p>
           </div>
-          <span style={{ fontSize: 14, color: "#bbb" }}>↓</span>
         </div>
       </div>
     </div>
@@ -127,7 +125,7 @@ export default function Home() {
     "Price checked every hour, all day", "₹ impact on every alert",
     "One action in every weekly report", "Straight to your inbox :- nothing to log into",
     "30-day price history on every email", "Up to 4 competitors per product",
-    "Runs while you sleep", "report.xlsx attached, always",
+    "Runs while you sleep", "Delivered to your inbox",
   ];
 
   return (
@@ -229,7 +227,7 @@ export default function Home() {
                 {
                   icon: "📁",
                   title: "The data is already in your email",
-                  body: "Every email comes with report.xlsx attached :- 30 days of price history across all your products and competitors. Open it in Excel, share it with your team, done. No login, no export, no waiting.",
+                  body: "Every email contains 30 days of price history across all your products and competitors, beautifully formatted. Read it, share it with your team, done. No login, no export, no waiting.",
                 },
                 {
                   icon: "🔭",
@@ -266,7 +264,7 @@ export default function Home() {
                     <CompRow label="Know what the change costs you" s={false} g={true} />
                     <CompRow label="Know exactly what to do next" s={false} g={true} />
                     <CompRow label="30-day price trend in one file" s={false} g={true} />
-                    <CompRow label="Downloadable Excel history" s={false} g={true} />
+                    <CompRow label="30-day price trend analysis" s={false} g={true} />
                     <CompRow label="Monthly ₹ ROI proof" s={false} g={true} />
                   </tbody>
                 </table>
@@ -334,8 +332,8 @@ export default function Home() {
                   body: "A full movement chart for your products and theirs. Patterns you wouldn&rsquo;t notice looking at one week at a time become obvious here.",
                 },
                 {
-                  icon: "📁", title: "report.xlsx :- always attached", when: "On every single email",
-                  body: "The complete price history as a spreadsheet, every time. Forward it, open it in Excel, share it with your team. Never log in anywhere to get it.",
+                  icon: "📁", title: "Full price history in every email", when: "On every single email",
+                  body: "The complete 30-day price history beautifully formatted in every email. Read it, forward it, share it with your team. Never log in anywhere to get it.",
                 },
               ].map((e, i) => (
                 <div key={i} className={`reveal d${(i % 4) + 1}`} style={{ background: "#fff", border: "1px solid #ece7dd", borderRadius: 16, padding: "22px 20px" }}>
@@ -381,7 +379,7 @@ export default function Home() {
                     [true, "Instant alert on threshold breach"],
                     [true, "Two clear action options per alert"],
                     [true, "Weekly Monday report"],
-                    [true, "report.xlsx on every email"],
+                    [true, "Full price history on every email"],
                     [false, "Rupee ₹ impact estimates"],
                     [false, "30-day trend analysis"],
                     [false, "Monthly intelligence report"],
@@ -413,7 +411,7 @@ export default function Home() {
                     [true, "30-day price history + trend chart"],
                     [true, "Monthly intelligence summary"],
                     [false, "One clear weekly action with ₹ reason"],
-                    [false, "report.xlsx on every email"],
+                    [false, "Full price history on every email"],
                   ].map(([badge, label], i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 9 }}>
                       <span style={{ fontSize: 12, color: "#c9a84c", fontWeight: 800, marginTop: 1, flexShrink: 0 }}>✓</span>

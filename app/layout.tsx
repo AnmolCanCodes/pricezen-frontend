@@ -22,12 +22,31 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "PriceZen :- Pricing Intelligence for e-commerce brands",
   description:
-    "Automated competitor price monitoring. Know when competitors move. Get rupee impact. Take one clear action. All delivered to your inbox.",
+    "Automated competitor price intelligence. Know when competitors move. Get rupee impact. Take one clear action. All delivered to your inbox.",
   keywords: ["price monitoring", "D2C", "competitor tracking", "pricing intelligence", "ecommerce pricing"],
+  icons: {
+    icon: "/logo.jpg",
+    shortcut: "/logo.jpg",
+    apple: "/logo.jpg",
+  },
   openGraph: {
     title: "PriceZen :- Stop Losing to Competitors",
     description: "Stop losing sales to competitors who changed their price before you noticed.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PriceZen - Pricing Intelligence for e-commerce brands",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PriceZen :- Stop Losing to Competitors",
+    description: "Automated competitor price intelligence for e-commerce brands.",
+    images: ["/og-image.jpg"],
   },
 };
 

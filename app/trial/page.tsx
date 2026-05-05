@@ -346,13 +346,13 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
               "Weekly report with ₹ rupee impact (lost revenue + margin opportunity)",
               "30-day price history + trend",
               "Monthly intelligence summary",
-              "report.xlsx attached to every email",
+              "Full price history in every email",
             ] : [
               "5 products · 3 competitors each · 2× daily checks",
               "Price change email the next morning at 10am",
               "Weekly report every Monday with competitor snapshot",
               "Two clear options per alert",
-              "report.xlsx attached to every email",
+              "Full price history in every email",
             ]).map((f, i) => (
               <div key={i} style={{ display: "flex", gap: 8 }}>
                 <span style={{ color: "#c9a84c", fontWeight: 900, flexShrink: 0 }}>✓</span>{f}
