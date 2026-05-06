@@ -27,10 +27,9 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },
-      { url: "/PriceZen-logo.jpg", type: "image/jpeg" },
     ],
     shortcut: "/favicon.ico",
-    apple: "/PriceZen-logo.jpg",
+    apple: "/favicon.ico",
   },
   openGraph: {
     title: "PriceZen :- Stop Losing to Competitors",
