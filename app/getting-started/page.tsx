@@ -255,21 +255,21 @@ export default function GettingStartedPage() {
                 <ChoiceCard
                   icon={Package} selected={q2 === "small"}
                   onClick={() => { setQ2("small"); reset(3); }}
-                  title="1–3 products"
-                  sub="Core SKUs you compete on hardest. Starter covers this, but Growth works too."
+                  title="1–2 products"
+                  sub="Starter is perfect for focused catalogues. Track your core SKUs you compete on hardest."
                 />
                 <ChoiceCard
                   icon={Store} selected={q2 === "mid"}
                   onClick={() => { setQ2("mid"); reset(3); }}
                   title="3 products"
-                  sub="Starter's limit is 3 products :- fits perfectly for focused catalogues. Growth gives you more headroom."
+                  sub="At Starter's limit. Growth gives you room to expand without changing plans later."
                 />
                 <ChoiceCard
                   icon={Factory} selected={q2 === "large"}
                   onClick={() => { setQ2("large"); reset(3); }}
                   title="4–6 products"
                   badge="Growth territory"
-                  sub="Growth is the right choice here :- 6 products, 4 competitors each."
+                  sub="Growth handles bigger catalogues with deeper insights and monthly ROI reports."
                 />
               </div>
             </div>

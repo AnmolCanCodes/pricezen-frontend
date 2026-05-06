@@ -9,7 +9,7 @@ type Plan = "starter" | "growth";
 interface Competitor { url: string }
 interface Product { url: string; group: string; threshold: string; competitors: Competitor[] }
 
-const MAX_P: Record<Plan, number> = { starter: 5, growth: 10 };
+const MAX_P: Record<Plan, number> = { starter: 3, growth: 6 };
 const MAX_C: Record<Plan, number> = { starter: 3, growth: 4 };
 
 /* ─── Tooltip info bubble ──────────────────────────── */

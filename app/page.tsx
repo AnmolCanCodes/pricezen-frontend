@@ -156,8 +156,7 @@ export default function Home() {
           </h1>
 
           <p className="ha h3" style={{ fontSize: "clamp(15px,2vw,18px)", color: "#5a5040", maxWidth: 560, lineHeight: 1.75, marginBottom: 32, fontWeight: 500 }}>
-            PriceZen watches up to 10 of your products across 4 competitors and tells you the exact{" "}
-            <strong style={{ color: "#111" }}>₹ impact</strong> when someone moves. Every Monday you get one clear action. No lengthy report to study, just a sentence telling you what to do.
+            Automated price tracking for brands. We monitor your competitors 24/7 and deliver instant alerts with exact rupee impact to your inbox. See your monthly ROI. One clear action every Monday.
           </p>
 
           <div className="ha h4" style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center", marginBottom: 56 }}>
@@ -169,7 +168,7 @@ export default function Home() {
           <div className="ha h5" style={{ display: "flex", gap: "clamp(24px,5vw,64px)", flexWrap: "wrap", justifyContent: "center", paddingTop: 28, borderTop: "1px solid #ede8de", width: "100%", marginBottom: 64 }}>
             {[
               { val: <><CountUp to={100} prefix="₹" suffix="k+" /></>, label: "avg. weekly recovery" },
-              { val: <><CountUp to={10} /></>, label: "products tracked" },
+              { val: <><CountUp to={6} /></>, label: "products tracked" },
               { val: <>Instant</>, label: "alert on price change" },
               { val: <><CountUp to={4} /> comps</>, label: "per product, tracked" },
             ].map((s, i) => (
@@ -200,11 +199,11 @@ export default function Home() {
             <div className="reveal" style={{ textAlign: "center", marginBottom: 52 }}>
               <p style={{ fontSize: 15, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2.5, color: "#b8872c", marginBottom: 12 }}>Why PriceZen</p>
               <h2 style={{ fontSize: "clamp(26px,4vw,46px)", fontWeight: 900, letterSpacing: -1.2, marginBottom: 14, color: "#0f0f0f" }}>
-                Other tools hand you a spreadsheet.<br />
-                <span style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", color: "#b85c1a" }}>We hand you a decision.</span>
+                Stop guessing. Start knowing.<br />
+                <span style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", color: "#b85c1a" }}>Before your competitors do.</span>
               </h2>
               <p style={{ fontSize: 16, color: "#777", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>
-                Most D2C founders find out a competitor dropped prices when a customer tells them :- or when the week's orders come in low. By then you&rsquo;ve already lost those sales. PriceZen closes that gap.
+                Most founders find out about price drops when a customer complains or when orders mysteriously fall. By then the sales are already lost. We make sure that never happens to you.
               </p>
             </div>
 
@@ -212,33 +211,33 @@ export default function Home() {
               {[
                 {
                   icon: Zap,
-                  title: "You find out the moment it happens",
-                  body: "The minute a competitor crosses your price threshold, an email hits your inbox. Not tomorrow morning. Not when you remember to check. Right now :- while there's still time to react.",
+                  title: "Know the moment they move",
+                  body: "The instant a competitor changes price, you get an email. Not tomorrow. Not when you remember to check. Right now, while you can still do something about it.",
                 },
                 {
                   icon: IndianRupee,
-                  title: "Every alert has a rupee number attached",
-                  body: "We don&rsquo;t say \"competitor dropped price.\" We say \"this change puts ₹8,200 of your weekly revenue at risk.\" That number is calculated from your actual order volume :- not a generic estimate.",
+                  title: "See the money at stake",
+                  body: "We do not just tell you a competitor dropped prices. We tell you exactly how much revenue is at risk. Every number is calculated from your actual sales, not some generic guess.",
                 },
                 {
                   icon: Target,
-                  title: "One thing to do. Not ten things to consider.",
-                  body: "The weekly report ends with one sentence: what to change, which product, what price, why. You can act on it in two minutes or ignore it :- but you always know exactly what the right move is.",
+                  title: "One clear move. Not endless analysis.",
+                  body: "Every weekly report ends with one sentence: what to change, which product, what price, and why. Act on it in two minutes or skip it. Either way, you always know the right move.",
                 },
                 {
                   icon: FolderOpen,
-                  title: "The data is already in your email",
-                  body: "Every email contains 30 days of price history across all your products and competitors, beautifully formatted. Read it, share it with your team, done. No login, no export, no waiting.",
+                  title: "Everything in your inbox",
+                  body: "Every email has 30 days of price history for all your products and competitors, formatted cleanly. Read it, forward it to your team, done. No login. No waiting. No extra work.",
                 },
                 {
                   icon: ScanLine,
-                  title: "You always know where you stand",
-                  body: "Cheapest in category? Mid-market? Quietly premium? Each alert tells you exactly how your pricing looks compared to the field right now :- not based on a survey from last quarter.",
+                  title: "Know your market position",
+                  body: "Cheapest in the market? Middle of the pack? Premium option? Every alert shows exactly where you stand compared to competitors right now, not some outdated industry report.",
                 },
                 {
                   icon: CalendarDays,
-                  title: "At the end of the month, you see the ROI",
-                  body: "The monthly report doesn't just recap :- it tells you how much revenue PriceZen helped you protect or capture. If the number is bigger than ₹2,999, the plan paid for itself. Usually it's a lot bigger.",
+                  title: "See your monthly return",
+                  body: "Every monthly report shows exactly how much revenue you protected or recovered that month. You will know at a glance whether the service paid for itself. It almost always has.",
                 },
               ].map((c, i) => (
                 <div key={i} className={`reveal d${(i % 4) + 1}`}>
@@ -279,10 +278,10 @@ export default function Home() {
           <div className="reveal" style={{ textAlign: "center", marginBottom: 52 }}>
             <p style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2.5, color: "#b8872c", marginBottom: 12 }}>How It Works</p>
             <h2 style={{ fontSize: "clamp(26px,4vw,44px)", fontWeight: 900, letterSpacing: -1.2, marginBottom: 12 }}>
-              You set it up once.<br />It runs without you.
+              Set it up once.<br />We do the rest.
             </h2>
             <p style={{ fontSize: 14, color: "#888", maxWidth: 400, margin: "0 auto", lineHeight: 1.75 }}>
-              There's nothing to check, nothing to maintain. You give us the URLs, we handle the rest. Alerts and reports find you :- you don&rsquo;t go looking for them.
+              Ten minutes of setup. Then everything comes to your inbox automatically. No dashboards to check. No tools to learn. Just the information you need, when you need it.
             </p>
           </div>
 
@@ -290,18 +289,18 @@ export default function Home() {
             {[
               {
                 n: "01", bg: "#1a1a1a",
-                title: "Share your product URLs",
-                body: "Give us the product pages you sell and the competitor pages you want tracked. Takes under 10 minutes. That's genuinely the whole setup.",
+                title: "Tell us what you sell",
+                body: "Share your product pages and the competitors you want to watch. Under 10 minutes and you are done. No technical setup, no complicated configuration.",
               },
               {
                 n: "02", bg: "#b85c1a",
-                title: "We watch them, every hour",
-                body: "Our system checks those pages throughout the day, logs every price change, and compares it against your threshold. When something crosses it, it acts immediately :- not on a schedule.",
+                title: "We watch every move",
+                body: "We check prices all day, every day. The moment something important happens, you know about it. No delays, no waiting for scheduled updates.",
               },
               {
                 n: "03", bg: "#1a6640",
-                title: "An email lands in your inbox",
-                body: "You get the rupee impact, your new position in the category, and one clear action. Every Monday you also get the week summed up :- what moved, what it cost, what to do.",
+                title: "Get clear answers in your inbox",
+                body: "Every alert tells you the revenue impact and what to do next. Every Monday, get your week summarized: what changed, what it cost you, and your one move for the week ahead.",
               },
             ].map((s, i) => (
               <div key={i} className={`reveal d${i + 1}`} style={{ textAlign: "center", border: "1px solid #d4cfc2", borderRadius: 24, padding: "32px 26px", background: "#fff", boxShadow: "0 14px 30px rgba(0,0,0,0.05)" }}>
@@ -322,19 +321,19 @@ export default function Home() {
               {[
                 {
                   icon: Zap, title: "Instant Price Alert", when: "The moment a threshold is crossed",
-                  body: "Competitor changed their price :- here's what that means for your revenue, here's your new market position, here's the one thing to consider doing.",
+                  body: "Know immediately when a competitor moves. Every alert shows your revenue impact, where you stand in the market, and the one action worth considering right now.",
                 },
                 {
                   icon: BarChart3, title: "Monday Weekly Report", when: "Every Monday · 10:00 AM",
-                  body: "A plain-language summary of the week. Did you gain or lose ground? What's the rupee picture? One suggested action for the week ahead.",
+                  body: "Start your week knowing exactly where you stand. See if you gained or lost ground, the rupee impact, and one clear move to make before your competitors wake up.",
                 },
                 {
-                  icon: TrendingUp, title: "30-Day Price Trend", when: "Inside every weekly report",
-                  body: "A full movement chart for your products and theirs. Patterns you wouldn&rsquo;t notice looking at one week at a time become obvious here.",
+                  icon: TrendingUp, title: "Price Trend", when: "Inside every weekly report",
+                  body: "See the full picture across 30 days. Spot patterns you would miss looking at one week at a time. Know which way prices are moving before everyone else does.",
                 },
                 {
-                  icon: FolderOpen, title: "Full price history in every email", when: "On every single email",
-                  body: "The complete 30-day price history beautifully formatted in every email. Read it, forward it, share it with your team. Never log in anywhere to get it.",
+                  icon: Mail, title: "Monthly ROI Report", when: "Last Monday of each month",
+                  body: "See exactly how much revenue you protected or recovered this month. Includes your complete month in numbers: competitor moves, your positioning journey, and what to watch next month.",
                 },
               ].map((e, i) => (
                 <div key={i} className={`reveal d${(i % 4) + 1}`} style={{ background: "#fff", border: "1px solid #ece7dd", borderRadius: 16, padding: "22px 20px" }}>
