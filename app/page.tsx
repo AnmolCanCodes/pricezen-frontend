@@ -370,16 +370,15 @@ export default function Home() {
               {/* Starter */}
               <div className="plan-card reveal d1" style={{ borderColor: "#d4cfc2" }}>
                 <p style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, color: "#999", marginBottom: 10 }}>Starter</p>
-                <p style={{ fontSize: 46, fontWeight: 900, letterSpacing: -2, marginBottom: 2 }}>₹1,499<span style={{ fontSize: 15, fontWeight: 500, color: "#bbb" }}>/mo</span></p>
-                <p style={{ fontSize: 12, color: "#aaa", marginBottom: 16 }}>Good for a focused catalogue of 1–5 products.</p>
+                <p style={{ fontSize: 46, fontWeight: 900, letterSpacing: -2, marginBottom: 2 }}>₹999<span style={{ fontSize: 15, fontWeight: 500, color: "#bbb" }}>/mo</span></p>
+                <p style={{ fontSize: 12, color: "#aaa", marginBottom: 16 }}>Good for a focused catalogue of 1–3 products.</p>
                 <div style={{ borderTop: "1px solid #d4cfc2", paddingTop: 20, marginBottom: 24 }}>
                   {[
-                    [true, "5 products · 3 competitors each"],
+                    [true, "3 products · 3 competitors each"],
                     [true, "Hourly price monitoring, 24/7"],
                     [true, "Instant alert on threshold breach"],
                     [true, "Two clear action options per alert"],
                     [true, "Weekly Monday report"],
-                    [true, "Full price history on every email"],
                     [false, "Rupee ₹ impact estimates"],
                     [false, "30-day trend analysis"],
                     [false, "Monthly intelligence report"],
@@ -399,11 +398,11 @@ export default function Home() {
                   🔥 Most Popular
                 </div>
                 <p style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, color: "#b8872c", marginBottom: 10 }}>Growth</p>
-                <p style={{ fontSize: 46, fontWeight: 900, letterSpacing: -2, marginBottom: 2 }}>₹2,999<span style={{ fontSize: 15, fontWeight: 500, color: "#bbb" }}>/mo</span></p>
+                <p style={{ fontSize: 46, fontWeight: 900, letterSpacing: -2, marginBottom: 2 }}>₹2,499<span style={{ fontSize: 15, fontWeight: 500, color: "#bbb" }}>/mo</span></p>
                 <p style={{ fontSize: 12, color: "#aaa", marginBottom: 16 }}>For a bigger catalogue that needs more coverage and deeper insights.</p>
                 <div style={{ borderTop: "1px solid #d4cfc2", paddingTop: 20, marginBottom: 24 }}>
                   {[
-                    [false, "10 products · 4 competitors each"],
+                    [false, "6 products · 4 competitors each"],
                     [false, "Hourly price monitoring, 24/7"],
                     [false, "Instant alert on threshold breach"],
                     [true, "Rupee ₹ impact estimate per alert"],
@@ -411,7 +410,6 @@ export default function Home() {
                     [true, "30-day price history + trend chart"],
                     [true, "Monthly intelligence summary"],
                     [false, "One clear weekly action with ₹ reason"],
-                    [false, "Full price history on every email"],
                   ].map(([badge, label], i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 9 }}>
                       <span style={{ fontSize: 12, color: "#c9a84c", fontWeight: 800, marginTop: 1, flexShrink: 0 }}>✓</span>

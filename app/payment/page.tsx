@@ -329,7 +329,6 @@ function PaymentForm() {
               "Automated price monitoring 24/7",
               "Instant email alerts on price changes",
               "Weekly business performance report",
-              "Full price history in every email",
               "Rupee impact & margin estimates",
             ].map((f, i) => (
               <p key={i} style={{ fontSize:"12px", color:"#666",

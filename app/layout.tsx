@@ -25,9 +25,12 @@ export const metadata: Metadata = {
     "Automated competitor price intelligence. Know when competitors move. Get rupee impact. Take one clear action. All delivered to your inbox.",
   keywords: ["price monitoring", "D2C", "competitor tracking", "pricing intelligence", "ecommerce pricing"],
   icons: {
-    icon: "/logo.jpg",
-    shortcut: "/logo.jpg",
-    apple: "/logo.jpg",
+    icon: [
+      { url: "/favicon.ico", type: "image/x-icon" },
+      { url: "/PriceZen-logo.jpg", type: "image/jpeg" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/PriceZen-logo.jpg",
   },
   openGraph: {
     title: "PriceZen :- Stop Losing to Competitors",

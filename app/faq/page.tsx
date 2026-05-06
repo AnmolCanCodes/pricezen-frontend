@@ -46,7 +46,7 @@ const sections: Section[] = [
       },
       {
         q: "Which plan should I trial — Starter or Growth?",
-        a: <>Choose <strong>Starter</strong> if you have 5 or fewer products and a morning alert is fine. Choose <strong>Growth</strong> if you have 6–10 products or need instant alerts and ₹ impact estimates. Not sure? <Link href="/getting-started" style={{ color: "#b8872c", fontWeight: 700 }}>Answer 3 quick questions →</Link></>,
+        a: <>Choose <strong>Starter</strong> if you have 3 or fewer products. Choose <strong>Growth</strong> if you have 4–6 products or need ₹ impact estimates. Not sure? <Link href="/getting-started" style={{ color: "#b8872c", fontWeight: 700 }}>Answer 3 quick questions →</Link></>,
       },
       {
         q: "What happens at the end of the 10 days?",
@@ -63,7 +63,7 @@ const sections: Section[] = [
       },
       {
         q: "Can I upgrade from Starter to Growth later?",
-        a: <>Yes. Email us anytime and we'll switch your plan at the start of your next billing cycle. You'll immediately get access to Growth features — instant alerts, 10 products, 4 competitors, ₹ estimates.</>,
+        a: <>Yes. Email us anytime and we'll switch your plan at the start of your next billing cycle. You'll immediately get access to Growth features — instant alerts, 6 products, 4 competitors, ₹ estimates.</>,
       },
       {
         q: "Do I need to sign a contract?",

@@ -74,7 +74,7 @@ function Recommendation({ rec }: { rec: Rec }) {
   const isStarter = rec === "starter";
 
   const planName = isStarter ? "Starter" : "Growth";
-  const planPrice = isStarter ? "₹1,499" : "₹2,999";
+  const planPrice = isStarter ? "₹999" : "₹2,499";
   const planHref = isStarter ? "/audit?plan=starter" : "/audit?plan=growth";
 
   return (
@@ -260,15 +260,15 @@ export default function GettingStartedPage() {
                 <ChoiceCard
                   icon="🏪" selected={q2 === "mid"}
                   onClick={() => { setQ2("mid"); reset(3); }}
-                  title="4–5 products"
-                  sub="Starter's limit is 5 products :- fits comfortably. Growth gives you more headroom."
+                  title="3 products"
+                  sub="Starter's limit is 3 products :- fits perfectly for focused catalogues. Growth gives you more headroom."
                 />
                 <ChoiceCard
                   icon="🏭" selected={q2 === "large"}
                   onClick={() => { setQ2("large"); reset(3); }}
-                  title="6–10 products"
+                  title="4–6 products"
                   badge="Growth territory"
-                  sub="Growth is the right choice here :- 10 products, 4 competitors each."
+                  sub="Growth is the right choice here :- 6 products, 4 competitors each."
                 />
               </div>
             </div>
@@ -319,22 +319,21 @@ export default function GettingStartedPage() {
                   <tr>
                     <th style={{ textAlign: "left", padding: "8px 12px", fontSize: 11, color: "#999", fontWeight: 700, textTransform: "uppercase", letterSpacing: 1 }} />
                     <th style={{ padding: "8px 12px", fontSize: 12, color: "#555", fontWeight: 800, textAlign: "center" }}>
-                      Starter<br /><span style={{ fontSize: 11, color: "#aaa", fontWeight: 500 }}>₹1,499/mo</span>
+                      Starter<br /><span style={{ fontSize: 11, color: "#aaa", fontWeight: 500 }}>₹999/mo</span>
                     </th>
                     <th style={{ padding: "8px 12px", fontSize: 12, color: "#b8872c", fontWeight: 800, textAlign: "center", background: "#fffdf5", borderRadius: "8px 8px 0 0" }}>
-                      Growth<br /><span style={{ fontSize: 11, color: "#aaa", fontWeight: 500 }}>₹2,999/mo</span>
+                      Growth<br /><span style={{ fontSize: 11, color: "#aaa", fontWeight: 500 }}>₹2,499/mo</span>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    ["Products tracked", "5", "10"],
+                    ["Products tracked", "3", "6"],
                     ["Competitors per product", "3", "4"],
                     ["Instant alerts", true, true],
                     ["Rupee ₹ impact per alert", false, true],
                     ["30-day price trend", false, true],
                     ["Monthly intelligence report", false, true],
-                    ["Full price history on every email", true, true],
                     ["Free 10-day trial", true, true],
                   ].map(([label, s, g], i) => {
                     const cell = (v: boolean | string) =>

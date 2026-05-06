@@ -669,7 +669,7 @@ function MonthlyGrowth() {
 /* ─── Tab config ──────────────────────────────────── */
 const TABS: { id: Tab; icon: string; title: string; when: string; plan: string; planColor: string }[] = [
   { id:"instant-growth", icon:"🚨", title:"Instant Alert",          when:"When a threshold is crossed", plan:"Growth",  planColor:"#b8872c" },
-  { id:"alert-starter",  icon:"⚠️", title:"Price Change Alert",     when:"Next morning 10am",       plan:"Starter", planColor:"#555"    },
+  { id:"alert-starter",  icon:"⚠️", title:"Price Change Alert",     when:"Instant when threshold crossed", plan:"Starter", planColor:"#555"    },
   { id:"weekly-starter", icon:"📊", title:"Weekly Report",          when:"Every Monday 10am",       plan:"Starter", planColor:"#555"    },
   { id:"weekly-growth",  icon:"📊", title:"Weekly Business Report", when:"Every Monday 10am",       plan:"Growth",  planColor:"#b8872c" },
   { id:"monthly-growth", icon:"📋", title:"Monthly Intelligence",   when:"Last Monday of month",    plan:"Growth",  planColor:"#b8872c" },

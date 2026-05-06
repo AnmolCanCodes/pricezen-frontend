@@ -23,7 +23,7 @@ type Plan = "starter" | "growth";
 interface Competitor { url: string }
 interface Product { url: string; group: string; threshold: string; competitors: Competitor[] }
 
-const MAX_P: Record<Plan, number> = { starter: 5, growth: 10 };
+const MAX_P: Record<Plan, number> = { starter: 3, growth: 6 };
 const MAX_C: Record<Plan, number> = { starter: 3, growth: 4 };
 const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
@@ -124,7 +124,7 @@ function PlanBtn({ plan, selected, onSelect }: { plan: Plan; selected: boolean; 
       <p style={{ fontSize: 22, fontWeight: 900, letterSpacing: -0.8, marginBottom: 1, color: "#111" }}>
       </p>
       <div style={{ fontSize: 11, color: "#666", lineHeight: 2 }}>
-        <div>✓ {isG ? "10 products · 4 competitors" : "5 products · 3 competitors"}</div>
+        <div>✓ {isG ? "6 products · 4 competitors" : "3 products · 3 competitors"}</div>
         <div style={{ color: isG ? "#b8872c" : "#666", fontWeight: isG ? 700 : 400 }}>
           ✓ {isG ? "Instant alert when prices change" : "Instant alert when prices change"}
         </div>
@@ -341,18 +341,16 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
           </p>
           <div style={{ fontSize: 11, color: "#777", lineHeight: 2 }}>
             {(plan === "growth" ? [
-              "10 products · 4 competitors each",
+              "6 products · 4 competitors each",
               "First alert is sent when a competitor crosses your threshold",
               "Weekly report with ₹ rupee impact (lost revenue + margin opportunity)",
               "30-day price history + trend",
               "Monthly intelligence summary",
-              "Full price history in every email",
             ] : [
-              "5 products · 3 competitors each · 2× daily checks",
-              "Price change email the next morning at 10am",
+              "3 products · 3 competitors each · 2× daily checks",
+              "Instant alert when a competitor crosses your threshold",
               "Weekly report every Monday with competitor snapshot",
               "Two clear options per alert",
-              "Full price history in every email",
             ]).map((f, i) => (
               <div key={i} style={{ display: "flex", gap: 8 }}>
                 <span style={{ color: "#c9a84c", fontWeight: 900, flexShrink: 0 }}>✓</span>{f}

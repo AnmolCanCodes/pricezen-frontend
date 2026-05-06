@@ -57,11 +57,11 @@ function PlanOption({ plan, selected, onSelect }: { plan: Plan; selected: boolea
       )}
       <p style={{ fontSize:10, fontWeight:800, textTransform:"uppercase", letterSpacing:1.5, color:isG?"#b8872c":"#757474", marginBottom:5 }}>{isG?"Growth":"Starter"}</p>
       <p style={{ fontSize:24, fontWeight:900, letterSpacing:-1, marginBottom:1, color:"#111" }}>
-        {isG?"₹2,999":"₹1,499"}<span style={{ fontSize:11, fontWeight:500, color:"#d4a9a9" }}>/mo</span>
+        {isG?"₹2,499":"₹999"}<span style={{ fontSize:11, fontWeight:500, color:"#d4a9a9" }}>/mo</span>
       </p>
       <div style={{ fontSize:11, color:"#666", lineHeight:1.9 }}>
-        <div>✓ {isG?"10 products · 4 competitors":"5 products · 3 competitors"}</div>
-        <div style={{ color:isG?"#b8872c":"#666", fontWeight:isG?700:400 }}>✓ {isG?"Instant alert on threshold breach":"Alert next morning 10am"}</div>
+        <div>✓ {isG?"6 products · 4 competitors":"3 products · 3 competitors"}</div>
+        <div style={{ color:isG?"#b8872c":"#666", fontWeight:isG?700:400 }}>✓ Instant alert on threshold breach</div>
         <div>✓ Weekly Monday report</div>
         {isG && <>
           <div style={{ color:"#b8872c", fontWeight:700 }}>✓ Rupee ₹ impact estimates</div>

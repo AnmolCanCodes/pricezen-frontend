@@ -52,7 +52,7 @@ export default function ContactPage() {
                   <span style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", color: "#f0c040" }}>Pricing shouldn&apos;t be a guessing game.</span>
                 </p>
                 <p style={{ fontSize: 13, color: "#888", lineHeight: 1.75 }}>
-                  Whether you&apos;re a solo founder tracking 5 products or a growing team managing multiple categories :- we&apos;re here to help you get the most out of PriceZen.
+                  Whether you&apos;re a solo founder tracking 3 products or a growing team managing multiple categories :- we&apos;re here to help you get the most out of PriceZen.
                 </p>
               </div>
 
