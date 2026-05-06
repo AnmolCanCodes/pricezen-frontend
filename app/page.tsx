@@ -421,14 +421,6 @@ export default function Home() {
                 <Link href="/audit?plan=growth" className="btn-dark" style={{ display: "block", textAlign: "center", width: "100%", borderRadius: 12, background: "#b85c1a" }}>Get Started →</Link>
               </div>
             </div>
-
-            {/* ROI block */}
-            <div className="reveal" style={{ background: "#111", borderRadius: 18, padding: "28px 32px", textAlign: "center", border: "1px solid #222" }}>
-              <p style={{ fontSize: 12, color: "#888", fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 10 }}>Worth it?</p>
-              <p style={{ fontSize: "clamp(14px,2vw,17px)", color: "#fff", fontWeight: 600, lineHeight: 1.8, maxWidth: 600, margin: "0 auto" }}>
-                If Growth helps you spot even <span style={{ color: "#f0c040", fontWeight: 900 }}>₹3,000</span> in margin risk or missed revenue in a month :- it's already paid for itself. Most brands with 50+ weekly orders find that number in their first monthly report. Usually it's much higher.
-              </p>
-            </div>
           </div>
         </section>
 
