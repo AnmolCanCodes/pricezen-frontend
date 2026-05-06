@@ -15,6 +15,7 @@
 import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { Gift, Ruler, BarChart3, CheckCircle2, Search, Zap, Mail, TrendingUp, Send, Bell, PartyPopper, Check, Lightbulb, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConsentGuard from "@/components/ConsentGuard";
@@ -124,14 +125,14 @@ function PlanBtn({ plan, selected, onSelect }: { plan: Plan; selected: boolean; 
       <p style={{ fontSize: 22, fontWeight: 900, letterSpacing: -0.8, marginBottom: 1, color: "#111" }}>
       </p>
       <div style={{ fontSize: 11, color: "#666", lineHeight: 2 }}>
-        <div>✓ {isG ? "6 products · 4 competitors" : "3 products · 3 competitors"}</div>
-        <div style={{ color: isG ? "#b8872c" : "#666", fontWeight: isG ? 700 : 400 }}>
-          ✓ {isG ? "Instant alert when prices change" : "Instant alert when prices change"}
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> {isG ? "6 products · 4 competitors" : "3 products · 3 competitors"}</div>
+        <div style={{ color: isG ? "#b8872c" : "#666", fontWeight: isG ? 700 : 400, display: "flex", alignItems: "center", gap: 6 }}>
+          <Check size={12} strokeWidth={3} /> {isG ? "Instant alert when prices change" : "Instant alert when prices change"}
         </div>
-        <div>✓ Weekly Monday report</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Weekly Monday report</div>
         {isG && <>
-          <div style={{ color: "#b8872c", fontWeight: 700 }}>✓ ₹ Rupee impact estimates</div>
-          <div style={{ color: "#b8872c", fontWeight: 700 }}>✓ 30-day trend + monthly report</div>
+          <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> ₹ Rupee impact estimates</div>
+          <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> 30-day trend + monthly report</div>
         </>}
       </div>
       {selected && (
@@ -148,7 +149,7 @@ function AvgWeeklyOrdersExplainer() {
   return (
     <div style={{ background: "#fef3f0", border: "1px solid #f0d5cc", borderRadius: 12, padding: "16px 18px" }}>
       <p style={{ fontSize: 12, fontWeight: 800, color: "#b86857", marginBottom: 6, display: "flex", alignItems: "center", gap: 7 }}>
-        <span style={{ fontSize: 16 }}>📊</span> Why We Need Your Avg Weekly Orders
+        <BarChart3 size={16} /> Why We Need Your Avg Weekly Orders
       </p>
       <p style={{ fontSize: 12, color: "#5a3a35", lineHeight: 1.7 }}>
         Your average weekly sales volume is used to calculate <strong>accurate rupee (₹) impact estimates</strong>, <strong>revenue at risk recommendations</strong>, and <strong>margin opportunity insights</strong> in our System. Without fair numbers, these calculations will be misleading.
@@ -170,7 +171,7 @@ function ProductBlock({ index, product, maxC, onRemove, onChange }: {
           <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1, color: "#aaa" }}>Product {index + 1}</span>
         </div>
         {index > 0 && (
-          <button type="button" onClick={onRemove} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 11, color: "#ccc", fontWeight: 700, fontFamily: "inherit" }}>✕ Remove</button>
+          <button type="button" onClick={onRemove} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 11, color: "#ccc", fontWeight: 700, fontFamily: "inherit", display: "flex", alignItems: "center", gap: 4 }}><X size={12} /> Remove</button>
         )}
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 11 }}>
@@ -215,7 +216,7 @@ function ProductBlock({ index, product, maxC, onRemove, onChange }: {
               {product.competitors.length > 1 && (
                 <button type="button"
                   onClick={() => onChange({ ...product, competitors: product.competitors.filter((_, i) => i !== ci) })}
-                  style={{ background: "none", border: "none", cursor: "pointer", color: "#ddd", fontSize: 13, width: 28, flexShrink: 0, fontFamily: "inherit" }}>✕</button>
+                  style={{ background: "none", border: "none", cursor: "pointer", color: "#ddd", fontSize: 13, width: 28, flexShrink: 0, fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center" }}><X size={14} /></button>
               )}
             </div>
           ))}
@@ -240,25 +241,25 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
 
   const timeline = [
     {
-      icon: "✅",
+      icon: CheckCircle2,
       title: "Products saved",
       desc: `${productCount} product${productCount > 1 ? "s" : ""} + competitors submitted. Your monitoring config is ready.`,
       done: true,
     },
     {
-      icon: "🔍",
+      icon: Search,
       title: "Within 24 hours — first scrape",
       desc: "We run the first price check. Current prices are recorded as your baseline. Monitoring begins.",
       done: false,
     },
     {
-      icon: plan === "growth" ? "⚡" : "📬",
+      icon: plan === "growth" ? Zap : Mail,
       title: plan === "growth" ? "Instant alerts active" : "Morning alerts active",
       desc: alertStep + ". Every alert shows the exact change + your market position.",
       done: false,
     },
     {
-      icon: "📊",
+      icon: BarChart3,
       title: "Every Monday 10am — weekly report",
       desc: plan === "growth"
         ? "Weekly business performance report with ₹ revenue at risk and margin opportunities."
@@ -266,13 +267,13 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
       done: false,
     },
     {
-      icon: "📩",
+      icon: Send,
       title: "Day 8 — payment reminder",
       desc: "We send you a payment link 2 days before the trial ends. No pressure, no auto-charge.",
       done: false,
     },
     {
-      icon: "🔔",
+      icon: Bell,
       title: "Day 10 — trial ends",
       desc: "If you pay → monitoring continues uninterrupted. If not → it stops. Nothing is charged automatically.",
       done: false,
@@ -295,8 +296,8 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
           </div>
         </div>
 
-        <h1 style={{ fontSize: 46, fontWeight: 900, letterSpacing: -2, marginBottom: 8, color: "#111" }}>
-          Trial Started! 🎉
+        <h1 style={{ fontSize: 46, fontWeight: 900, letterSpacing: -2, marginBottom: 8, color: "#111", display: "flex", alignItems: "center", justifyContent: "center", gap: 12 }}>
+          Trial Started! <PartyPopper size={36} />
         </h1>
         <p style={{ color: "#757474", fontSize: 14, marginBottom: 28, lineHeight: 1.7 }}>
           Your products and competitors are saved. Here&apos;s exactly what happens next — no fluff.
@@ -305,7 +306,7 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
         {/* Timeline */}
         <div style={{ background: "#fff", border: "1px solid #e8e3d9", borderRadius: 16, padding: 22, textAlign: "left", marginBottom: 14 }}>
           <span className="slabel" style={{ marginBottom: 18 }}>What happens next</span>
-          {timeline.map(({ icon, title, desc, done }, i) => (
+          {timeline.map(({ icon: Icon, title, desc, done }, i) => (
             <div key={i} style={{ display: "flex", gap: 12 }}>
               {/* Left column: dot + line */}
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 2 }}>
@@ -314,9 +315,9 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
                   background: done ? "#1a1a1a" : "#f0ece2",
                   border: done ? "none" : "1.5px solid #e4ddd0",
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: 13,
+                  fontSize: 13, color: done ? "#fff" : "#888"
                 }}>
-                  {done ? <svg width="11" height="9" fill="none" stroke="#c9a84c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="1 4.5 4 7.5 10 1" /></svg> : icon}
+                  {done ? <Check size={14} strokeWidth={3} color="#c9a84c" /> : <Icon size={14} />}
                 </div>
                 {i < timeline.length - 1 && (
                   <div style={{ width: 1, height: 20, background: done ? "#1a1a1a" : "#e4ddd0", margin: "3px 0" }} />
@@ -336,8 +337,8 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
 
         {/* What you get box */}
         <div style={{ background: "#faf8f3", border: "1px solid #e8e3d9", borderRadius: 12, padding: "14px 16px", textAlign: "left", marginBottom: 14 }}>
-          <p style={{ fontSize: 11, fontWeight: 800, color: "#555", marginBottom: 8 }}>
-            📋 What&apos;s included on your {plan === "growth" ? "Growth" : "Starter"} trial
+          <p style={{ fontSize: 11, fontWeight: 800, color: "#555", marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}>
+            <TrendingUp size={14} /> What&apos;s included on your {plan === "growth" ? "Growth" : "Starter"} trial
           </p>
           <div style={{ fontSize: 11, color: "#777", lineHeight: 2 }}>
             {(plan === "growth" ? [
@@ -353,7 +354,7 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
               "Two clear options per alert",
             ]).map((f, i) => (
               <div key={i} style={{ display: "flex", gap: 8 }}>
-                <span style={{ color: "#c9a84c", fontWeight: 900, flexShrink: 0 }}>✓</span>{f}
+                <span style={{ color: "#c9a84c", fontWeight: 900, flexShrink: 0 }}><Check size={14} strokeWidth={3} /></span>{f}
               </div>
             ))}
           </div>
@@ -361,7 +362,7 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
 
         {/* Email badge */}
         <div style={{ background: "#fef8ee", border: "1px solid #f0dcaa", borderRadius: 11, padding: "13px 16px", textAlign: "left", marginBottom: 22 }}>
-          <p style={{ fontSize: 10, color: "#bbb", marginBottom: 3 }}>📬 All alerts + reports go to</p>
+          <p style={{ fontSize: 10, color: "#bbb", marginBottom: 3, display: "flex", alignItems: "center", gap: 4 }}><Mail size={12} /> All alerts + reports go to</p>
           <p style={{ fontWeight: 800, color: "#b8872c", fontSize: 14 }}>{email}</p>
           <p style={{ fontSize: 10, color: "#ccc", marginTop: 3 }}>No app. No dashboard. Just your inbox.</p>
         </div>
@@ -454,8 +455,8 @@ function TrialForm() {
 
           {/* Header */}
           <div className="ha h1" style={{ textAlign: "center", marginBottom: 32 }}>
-            <span style={{ display: "inline-block", padding: "5px 16px", borderRadius: 100, background: "#fef8ee", border: "1px solid #f0dcaa", fontSize: 11, fontWeight: 700, color: "#b8872c", marginBottom: 14 }}>
-              🎁 10-day free trial · No credit card
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 16px", borderRadius: 100, background: "#fef8ee", border: "1px solid #f0dcaa", fontSize: 11, fontWeight: 700, color: "#b8872c", marginBottom: 14 }}>
+              <Gift size={14} /> 10-day free trial · No credit card
             </span>
             <h1 style={{ fontSize: "clamp(28px,5vw,44px)", fontWeight: 900, letterSpacing: -1.5, marginBottom: 10, color: "#111", lineHeight: 1.1 }}>
               Start your free trial
@@ -497,17 +498,17 @@ function TrialForm() {
                   </div>
                 ))}
                 {form.orders && (
-                  <p style={{ fontSize: 11, color: "#b86857", fontWeight: 600 }}>
-                    💡 Accuracy matters: Wrong weekly order counts will lead to incorrect rupee recommendations and monthly insights. Please provide accurate data.
-                  </p>
+                  <p style={{ fontSize: 11, color: "#b86857", fontWeight: 600, display: "flex", alignItems: "center", gap: 6 }}>
+                  <Lightbulb size={14} /> Accuracy matters: Wrong weekly order counts will lead to incorrect rupee recommendations and monthly insights. Please provide accurate data.
+                </p>
                 )}
               </div>
             </div>
 
             {/* Threshold explainer */}
             <div style={{ background: "#fef8ee", border: "1px solid #f0dcaa", borderRadius: 12, padding: "16px 18px" }}>
-              <p style={{ fontSize: 12, fontWeight: 800, color: "#b8872c", marginBottom: 6, display: "flex", alignItems: "center", gap: 7 }}>
-                <span style={{ fontSize: 16 }}>📐</span> What is Alert Threshold %?
+              <p style={{ fontSize: 11, fontWeight: 800, color: "#b8872c", marginBottom: 6, display: "flex", alignItems: "center", gap: 7 }}>
+                <Ruler size={16} /> What is Alert Threshold %?
               </p>
               <p style={{ fontSize: 12, color: "#5a4520", lineHeight: 1.7 }}>
                 The <strong>minimum % price change</strong> that triggers an alert. Set to <strong>5</strong> → only notified when a competitor moves ≥5%. Prevents noise from tiny rounding changes.

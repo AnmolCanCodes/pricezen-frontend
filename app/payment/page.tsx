@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { AlertTriangle, CreditCard, Lock, Check } from "lucide-react";
 
 declare global {
   interface Window { Razorpay: any; }
@@ -181,7 +182,7 @@ function PaymentForm() {
     <main style={{ minHeight:"100vh", display:"flex", alignItems:"center",
                    justifyContent:"center", background:"#060608", padding:"24px" }}>
       <div style={{ textAlign:"center" }}>
-        <div style={{ fontSize:48, marginBottom:16 }}>⚠️</div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}><AlertTriangle size={48} color="#f66" /></div>
         <p style={{ color:"#f66", marginBottom:8, fontSize:"1.1em", fontWeight:700 }}>
           Invalid payment link.
         </p>
@@ -272,7 +273,7 @@ function PaymentForm() {
           border:"1px solid rgba(255,255,255,0.08)",
           borderRadius:20, padding:"32px 28px", textAlign:"center",
         }}>
-          <div style={{ fontSize:40, marginBottom:16 }}>💳</div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}><CreditCard size={40} /></div>
           <h1 style={{ fontSize:"1.6rem", fontWeight:800, color:"#fff", marginBottom:8 }}>
             Complete Your Plan
           </h1>
@@ -290,7 +291,7 @@ function PaymentForm() {
               color:"#ff6b6b", fontSize:"0.85em",
               lineHeight:1.6, textAlign:"left",
             }}>
-              <p style={{ margin:"0 0 10px", fontWeight:700 }}>⚠ Payment issue</p>
+              <p style={{ margin:"0 0 10px", fontWeight:700, display: "flex", alignItems: "center", gap: 6 }}><AlertTriangle size={14} /> Payment issue</p>
               <p style={{ margin:0 }}>{error}</p>
             </div>
           )}
@@ -312,8 +313,8 @@ function PaymentForm() {
             {loading ? "Opening payment…" : error ? "Try Again →" : "Pay Now →"}
           </button>
 
-          <p style={{ fontSize:"11px", color:"#2a2a2a", marginBottom:20 }}>
-            🔒 256-bit SSL · Secured by Razorpay
+          <p style={{ fontSize:"11px", color:"#2a2a2a", marginBottom:20, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
+            <Lock size={11} /> 256-bit SSL · Secured by Razorpay
           </p>
 
           <div style={{
@@ -334,7 +335,7 @@ function PaymentForm() {
               <p key={i} style={{ fontSize:"12px", color:"#666",
                                    marginBottom:4, display:"flex", gap:8,
                                    alignItems:"flex-start" }}>
-                <span style={{ color:"#00ff88", flexShrink:0 }}>✓</span>{f}
+                <span style={{ display: "flex", color:"#00ff88", flexShrink:0 }}><Check size={14} strokeWidth={3} /></span>{f}
               </p>
             ))}
           </div>

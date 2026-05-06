@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { Zap, IndianRupee, Target, FolderOpen, ScanLine, CalendarDays, BarChart3, TrendingUp, Mail, Flame, Check, X, AlertTriangle } from "lucide-react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
@@ -49,7 +50,7 @@ function EmailMockup() {
         <div style={{ background: "#fde8e8", color: "#b91c1c", fontSize: 10, fontWeight: 800, borderRadius: 6, padding: "3px 9px", flexShrink: 0, letterSpacing: 0.3 }}>ACTION NEEDED</div>
       </div>
       <div style={{ padding: "13px 18px 0", borderBottom: "1px solid #f2ede4" }}>
-        <p style={{ margin: "0 0 2px", fontWeight: 700, fontSize: 13, color: "#111" }}>⚠️ Weekly Report · Week of 7 Apr :- ₹12,400 at risk</p>
+        <p style={{ margin: "0 0 2px", fontWeight: 700, fontSize: 13, color: "#111", display: "flex", alignItems: "center", gap: 6 }}><AlertTriangle size={14} /> Weekly Report · Week of 7 Apr :- ₹12,400 at risk</p>
         <p style={{ margin: "0 0 12px", fontSize: 11, color: "#aaa" }}>Sunscreen SPF 50 · Vitamin C Serum · 2 categories</p>
       </div>
       <div style={{ padding: "14px 18px" }}>
@@ -84,10 +85,10 @@ function EmailMockup() {
 }
 
 /* ─── Why card ───────────────────────────────────── */
-function WhyCard({ icon, title, body }: { icon: string; title: string; body: string }) {
+function WhyCard({ icon: Icon, title, body }: { icon: React.ElementType; title: string; body: string }) {
   return (
     <div style={{ background: "#fff", border: "1px solid #d4cfc2", borderRadius: 18, padding: "28px 24px", display: "flex", flexDirection: "column", gap: 12 }}>
-      <span style={{ fontSize: 26 }}>{icon}</span>
+      <span style={{ display: "flex" }}><Icon size={26} strokeWidth={1.5} /></span>
       <h3 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "#111", lineHeight: 1.3 }}>{title}</h3>
       <p style={{ margin: 0, fontSize: 13, color: "#666", lineHeight: 1.75 }}>{body}</p>
     </div>
@@ -98,8 +99,8 @@ function WhyCard({ icon, title, body }: { icon: string; title: string; body: str
 function CompRow({ label, s, g }: { label: string; s: boolean | string; g: boolean | string }) {
   const cell = (v: boolean | string) =>
     typeof v === "string" ? <span style={{ fontSize: 12, color: "#555", fontWeight: 500 }}>{v}</span>
-      : v ? <span style={{ color: "#1a6640", fontWeight: 800, fontSize: 15 }}>✓</span>
-        : <span style={{ color: "#ddd", fontWeight: 700, fontSize: 13 }}>✗</span>;
+      : v ? <span style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#1a6640", fontWeight: 800, fontSize: 15 }}><Check size={16} strokeWidth={3} /></span>
+        : <span style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#ddd", fontWeight: 700, fontSize: 13 }}><X size={16} strokeWidth={3} /></span>;
   return (
     <tr>
       <td style={{ padding: "11px 16px", fontSize: 12, color: "#444", borderBottom: "1px solid #f4f0e8", fontWeight: 500 }}>{label}</td>
@@ -188,7 +189,7 @@ export default function Home() {
         <div className="ticker-wrap">
           <div className="ticker-inner">
             {[...tickerItems, ...tickerItems].map((t, i) => (
-              <span key={i} className="ticker-item"><span>✦</span>{t}</span>
+              <span key={i} className="ticker-item"><span style={{ color: "#c9a84c" }}>◆</span>{t}</span>
             ))}
           </div>
         </div>
@@ -210,32 +211,32 @@ export default function Home() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 40 }}>
               {[
                 {
-                  icon: "⚡",
+                  icon: Zap,
                   title: "You find out the moment it happens",
                   body: "The minute a competitor crosses your price threshold, an email hits your inbox. Not tomorrow morning. Not when you remember to check. Right now :- while there's still time to react.",
                 },
                 {
-                  icon: "₹",
+                  icon: IndianRupee,
                   title: "Every alert has a rupee number attached",
                   body: "We don&rsquo;t say \"competitor dropped price.\" We say \"this change puts ₹8,200 of your weekly revenue at risk.\" That number is calculated from your actual order volume :- not a generic estimate.",
                 },
                 {
-                  icon: "🎯",
+                  icon: Target,
                   title: "One thing to do. Not ten things to consider.",
                   body: "The weekly report ends with one sentence: what to change, which product, what price, why. You can act on it in two minutes or ignore it :- but you always know exactly what the right move is.",
                 },
                 {
-                  icon: "📁",
+                  icon: FolderOpen,
                   title: "The data is already in your email",
                   body: "Every email contains 30 days of price history across all your products and competitors, beautifully formatted. Read it, share it with your team, done. No login, no export, no waiting.",
                 },
                 {
-                  icon: "🔭",
+                  icon: ScanLine,
                   title: "You always know where you stand",
                   body: "Cheapest in category? Mid-market? Quietly premium? Each alert tells you exactly how your pricing looks compared to the field right now :- not based on a survey from last quarter.",
                 },
                 {
-                  icon: "📆",
+                  icon: CalendarDays,
                   title: "At the end of the month, you see the ROI",
                   body: "The monthly report doesn't just recap :- it tells you how much revenue PriceZen helped you protect or capture. If the number is bigger than ₹2,999, the plan paid for itself. Usually it's a lot bigger.",
                 },
@@ -320,24 +321,24 @@ export default function Home() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 14 }}>
               {[
                 {
-                  icon: "⚡", title: "Instant Price Alert", when: "The moment a threshold is crossed",
+                  icon: Zap, title: "Instant Price Alert", when: "The moment a threshold is crossed",
                   body: "Competitor changed their price :- here's what that means for your revenue, here's your new market position, here's the one thing to consider doing.",
                 },
                 {
-                  icon: "📊", title: "Monday Weekly Report", when: "Every Monday · 10:00 AM",
+                  icon: BarChart3, title: "Monday Weekly Report", when: "Every Monday · 10:00 AM",
                   body: "A plain-language summary of the week. Did you gain or lose ground? What's the rupee picture? One suggested action for the week ahead.",
                 },
                 {
-                  icon: "📈", title: "30-Day Price Trend", when: "Inside every weekly report",
+                  icon: TrendingUp, title: "30-Day Price Trend", when: "Inside every weekly report",
                   body: "A full movement chart for your products and theirs. Patterns you wouldn&rsquo;t notice looking at one week at a time become obvious here.",
                 },
                 {
-                  icon: "📁", title: "Full price history in every email", when: "On every single email",
+                  icon: FolderOpen, title: "Full price history in every email", when: "On every single email",
                   body: "The complete 30-day price history beautifully formatted in every email. Read it, forward it, share it with your team. Never log in anywhere to get it.",
                 },
               ].map((e, i) => (
                 <div key={i} className={`reveal d${(i % 4) + 1}`} style={{ background: "#fff", border: "1px solid #ece7dd", borderRadius: 16, padding: "22px 20px" }}>
-                  <p style={{ fontSize: 26, marginBottom: 10 }}>{e.icon}</p>
+                  <p style={{ fontSize: 26, marginBottom: 10, color: "#b8872c" }}><e.icon size={26} strokeWidth={1.5} /></p>
                   <h4 style={{ fontSize: 14, fontWeight: 800, marginBottom: 4, color: "#111" }}>{e.title}</h4>
                   <p style={{ fontSize: 10, color: "#b8872c", fontWeight: 800, marginBottom: 8, textTransform: "uppercase", letterSpacing: 0.6 }}>{e.when}</p>
                   <p style={{ fontSize: 12, color: "#666", lineHeight: 1.7 }}>{e.body}</p>
@@ -384,7 +385,7 @@ export default function Home() {
                     [false, "Monthly intelligence report"],
                   ].map(([on, label], i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 9 }}>
-                      <span style={{ fontSize: 12, color: on ? "#1a6640" : "#ddd", fontWeight: 800, marginTop: 1, flexShrink: 0 }}>{on ? "✓" : "✗"}</span>
+                      <span style={{ display: "flex", color: on ? "#1a6640" : "#ddd", marginTop: 1, flexShrink: 0 }}>{on ? <Check size={14} strokeWidth={3} /> : <X size={14} strokeWidth={3} />}</span>
                       <span style={{ fontSize: 12, color: on ? "#333" : "#ccc" }}>{label as string}</span>
                     </div>
                   ))}
@@ -394,8 +395,8 @@ export default function Home() {
 
               {/* Growth */}
               <div className="plan-card gold reveal d2" style={{ position: "relative", borderColor: "#c9a84c" }}>
-                <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "#c9a84c", color: "#fff", fontSize: 10, fontWeight: 900, padding: "4px 16px", borderRadius: 50, letterSpacing: 1, textTransform: "uppercase", whiteSpace: "nowrap", boxShadow: "0 4px 14px rgba(201,168,76,0.4)" }}>
-                  🔥 Most Popular
+                <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: "#c9a84c", color: "#fff", fontSize: 10, fontWeight: 900, padding: "4px 16px", borderRadius: 50, letterSpacing: 1, textTransform: "uppercase", whiteSpace: "nowrap", boxShadow: "0 4px 14px rgba(201,168,76,0.4)", display: "flex", alignItems: "center", gap: 6 }}>
+                  <Flame size={14} /> Most Popular
                 </div>
                 <p style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, color: "#b8872c", marginBottom: 10 }}>Growth</p>
                 <p style={{ fontSize: 46, fontWeight: 900, letterSpacing: -2, marginBottom: 2 }}>₹2,499<span style={{ fontSize: 15, fontWeight: 500, color: "#bbb" }}>/mo</span></p>

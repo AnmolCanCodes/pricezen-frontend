@@ -2,6 +2,7 @@
 import { useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { Ruler, BarChart3, Lightbulb, Check, X } from "lucide-react";
 import Footer from "@/components/Footer"
 
 type Plan = "starter" | "growth";
@@ -60,12 +61,12 @@ function PlanOption({ plan, selected, onSelect }: { plan: Plan; selected: boolea
         {isG?"₹2,499":"₹999"}<span style={{ fontSize:11, fontWeight:500, color:"#d4a9a9" }}>/mo</span>
       </p>
       <div style={{ fontSize:11, color:"#666", lineHeight:1.9 }}>
-        <div>✓ {isG?"6 products · 4 competitors":"3 products · 3 competitors"}</div>
-        <div style={{ color:isG?"#b8872c":"#666", fontWeight:isG?700:400 }}>✓ Instant alert on threshold breach</div>
-        <div>✓ Weekly Monday report</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> {isG?"6 products · 4 competitors":"3 products · 3 competitors"}</div>
+        <div style={{ color:isG?"#b8872c":"#666", fontWeight:isG?700:400, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Instant alert on threshold breach</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Weekly Monday report</div>
         {isG && <>
-          <div style={{ color:"#b8872c", fontWeight:700 }}>✓ Rupee ₹ impact estimates</div>
-          <div style={{ color:"#b8872c", fontWeight:700 }}>✓ 30-day trend + monthly report</div>
+          <div style={{ color:"#b8872c", fontWeight:700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> ₹ Rupee impact estimates</div>
+          <div style={{ color:"#b8872c", fontWeight:700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> 30-day trend + monthly report</div>
         </>}
       </div>
       {selected && (
@@ -90,7 +91,7 @@ function ProductBlock({ index, product, maxC, onRemove, onChange }: {
           <span style={{ fontSize:11, fontWeight:700, textTransform:"uppercase", letterSpacing:1, color:"#aaa" }}>Product {index + 1}</span>
         </div>
         {index > 0 && (
-          <button type="button" onClick={onRemove} style={{ background:"none", border:"none", cursor:"pointer", fontSize:11, color:"#ccc", fontWeight:700, fontFamily:"inherit" }}>✕ Remove</button>
+          <button type="button" onClick={onRemove} style={{ background:"none", border:"none", cursor:"pointer", fontSize:11, color:"#ccc", fontWeight:700, fontFamily:"inherit", display: "flex", alignItems: "center", gap: 4 }}><X size={12} /> Remove</button>
         )}
       </div>
 
@@ -132,7 +133,7 @@ function ProductBlock({ index, product, maxC, onRemove, onChange }: {
                 style={inputStyle} />
               {product.competitors.length > 1 && (
                 <button type="button" onClick={() => onChange({ ...product, competitors:product.competitors.filter((_,i)=>i!==ci) })}
-                  style={{ background:"none", border:"none", cursor:"pointer", color:"#ddd", fontSize:13, width:28, flexShrink:0, fontFamily:"inherit" }}>✕</button>
+                  style={{ background:"none", border:"none", cursor:"pointer", color:"#ddd", fontSize:13, width:28, flexShrink:0, fontFamily:"inherit", display: "flex", alignItems: "center", justifyContent: "center" }}><X size={14} /></button>
               )}
             </div>
           ))}
@@ -158,7 +159,7 @@ function ThresholdExplainer() {
   return (
     <div style={{ background:"#fef8ee", border:"1px solid #f0dcaa", borderRadius:12, padding:"16px 18px", marginBottom:14 }}>
       <p style={{ fontSize:12, fontWeight:800, color:"#b8872c", marginBottom:6, display:"flex", alignItems:"center", gap:7 }}>
-        <span style={{ fontSize:16 }}>📐</span> What is Alert Threshold %?
+        <Ruler size={16} /> What is Alert Threshold %?
       </p>
       <p style={{ fontSize:12, color:"#5a4520", lineHeight:1.7 }}>
         The threshold is the <strong>minimum % price change</strong> that triggers an alert. If you set it to <strong>5%</strong>, you&apos;ll only be notified when a competitor&apos;s price moves by 5% or more — so small rounding changes don&apos;t flood your inbox.
@@ -175,7 +176,7 @@ function AvgWeeklyOrdersExplainer() {
   return (
     <div style={{ background:"#fef3f0", border:"1px solid #f0d5cc", borderRadius:12, padding:"16px 18px", marginBottom:14 }}>
       <p style={{ fontSize:12, fontWeight:800, color:"#b86857", marginBottom:6, display:"flex", alignItems:"center", gap:7 }}>
-        <span style={{ fontSize:16 }}>📊</span> Why We Need Your Avg Weekly Orders
+        <BarChart3 size={16} /> Why We Need Your Avg Weekly Orders
       </p>
       <p style={{ fontSize:12, color:"#5a3a35", lineHeight:1.7 }}>
         Your average weekly sales volume is used to calculate <strong>accurate rupee (₹) impact estimates</strong>, <strong>revenue at risk recommendations</strong>, and <strong>margin opportunity insights</strong> in our System. Without fair numbers, these calculations will be misleading.
@@ -324,8 +325,8 @@ function AuditForm() {
                 ))}
               </div>
               {form.orders && (
-                <p style={{ fontSize:11, color:"#b86857", marginTop:10, fontWeight:600 }}>
-                  💡 Accuracy matters: Wrong weekly order counts will lead to incorrect rupee recommendations and monthly insights. Please provide accurate data.
+                <p style={{ fontSize:11, color:"#b86857", marginTop:10, fontWeight:600, display: "flex", alignItems: "center", gap: 6 }}>
+                  <Lightbulb size={14} /> Accuracy matters: Wrong weekly order counts will lead to incorrect rupee recommendations and monthly insights. Please provide accurate data.
                 </p>
               )}
             </div>

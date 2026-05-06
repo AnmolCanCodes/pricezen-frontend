@@ -1,15 +1,16 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { Settings, FlaskConical, IndianRupee, Mail, Lock, Search, HelpCircle, Check, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 interface FAQItem { q: string; a: React.ReactNode }
-interface Section  { title: string; icon: string; items: FAQItem[] }
+interface Section  { title: string; icon: React.ElementType; items: FAQItem[] }
 
 const sections: Section[] = [
   {
-    title: "How It Works", icon: "⚙️",
+    title: "How It Works", icon: Settings,
     items: [
       {
         q: "How often are prices checked?",
@@ -34,7 +35,7 @@ const sections: Section[] = [
     ],
   },
   {
-    title: "Trial", icon: "🧪",
+    title: "Trial", icon: FlaskConical,
     items: [
       {
         q: "What exactly is the 10-day free trial?",
@@ -55,7 +56,7 @@ const sections: Section[] = [
     ],
   },
   {
-    title: "Plans & Billing", icon: "₹",
+    title: "Plans & Billing", icon: IndianRupee,
     items: [
       {
         q: "Can I change products mid-month?",
@@ -76,7 +77,7 @@ const sections: Section[] = [
     ],
   },
   {
-    title: "Alerts & Reports", icon: "📬",
+    title: "Alerts & Reports", icon: Mail,
     items: [
       {
         q: "What does an alert email look like?",
@@ -93,7 +94,7 @@ const sections: Section[] = [
     ],
   },
   {
-    title: "Privacy & Data", icon: "🔒",
+    title: "Privacy & Data", icon: Lock,
     items: [
       {
         q: "What data do you store about me?",
@@ -179,7 +180,7 @@ export default function FAQPage() {
 
           {/* Search */}
           <div className="ha h2" style={{ marginBottom: 44, position: "relative" }}>
-            <span style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)", fontSize: 15, color: "#ccc" }}>🔍</span>
+            <span style={{ position: "absolute", left: 16, top: "50%", transform: "translateY(-50%)", color: "#ccc" }}><Search size={18} /></span>
             <input
               type="text"
               placeholder="Search questions..."
@@ -198,8 +199,8 @@ export default function FAQPage() {
             {search && (
               <button type="button" onClick={() => setSearch("")} style={{
                 position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)",
-                background: "none", border: "none", cursor: "none", color: "#ccc", fontSize: 18, lineHeight: 1,
-              }}>✕</button>
+                background: "none", border: "none", cursor: "none", color: "#ccc", display: "flex", alignItems: "center", justifyContent: "center"
+              }}><X size={18} /></button>
             )}
           </div>
 
@@ -208,7 +209,7 @@ export default function FAQPage() {
             filtered.map((s, i) => (
               <div key={i} className="reveal" style={{ marginBottom: 36 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
-                  <span style={{ fontSize: 18 }}>{s.icon}</span>
+                  <span style={{ display: "flex", color: "#b8872c" }}><s.icon size={18} /></span>
                   <p style={{ fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, color: "#b8872c", margin: 0 }}>{s.title}</p>
                 </div>
                 <div style={{ background: "#fff", border: "1px solid #d4cfc2", borderRadius: 18, padding: "0 24px" }}>
@@ -220,7 +221,7 @@ export default function FAQPage() {
             ))
           ) : (
             <div style={{ textAlign: "center", padding: "56px 0" }}>
-              <p style={{ fontSize: 36, marginBottom: 12 }}>🤔</p>
+              <p style={{ fontSize: 36, marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "center", color: "#ccc" }}><HelpCircle size={48} /></p>
               <p style={{ fontWeight: 800, fontSize: 16, color: "#444", marginBottom: 8 }}>No matching questions.</p>
               <p style={{ fontSize: 13, color: "#888" }}>
                 Try different words, or{" "}

@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { Mail, MapPin, CheckCircle2 } from "lucide-react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import ConsentGuard from "@/components/ConsentGuard";
@@ -29,7 +30,7 @@ export default function ContactPage() {
           {/* Hero text */}
           <div className="fade-in" style={{ textAlign: "center", marginBottom: 64 }}>
             {/* Warm icon */}
-            <div style={{ width: 64, height: 64, borderRadius: 20, background: "#fef3d8", border: "1.5px solid #f0dcaa", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, margin: "0 auto 20px" }}>✉️</div>
+            <div style={{ width: 64, height: 64, borderRadius: 20, background: "#fef3d8", border: "1.5px solid #f0dcaa", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px", color: "#b8872c" }}><Mail size={32} /></div>
             <h1 style={{ fontSize: "clamp(32px,5vw,54px)", fontWeight: 900, letterSpacing: -1.5, marginBottom: 14, color: "#0f0f0f" }}>
               We&apos;re here for you,{" "}
               <span style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", color: "#b85c1a" }}>Always.</span>
@@ -59,23 +60,23 @@ export default function ContactPage() {
               {/* Contact details */}
               {[
                 {
-                  icon: "📧",
+                  icon: Mail,
                   label: "Email us",
                   value: "pricezenalert@gmail.com",
                   sub: "We reply within a few hours",
                   href: "mailto:pricezenalert@gmail.com",
                 },
-                
+
                 {
-                  icon: "📍",
+                  icon: MapPin,
                   label: "Based in",
-                  value: "India 🇮🇳",
+                  value: "India",
                   sub: "Serving brands nationwide",
                   href: null,
                 },
               ].map((item, i) => (
                 <div key={i} className={`fade-in d${i + 2}`} style={{ background: "#fff", border: "1px solid #ece7dd", borderRadius: 16, padding: "20px 22px", display: "flex", gap: 14, alignItems: "flex-start" }}>
-                  <span style={{ fontSize: 24, flexShrink: 0 }}>{item.icon}</span>
+                  <span style={{ display: "flex", flexShrink: 0, color: "#b8872c" }}><item.icon size={24} /></span>
                   <div>
                     <p style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: 1.5, color: "#bbb", marginBottom: 3 }}>{item.label}</p>
                     {item.href ? (
@@ -101,7 +102,7 @@ export default function ContactPage() {
             <div className="fade-in d2" style={{ background: "#fff", border: "1px solid #ece7dd", borderRadius: 20, padding: "32px 28px" }}>
               {sent ? (
                 <div style={{ textAlign: "center", padding: "40px 0" }}>
-                  <div style={{ fontSize: 48, marginBottom: 16 }}>✅</div>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16, color: "#1a6640" }}><CheckCircle2 size={48} /></div>
                   <h3 style={{ fontSize: 22, fontWeight: 800, marginBottom: 8, color: "#111" }}>Message sent!</h3>
                   <p style={{ fontSize: 13, color: "#888", lineHeight: 1.7 }}>We&apos;ve received your message and will get back to you at <strong>{form.email}</strong> within a few hours.</p>
                 </div>

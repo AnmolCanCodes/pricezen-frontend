@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { Lightbulb, CheckCircle2, Hand, Package, Store, Factory, IndianRupee, Mail, Flame, Check, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -19,14 +20,14 @@ function StepDot({ n, active, done }: { n: number; active: boolean; done: boolea
       display: "flex", alignItems: "center", justifyContent: "center",
       fontWeight: 900, fontSize: 13, transition: "background 0.25s",
     }}>
-      {done ? "✓" : n}
+      {done ? <Check size={14} strokeWidth={3} /> : n}
     </div>
   );
 }
 
 /* ─── Choice card ────────────────────────────────── */
-function ChoiceCard({ icon, title, sub, badge, selected, onClick }: {
-  icon: string; title: string; sub: string; badge?: string; selected: boolean; onClick: () => void;
+function ChoiceCard({ icon: Icon, title, sub, badge, selected, onClick }: {
+  icon: React.ElementType; title: string; sub: string; badge?: string; selected: boolean; onClick: () => void;
 }) {
   return (
     <button type="button" onClick={onClick} style={{
@@ -47,7 +48,7 @@ function ChoiceCard({ icon, title, sub, badge, selected, onClick }: {
         }}>{badge}</span>
       )}
       <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-        <span style={{ fontSize: 22, lineHeight: 1, marginTop: 2 }}>{icon}</span>
+        <span style={{ display: "flex", lineHeight: 1, marginTop: 2, color: "#b8872c" }}><Icon size={22} strokeWidth={1.5} /></span>
         <div style={{ flex: 1 }}>
           <p style={{ margin: 0, fontWeight: 800, fontSize: 14, color: "#111", marginBottom: 4 }}>{title}</p>
           <p style={{ margin: 0, fontSize: 13, color: "#666", lineHeight: 1.6 }}>{sub}</p>
@@ -127,7 +128,7 @@ function Recommendation({ rec }: { rec: Rec }) {
 
             ].map(t => (
               <div key={t} style={{ display: "flex", gap: 9, alignItems: "flex-start" }}>
-                <span style={{ fontSize: 12, color: "#1a6640", fontWeight: 800, flexShrink: 0, marginTop: 1 }}>✓</span>
+                <span style={{ display: "flex", color: "#1a6640", fontWeight: 800, flexShrink: 0, marginTop: 1 }}><Check size={14} strokeWidth={3} /></span>
                 <span style={{ fontSize: 13, color: "#555" }}>{t}</span>
               </div>
             ))}
@@ -197,7 +198,7 @@ export default function GettingStartedPage() {
 
           {/* Trial callout */}
           <div className="ha h2" style={{ background: "#111", borderRadius: 16, padding: "16px 20px", marginBottom: 36, display: "flex", gap: 14, alignItems: "flex-start" }}>
-            <span style={{ fontSize: 20, lineHeight: 1, marginTop: 2 }}>💡</span>
+            <span style={{ display: "flex", lineHeight: 1, marginTop: 2, color: "#c9a84c" }}><Lightbulb size={20} /></span>
             <div>
               <p style={{ margin: "0 0 5px", fontWeight: 800, fontSize: 13, color: "#fff" }}>Both plans come with a 10-day free trial</p>
               <p style={{ margin: 0, fontSize: 12, color: "#888", lineHeight: 1.7 }}>
@@ -226,13 +227,13 @@ export default function GettingStartedPage() {
             <p style={{ fontSize: 13, color: "#888", marginBottom: 16, lineHeight: 1.6 }}>Just helps us understand where you are.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <ChoiceCard
-                icon="✅" selected={q1 === "yes"}
+                icon={CheckCircle2} selected={q1 === "yes"}
                 onClick={() => { setQ1("yes"); reset(2); }}
                 title="Yes, I have a plan already"
                 sub="Looking to upgrade, or helping someone else get set up."
               />
               <ChoiceCard
-                icon="👋" selected={q1 === "no"}
+                icon={Hand} selected={q1 === "no"}
                 onClick={() => { setQ1("no"); reset(2); }}
                 title="No, I'm new here"
                 sub="First time looking at PriceZen :- figuring out where to start."
@@ -252,19 +253,19 @@ export default function GettingStartedPage() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 <ChoiceCard
-                  icon="🧴" selected={q2 === "small"}
+                  icon={Package} selected={q2 === "small"}
                   onClick={() => { setQ2("small"); reset(3); }}
                   title="1–3 products"
                   sub="Core SKUs you compete on hardest. Starter covers this, but Growth works too."
                 />
                 <ChoiceCard
-                  icon="🏪" selected={q2 === "mid"}
+                  icon={Store} selected={q2 === "mid"}
                   onClick={() => { setQ2("mid"); reset(3); }}
                   title="3 products"
                   sub="Starter's limit is 3 products :- fits perfectly for focused catalogues. Growth gives you more headroom."
                 />
                 <ChoiceCard
-                  icon="🏭" selected={q2 === "large"}
+                  icon={Factory} selected={q2 === "large"}
                   onClick={() => { setQ2("large"); reset(3); }}
                   title="4–6 products"
                   badge="Growth territory"
@@ -286,14 +287,14 @@ export default function GettingStartedPage() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 <ChoiceCard
-                  icon="₹" selected={q3 === "rupee"}
+                  icon={IndianRupee} selected={q3 === "rupee"}
                   onClick={() => setQ3("rupee")}
                   badge="Most useful"
                   title="I want to know the rupee impact"
                   sub="Growth tells you exactly how much revenue is at risk or recoverable :- calculated from your weekly order volume. Plus 30-day trends and a monthly ROI report."
                 />
                 <ChoiceCard
-                  icon="📬" selected={q3 === "basic"}
+                  icon={Mail} selected={q3 === "basic"}
                   onClick={() => setQ3("basic")}
                   title="Just the alert and the data is enough"
                   sub="Starter sends you the price change, your new market position, and two clear action options."
@@ -340,8 +341,8 @@ export default function GettingStartedPage() {
                       typeof v === "string"
                         ? <span style={{ fontSize: 12, color: "#555" }}>{v}</span>
                         : v
-                          ? <span style={{ color: "#1a6640", fontWeight: 800, fontSize: 14 }}>✓</span>
-                          : <span style={{ color: "#ddd", fontSize: 13 }}>✗</span>;
+                          ? <span style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#1a6640", fontWeight: 800, fontSize: 14 }}><Check size={16} strokeWidth={3} /></span>
+                          : <span style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#ddd", fontSize: 13 }}><X size={16} strokeWidth={3} /></span>;
                     return (
                       <tr key={i}>
                         <td style={{ padding: "10px 12px", fontSize: 12, color: "#555", borderBottom: "1px solid #f4f0e8", fontWeight: 500 }}>{label as string}</td>
