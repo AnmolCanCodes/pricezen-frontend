@@ -253,8 +253,8 @@ function AuditForm() {
       });
       const data = await res.json();
       if (res.ok) {
-        // Redirect to the payment page with the newly created client_id
-        router.push(`/payment?client_id=${data.client_id}`);
+        // Bug 5 fix: Redirect with both client_id AND token
+        router.push(`/payment?client_id=${data.client_id}&token=${encodeURIComponent(data.token)}`);
       } else {
         const message = formatApiError(data);
         console.error("Submit response error:", data);

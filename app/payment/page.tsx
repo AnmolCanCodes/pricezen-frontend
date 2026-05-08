@@ -3,13 +3,13 @@ import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { AlertTriangle, CreditCard, Lock, Check } from "lucide-react";
+import { AlertTriangle, CreditCard, Lock, Check, Shield, Zap } from "lucide-react";
 
 declare global {
   interface Window { Razorpay: any; }
 }
 
-// ── localStorage key for retry-safe verification (Issue 4 fix) ─
+// ── localStorage key for retry-safe verification ─
 const PENDING_VERIFY_KEY = "pricezen_pending_verify";
 
 function PaymentForm() {
@@ -17,7 +17,7 @@ function PaymentForm() {
   const router   = useRouter();
 
   const rawId    = params.get("client_id");
-  const token    = params.get("token") ?? "";   // ← NEW: signed token
+  const token    = params.get("token") ?? "";
   const clientId = rawId && /^\d+$/.test(rawId) ? rawId : null;
 
   const [loading,    setLoading]    = useState(false);
@@ -28,7 +28,6 @@ function PaymentForm() {
   const [brandName,  setBrandName]  = useState("");
   const [retrying,   setRetrying]   = useState(false);
 
-  // Issue 5 fix: ref-based lock so even double-clicks can't double-fire
   const isOpenRef = useRef(false);
 
   // Load Razorpay script once on mount
@@ -40,7 +39,7 @@ function PaymentForm() {
     return () => { if (document.body.contains(script)) document.body.removeChild(script); };
   }, []);
 
-  // Issue 4 fix: on mount, retry any pending verification from a previous session
+  // Retry any pending verification from a previous session
   useEffect(() => {
     const pending = localStorage.getItem(PENDING_VERIFY_KEY);
     if (!pending || !clientId) return;
@@ -52,7 +51,6 @@ function PaymentForm() {
       client_id:           number;
     };
 
-    // Only retry if it's for the same client
     if (String(data.client_id) !== clientId) return;
 
     setRetrying(true);
@@ -75,7 +73,6 @@ function PaymentForm() {
   }, [clientId]);
 
   const startPayment = async () => {
-    // Issue 5 fix: ref lock — ignores calls while modal is open
     if (isOpenRef.current || loading) return;
     if (!clientId) { setError("Invalid payment link. Please contact support."); return; }
     if (!token)    { setError("Invalid payment link (missing token). Please contact support."); return; }
@@ -85,7 +82,7 @@ function PaymentForm() {
     setError("");
 
     try {
-      // Step 1 — create order, passing token for server-side validation
+      // Step 1 — create order
       const res = await fetch(
         `/api/payment/create-order?client_id=${clientId}&token=${encodeURIComponent(token)}`,
         { method: "POST", signal: AbortSignal.timeout(15000) }
@@ -114,10 +111,9 @@ function PaymentForm() {
         name:        "PriceZen",
         description: `${order.plan_label} Plan — Monthly`,
         prefill:     { name: order.brand_name },
-        theme:       { color: "#00ff88" },
+        theme:       { color: "#b85c1a" },
 
         handler: async (response: any) => {
-          // Issue 4 fix: persist before verify so a crash/close can retry
           const verifyPayload = {
             razorpay_order_id:   response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
@@ -126,7 +122,7 @@ function PaymentForm() {
           };
           localStorage.setItem(PENDING_VERIFY_KEY, JSON.stringify(verifyPayload));
 
-          // Step 3 — verify signature on backend
+          // Step 3 — verify signature
           try {
             const verify = await fetch("/api/payment/verify", {
               method:  "POST",
@@ -139,7 +135,6 @@ function PaymentForm() {
               localStorage.removeItem(PENDING_VERIFY_KEY);
               setSuccess(true);
             } else {
-              // Payment went through but verify failed — show payment ID so support can fix
               setError(
                 `Payment received but confirmation failed. ` +
                 `Email pricezenalert@gmail.com with payment ID: ${response.razorpay_payment_id}. ` +
@@ -147,7 +142,6 @@ function PaymentForm() {
               );
             }
           } catch {
-            // Timeout or network drop — pending payload is in localStorage, will retry on reload
             setError(
               `Payment received — confirmation timed out. ` +
               `Refresh this page to retry, or email pricezenalert@gmail.com ` +
@@ -161,7 +155,6 @@ function PaymentForm() {
 
         modal: {
           ondismiss: () => {
-            // User closed modal — not a failure
             isOpenRef.current = false;
             setLoading(false);
           },
@@ -179,83 +172,243 @@ function PaymentForm() {
 
   // ── Invalid link ─────────────────────────────────────────────
   if (!clientId || !token) return (
-    <main style={{ minHeight:"100vh", display:"flex", alignItems:"center",
-                   justifyContent:"center", background:"#060608", padding:"24px" }}>
-      <div style={{ textAlign:"center" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}><AlertTriangle size={48} color="#f66" /></div>
-        <p style={{ color:"#f66", marginBottom:8, fontSize:"1.1em", fontWeight:700 }}>
-          Invalid payment link.
-        </p>
-        <p style={{ color:"#555", marginBottom:24, fontSize:"0.9em" }}>
+    <main style={{ 
+      minHeight:"100vh", 
+      display:"flex", 
+      alignItems:"center",
+      justifyContent:"center", 
+      background:"#faf8f3", 
+      padding:"24px",
+      fontFamily:"'Sora', sans-serif"
+    }}>
+      <motion.div 
+        initial={{ opacity:0, y:20 }}
+        animate={{ opacity:1, y:0 }}
+        style={{ 
+          textAlign:"center", 
+          background:"#fff", 
+          border:"1px solid #d4cfc2", 
+          borderRadius:20, 
+          padding:"48px 36px",
+          maxWidth:480,
+          width:"100%",
+          boxShadow:"0 14px 30px rgba(0,0,0,0.05)"
+        }}
+      >
+        <div style={{ 
+          width:80, 
+          height:80, 
+          borderRadius:"50%",
+          background:"#fef1f0", 
+          border:"1px solid #f5b8b4",
+          display:"flex", 
+          alignItems:"center", 
+          justifyContent:"center",
+          margin:"0 auto 24px"
+        }}>
+          <AlertTriangle size={40} color="#b91c1c" strokeWidth={2} />
+        </div>
+        <h2 style={{ 
+          color:"#111", 
+          marginBottom:12, 
+          fontSize:"1.6rem", 
+          fontWeight:800,
+          letterSpacing:"-0.5px"
+        }}>
+          Invalid payment link
+        </h2>
+        <p style={{ 
+          color:"#666", 
+          marginBottom:32, 
+          fontSize:"0.95em", 
+          lineHeight:1.7 
+        }}>
           Please use the link sent to your email or contact support.
         </p>
-        <div style={{ display:"flex", gap:12, justifyContent:"center", flexWrap:"wrap" }}>
-          <Link href="/" style={{ color:"#00ff88", fontSize:"0.9em" }}>← Go Home</Link>
-          <a href="mailto:pricezenalert@gmail.com" style={{ color:"#888", fontSize:"0.9em" }}>
-            pricezenalert@gmail.com
+        <div style={{ 
+          display:"flex", 
+          gap:14, 
+          justifyContent:"center", 
+          flexWrap:"wrap" 
+        }}>
+          <Link href="/" style={{ 
+            padding:"12px 28px", 
+            background:"#b85c1a", 
+            color:"#fff", 
+            borderRadius:50, 
+            textDecoration:"none",
+            fontWeight:700,
+            fontSize:"0.9em",
+            transition:"all 0.2s",
+            display:"inline-block"
+          }}>
+            ← Go Home
+          </Link>
+          <a href="mailto:pricezenalert@gmail.com" style={{ 
+            padding:"12px 28px", 
+            background:"#fff", 
+            color:"#111",
+            border:"1.5px solid #d4cfc2",
+            borderRadius:50, 
+            textDecoration:"none",
+            fontWeight:600,
+            fontSize:"0.9em",
+            transition:"all 0.2s",
+            display:"inline-block"
+          }}>
+            Contact Support
           </a>
         </div>
-      </div>
+      </motion.div>
     </main>
   );
 
-  // ── Retrying pending verification ────────────────────────────
+  // ── Retrying verification ────────────────────────────────────
   if (retrying) return (
-    <main style={{ minHeight:"100vh", display:"flex", alignItems:"center",
-                   justifyContent:"center", background:"#060608" }}>
-      <p style={{ color:"#555" }}>Confirming your previous payment…</p>
+    <main style={{ 
+      minHeight:"100vh", 
+      display:"flex", 
+      alignItems:"center",
+      justifyContent:"center", 
+      background:"#faf8f3",
+      fontFamily:"'Sora', sans-serif"
+    }}>
+      <div style={{
+        background:"#fff",
+        border:"1px solid #d4cfc2",
+        borderRadius:20,
+        padding:"32px",
+        textAlign:"center"
+      }}>
+        <div style={{
+          width:48,
+          height:48,
+          borderRadius:"50%",
+          border:"3px solid #f0dfa8",
+          borderTopColor:"#b8872c",
+          animation:"spin 1s linear infinite",
+          margin:"0 auto 20px"
+        }} />
+        <p style={{ color:"#666", fontSize:"0.95em" }}>
+          Confirming your previous payment…
+        </p>
+        <style jsx>{`
+          @keyframes spin {
+            to { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
     </main>
   );
 
   // ── Success screen ───────────────────────────────────────────
   if (success) return (
-    <main style={{ minHeight:"100vh", display:"flex", alignItems:"center",
-                   justifyContent:"center", background:"#060608", padding:"24px" }}>
+    <main style={{ 
+      minHeight:"100vh", 
+      display:"flex", 
+      alignItems:"center",
+      justifyContent:"center", 
+      background:"#faf8f3", 
+      padding:"24px",
+      fontFamily:"'Sora', sans-serif"
+    }}>
       <motion.div
         initial={{ opacity:0, y:20 }}
         animate={{ opacity:1, y:0 }}
-        style={{ maxWidth:420, width:"100%", textAlign:"center" }}
+        style={{ 
+          maxWidth:480, 
+          width:"100%", 
+          background:"#fff",
+          border:"1px solid #d4cfc2",
+          borderRadius:20,
+          padding:"48px 36px",
+          textAlign:"center",
+          boxShadow:"0 14px 30px rgba(0,0,0,0.05)"
+        }}
       >
         <div style={{
-          width:80, height:80, borderRadius:"50%",
-          background:"rgba(0,255,136,0.1)", border:"1px solid #00ff88",
-          display:"flex", alignItems:"center", justifyContent:"center",
+          width:80, 
+          height:80, 
+          borderRadius:"50%",
+          background:"#f0faf4", 
+          border:"1px solid #bbdfc8",
+          display:"flex", 
+          alignItems:"center", 
+          justifyContent:"center",
           margin:"0 auto 24px",
         }}>
-          <svg width="32" height="32" fill="none" stroke="#00ff88"
-               strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="36" height="36" fill="none" stroke="#1a6640"
+               strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="6 16 13 23 26 9" />
           </svg>
         </div>
-        <h2 style={{ fontSize:"1.8rem", fontWeight:900, color:"#00ff88", marginBottom:8 }}>
+        
+        <h2 style={{ 
+          fontSize:"1.8rem", 
+          fontWeight:900, 
+          color:"#111", 
+          marginBottom:12,
+          letterSpacing:"-1px"
+        }}>
           Payment Successful!
         </h2>
+        
         {planLabel && amount && (
           <div style={{
-            display:"inline-block", padding:"4px 14px",
-            background:"rgba(0,255,136,0.08)", border:"1px solid rgba(0,255,136,0.2)",
-            borderRadius:20, marginBottom:16,
+            display:"inline-block", 
+            padding:"6px 16px",
+            background:"#fef8ee", 
+            border:"1px solid #f0dfa8",
+            borderRadius:20, 
+            marginBottom:20,
           }}>
-            <span style={{ color:"#00ff88", fontWeight:700, fontSize:"0.9em" }}>
+            <span style={{ 
+              color:"#b8872c", 
+              fontWeight:700, 
+              fontSize:"0.9em",
+              letterSpacing:"0.3px"
+            }}>
               {planLabel} Plan · ₹{(amount / 100).toLocaleString("en-IN")}/month
             </span>
           </div>
         )}
-        <p style={{ color:"#888", marginBottom:8, lineHeight:1.7 }}>
+        
+        <p style={{ 
+          color:"#666", 
+          marginBottom:10, 
+          lineHeight:1.7,
+          fontSize:"0.95em"
+        }}>
           Your {planLabel} Plan is now active.
           Check your email for a payment receipt and confirmation.
-          Price monitoring starts within hours.
         </p>
-        <p style={{ color:"#555", fontSize:"0.82em", marginBottom:28 }}>
-          Questions?{" "}
-          <a href="mailto:pricezenalert@gmail.com" style={{ color:"#00ff88", textDecoration:"none" }}>
+        
+        <p style={{ 
+          color:"#888", 
+          fontSize:"0.88em", 
+          marginBottom:32,
+          lineHeight:1.6
+        }}>
+          Price monitoring starts within hours. Questions?{" "}
+          <a href="mailto:pricezenalert@gmail.com" style={{ 
+            color:"#b8872c", 
+            textDecoration:"none",
+            fontWeight:600
+          }}>
             pricezenalert@gmail.com
           </a>
         </p>
+        
         <Link href="/" style={{
-          display:"block", padding:"14px",
-          background:"#00ff88", color:"#060608",
-          fontWeight:800, borderRadius:12, textDecoration:"none",
+          display:"block", 
+          padding:"14px",
+          background:"#b85c1a", 
+          color:"#fff",
+          fontWeight:800, 
+          borderRadius:12, 
+          textDecoration:"none",
+          transition:"all 0.2s",
+          fontSize:"0.95em"
         }}>
           Back to Home →
         </Link>
@@ -265,65 +418,145 @@ function PaymentForm() {
 
   // ── Payment form ─────────────────────────────────────────────
   return (
-    <main style={{ minHeight:"100vh", display:"flex", alignItems:"center",
-                   justifyContent:"center", background:"#060608", padding:"24px" }}>
-      <div style={{ maxWidth:420, width:"100%" }}>
+    <main style={{ 
+      minHeight:"100vh", 
+      display:"flex", 
+      alignItems:"center",
+      justifyContent:"center", 
+      background:"#faf8f3", 
+      padding:"24px",
+      fontFamily:"'Sora', sans-serif"
+    }}>
+      <motion.div 
+        initial={{ opacity:0, y:20 }}
+        animate={{ opacity:1, y:0 }}
+        style={{ maxWidth:480, width:"100%" }}
+      >
         <div style={{
-          background:"rgba(255,255,255,0.02)",
-          border:"1px solid rgba(255,255,255,0.08)",
-          borderRadius:20, padding:"32px 28px", textAlign:"center",
+          background:"#fff",
+          border:"1px solid #d4cfc2",
+          borderRadius:20, 
+          padding:"40px 32px",
+          boxShadow:"0 14px 30px rgba(0,0,0,0.05)"
         }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}><CreditCard size={40} /></div>
-          <h1 style={{ fontSize:"1.6rem", fontWeight:800, color:"#fff", marginBottom:8 }}>
-            Complete Your Plan
-          </h1>
-          <p style={{ color:"#555", fontSize:"0.88em", marginBottom:28, lineHeight:1.6 }}>
-            Secure payment via Razorpay.
-            UPI · Cards · Net Banking · Wallets — all supported.
-          </p>
-
-          {error && (
+          {/* Header */}
+          <div style={{ textAlign:"center", marginBottom:32 }}>
             <div style={{
-              padding:"12px 16px",
-              background:"rgba(255,107,107,0.08)",
-              border:"1px solid rgba(255,107,107,0.2)",
-              borderRadius:10, marginBottom:20,
-              color:"#ff6b6b", fontSize:"0.85em",
-              lineHeight:1.6, textAlign:"left",
+              width:64,
+              height:64,
+              borderRadius:16,
+              background:"linear-gradient(135deg,#c9a84c,#a06e1a)",
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"center",
+              margin:"0 auto 20px",
+              boxShadow:"0 6px 20px rgba(201,168,76,0.3)"
             }}>
-              <p style={{ margin:"0 0 10px", fontWeight:700, display: "flex", alignItems: "center", gap: 6 }}><AlertTriangle size={14} /> Payment issue</p>
-              <p style={{ margin:0 }}>{error}</p>
+              <CreditCard size={32} color="#fff" strokeWidth={2} />
             </div>
+            
+            <h1 style={{ 
+              fontSize:"1.7rem", 
+              fontWeight:800, 
+              color:"#111", 
+              marginBottom:8,
+              letterSpacing:"-0.5px"
+            }}>
+              Complete Your Plan
+            </h1>
+            
+            <p style={{ 
+              color:"#666", 
+              fontSize:"0.9em", 
+              lineHeight:1.6 
+            }}>
+              Secure payment via Razorpay.<br />
+              UPI · Cards · Net Banking · Wallets
+            </p>
+          </div>
+
+          {/* Error message */}
+          {error && (
+            <motion.div 
+              initial={{ opacity:0, y:-10 }}
+              animate={{ opacity:1, y:0 }}
+              style={{
+                padding:"14px 16px",
+                background:"#fef1f0",
+                border:"1px solid #f5b8b4",
+                borderRadius:12, 
+                marginBottom:24,
+                color:"#b91c1c", 
+                fontSize:"0.85em",
+                lineHeight:1.6,
+              }}
+            >
+              <p style={{ 
+                margin:"0 0 8px", 
+                fontWeight:700, 
+                display:"flex", 
+                alignItems:"center", 
+                gap:6 
+              }}>
+                <AlertTriangle size={16} strokeWidth={2.5} /> Payment issue
+              </p>
+              <p style={{ margin:0, color:"#c92a2a" }}>{error}</p>
+            </motion.div>
           )}
 
-          {/* Issue 5 fix: disabled immediately on first click via isOpenRef + loading state */}
+          {/* Pay button */}
           <button
             onClick={startPayment}
             disabled={loading || isOpenRef.current}
             style={{
-              width:"100%", padding:"16px",
-              background: loading ? "rgba(0,255,136,0.3)" : "#00ff88",
-              color:"#060608", fontWeight:800,
-              borderRadius:12, border:"none",
+              width:"100%", 
+              padding:"16px",
+              background: loading ? "#d4a063" : "#b85c1a",
+              color:"#fff", 
+              fontWeight:800,
+              borderRadius:12, 
+              border:"none",
               cursor: loading ? "not-allowed" : "pointer",
-              fontSize:"1em", marginBottom:10,
-              transition:"background 0.2s",
+              fontSize:"1em", 
+              marginBottom:14,
+              transition:"all 0.2s",
+              boxShadow: loading ? "none" : "0 4px 14px rgba(184,92,26,0.3)",
+              opacity: loading ? 0.7 : 1
             }}
           >
             {loading ? "Opening payment…" : error ? "Try Again →" : "Pay Now →"}
           </button>
 
-          <p style={{ fontSize:"11px", color:"#2a2a2a", marginBottom:20, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
-            <Lock size={11} /> 256-bit SSL · Secured by Razorpay
-          </p>
-
+          {/* Security badge */}
           <div style={{
-            padding:"14px 16px",
-            background:"rgba(255,255,255,0.02)",
-            borderRadius:10, textAlign:"left",
+            display:"flex",
+            alignItems:"center",
+            justifyContent:"center",
+            gap:8,
+            marginBottom:24,
+            fontSize:"11px",
+            color:"#999"
           }}>
-            <p style={{ fontSize:"10px", color:"#444", marginBottom:8,
-                        textTransform:"uppercase", letterSpacing:"0.08em" }}>
+            <Lock size={12} />
+            <span>256-bit SSL · Secured by Razorpay</span>
+          </div>
+
+          {/* Features included */}
+          <div style={{
+            padding:"20px 18px",
+            background:"#f7f4ee",
+            border:"1px solid #e4ddd0",
+            borderRadius:12,
+            marginBottom:20
+          }}>
+            <p style={{ 
+              fontSize:"10px", 
+              color:"#b8872c", 
+              marginBottom:12,
+              textTransform:"uppercase", 
+              letterSpacing:"1.5px",
+              fontWeight:800
+            }}>
               Included in your plan
             </p>
             {[
@@ -332,23 +565,100 @@ function PaymentForm() {
               "Weekly business performance report",
               "Rupee impact & margin estimates",
             ].map((f, i) => (
-              <p key={i} style={{ fontSize:"12px", color:"#666",
-                                   marginBottom:4, display:"flex", gap:8,
-                                   alignItems:"flex-start" }}>
-                <span style={{ display: "flex", color:"#00ff88", flexShrink:0 }}><Check size={14} strokeWidth={3} /></span>{f}
-              </p>
+              <div key={i} style={{ 
+                fontSize:"13px", 
+                color:"#444",
+                marginBottom:8, 
+                display:"flex", 
+                gap:10,
+                alignItems:"flex-start" 
+              }}>
+                <span style={{ 
+                  display:"flex", 
+                  color:"#1a6640", 
+                  flexShrink:0,
+                  marginTop:2
+                }}>
+                  <Check size={16} strokeWidth={2.5} />
+                </span>
+                <span>{f}</span>
+              </div>
             ))}
           </div>
 
-          <p style={{ marginTop:18, fontSize:"11px", color:"#333", lineHeight:1.7 }}>
+          {/* Trust badges */}
+          <div style={{
+            display:"grid",
+            gridTemplateColumns:"1fr 1fr",
+            gap:10,
+            marginBottom:20
+          }}>
+            <div style={{
+              padding:"10px",
+              background:"#fef8ee",
+              border:"1px solid #f0dfa8",
+              borderRadius:10,
+              textAlign:"center"
+            }}>
+              <Shield size={20} color="#b8872c" style={{ marginBottom:4 }} />
+              <p style={{ fontSize:"10px", color:"#b8872c", fontWeight:700, margin:0 }}>
+                Secure Payment
+              </p>
+            </div>
+            <div style={{
+              padding:"10px",
+              background:"#f0faf4",
+              border:"1px solid #bbdfc8",
+              borderRadius:10,
+              textAlign:"center"
+            }}>
+              <Zap size={20} color="#1a6640" style={{ marginBottom:4 }} />
+              <p style={{ fontSize:"10px", color:"#1a6640", fontWeight:700, margin:0 }}>
+                Instant Activation
+              </p>
+            </div>
+          </div>
+
+          {/* Support link */}
+          <p style={{ 
+            textAlign:"center",
+            fontSize:"11px", 
+            color:"#888", 
+            lineHeight:1.7,
+            margin:0
+          }}>
             Questions?{" "}
             <a href="mailto:pricezenalert@gmail.com"
-               style={{ color:"#00ff88", textDecoration:"none" }}>
+               style={{ 
+                 color:"#b8872c", 
+                 textDecoration:"none",
+                 fontWeight:600
+               }}>
               pricezenalert@gmail.com
             </a>
           </p>
         </div>
-      </div>
+
+        {/* Money-back guarantee */}
+        <div style={{
+          marginTop:20,
+          textAlign:"center",
+          padding:"16px",
+          background:"rgba(255,255,255,0.6)",
+          border:"1px solid #e8e3d9",
+          borderRadius:12
+        }}>
+          <p style={{ 
+            fontSize:"12px", 
+            color:"#666", 
+            lineHeight:1.6,
+            margin:0
+          }}>
+            <strong style={{ color:"#111" }}>10-day free trial</strong> · 
+            No questions asked refund · Cancel anytime
+          </p>
+        </div>
+      </motion.div>
     </main>
   );
 }
@@ -356,9 +666,37 @@ function PaymentForm() {
 export default function PaymentPage() {
   return (
     <Suspense fallback={
-      <main style={{ minHeight:"100vh", display:"flex", alignItems:"center",
-                     justifyContent:"center", background:"#060608" }}>
-        <p style={{ color:"#555" }}>Loading…</p>
+      <main style={{ 
+        minHeight:"100vh", 
+        display:"flex", 
+        alignItems:"center",
+        justifyContent:"center", 
+        background:"#faf8f3",
+        fontFamily:"'Sora', sans-serif"
+      }}>
+        <div style={{
+          background:"#fff",
+          border:"1px solid #d4cfc2",
+          borderRadius:20,
+          padding:"32px",
+          textAlign:"center"
+        }}>
+          <div style={{
+            width:48,
+            height:48,
+            borderRadius:"50%",
+            border:"3px solid #f0dfa8",
+            borderTopColor:"#b8872c",
+            animation:"spin 1s linear infinite",
+            margin:"0 auto 16px"
+          }} />
+          <p style={{ color:"#666", fontSize:"0.95em" }}>Loading payment…</p>
+          <style jsx>{`
+            @keyframes spin {
+              to { transform: rotate(360deg); }
+            }
+          `}</style>
+        </div>
       </main>
     }>
       <PaymentForm />

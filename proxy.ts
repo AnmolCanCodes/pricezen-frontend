@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const ADMIN_SECRET = process.env.ADMIN_SECRET;
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Protect all /admin routes
   if (request.nextUrl.pathname.startsWith("/admin")) {
     const authHeader = request.headers.get("x-admin-secret");
