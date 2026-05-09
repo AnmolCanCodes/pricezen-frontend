@@ -38,7 +38,7 @@ export default function TermsOfServicePage() {
             <h1 style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 900, letterSpacing: -1.2, marginBottom: 14, color: "#0f0f0f" }}>Terms of Service</h1>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
               <span style={{ fontSize: 11, background: "#f0faf4", color: "#1a6640", border: "1px solid #bbdfc8", borderRadius: 6, padding: "3px 10px", fontWeight: 700 }}>Version {TERMS_VERSION}</span>
-              <span style={{ fontSize: 11, color: "#aaa" }}>Last updated: April 2026</span>
+              <span style={{ fontSize: 11, color: "#aaa" }}>Last updated: May 2026</span>
             </div>
           </div>
 
@@ -57,7 +57,7 @@ export default function TermsOfServicePage() {
               <li>Provide estimated rupee impact calculations based on your self-reported order volume.</li>
               <li>Deliver full price history data in all email reports.</li>
             </ul>
-            <p>We do <strong>not</strong> guarantee completeness, accuracy, or uninterrupted availability of data. External factors such as website changes, blocking, or downtime may affect data collection. Our rupee impact estimates are indicative :- not financial advice.</p>
+            <p>We do <strong>not</strong> guarantee completeness, accuracy, or uninterrupted availability of data. External factors such as website changes, blocking, or downtime may affect data collection. Our rupee impact estimates are indicative and are not financial advice.</p>
 
             <h2>3. Your responsibilities</h2>
             <ul>
@@ -91,14 +91,21 @@ export default function TermsOfServicePage() {
             <p>We will make reasonable efforts to resolve legitimate billing concerns.</p>
 
             <h2>9. Refund Policy</h2>
-            <p>Fees are generally non-refundable once the service has been activated.</p>
-            <p>However, if we are unable to deliver the service as described, you may contact us for resolution or a partial refund at our discretion.</p>
+            <p>We want you to be satisfied with PriceZen. Our refund policy is as follows:</p>
+            <ul>
+              <li><strong>Within 7 days of payment:</strong> If you are not happy with the service for any reason, contact us within 7 days of your payment date and we will issue a full refund. No questions asked. Email us at <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a> with your payment details.</li>
+              <li><strong>After 7 days:</strong> Refund requests made after the 7-day window will be assessed on a pro-rata basis. We will refund 60% of the remaining unused portion of your billing period. The remaining 40% is retained to cover monitoring infrastructure, data collection work, and setup costs already incurred for your account.</li>
+              <li><strong>Non-refundable cases:</strong> Delays in onboarding caused by incomplete or incorrect data provided by you (such as invalid URLs or missing product information) do not qualify for refunds. Chargebacks initiated without first contacting us will result in immediate suspension of your account.</li>
+              <li><strong>Free trial:</strong> The 10-day free trial has no charge, so this policy applies to paid subscriptions only.</li>
+            </ul>
+            <p>To request a refund, email <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a> with your registered email address and payment reference. We process all refund requests within 5 to 7 business days.</p>
 
             <h2>10. Cancellation</h2>
             <ul>
-              <li>You may cancel at any time by emailing us.</li>
+              <li>You may cancel at any time by emailing us at <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a>.</li>
               <li>Cancellations take effect at the end of the current billing month.</li>
-              <li>Monthly fees already paid are non-refundable.</li>
+              <li>If you cancel within 7 days of payment, you are eligible for a full refund as described in Section 9.</li>
+              <li>If you cancel after 7 days, a partial refund of 60% of the remaining unused period will be issued.</li>
             </ul>
 
             <h2>11. Service availability</h2>
@@ -112,7 +119,7 @@ export default function TermsOfServicePage() {
 
             <h2>14. Limitation of liability</h2>
             <p>PriceZen provides pricing intelligence as a decision-support tool. We are not liable for any business decisions, lost revenue, or pricing losses you incur based on our reports.</p>
-            <p><strong>Specifically, we are not liable for incorrect calculations or recommendations that result from inaccurate data you provide</strong> :- such as wrong average weekly orders, incorrect threshold settings, or invalid product URLs.</p>
+            <p><strong>Specifically, we are not liable for incorrect calculations or recommendations that result from inaccurate data you provide</strong>, such as wrong average weekly orders, incorrect threshold settings, or invalid product URLs.</p>
             <p>Our total liability for any claim is capped at the fees you paid us in the calendar month in which the issue occurred.</p>
 
             <h2>15. Intellectual property</h2>
