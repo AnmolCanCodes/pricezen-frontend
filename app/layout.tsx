@@ -20,67 +20,79 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pricezen.in"),
-  title: "PriceZen :- Pricing Intelligence for e-commerce brands",
+  title: {
+    default: "PriceZen — Pricing Intelligence for E-Commerce Brands",
+    template: "%s | PriceZen",
+  },
   description:
     "Automated competitor price intelligence. Know when competitors move. Get rupee impact. Take one clear action. All delivered to your inbox.",
   keywords: [
     "price monitoring",
-    "D2C",
-    "competitor tracking",
+    "D2C brands India",
+    "competitor price tracking",
     "pricing intelligence",
-    "ecommerce pricing",
-    "price alerts",
+    "ecommerce pricing tool",
+    "price alerts India",
     "competitor price monitoring",
     "automated pricing",
+    "D2C pricing tool",
+    "pricezen",
   ],
+  authors: [{ name: "PriceZen" }],
+  creator: "PriceZen",
+  publisher: "PriceZen",
 
-  // ✅ COMPREHENSIVE FAVICON CONFIGURATION
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
+    shortcut: "/favicon.ico",
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/web-app-manifest-512x512.png",
+      },
     ],
   },
 
   manifest: "/site.webmanifest",
 
   openGraph: {
-    title: "PriceZen :- Stop Losing to Competitors",
+    title: "PriceZen — Stop Losing to Competitors",
     description:
-      "Stop losing sales to competitors who changed their price before you noticed.",
+      "Stop losing sales to competitors who changed their price before you noticed. Real-time alerts delivered to your inbox.",
     type: "website",
-    url: "https://pricezen.in", // Update with your actual domain
+    url: "https://pricezen.in",
     siteName: "PriceZen",
+    locale: "en_IN",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "PriceZen - Pricing Intelligence for e-commerce brands",
+        alt: "PriceZen — Pricing Intelligence for E-Commerce Brands",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "PriceZen :- Stop Losing to Competitors",
+    title: "PriceZen — Stop Losing to Competitors",
     description:
       "Automated competitor price intelligence for e-commerce brands.",
     images: ["/og-image.jpg"],
-    creator: "@pricezen", // Update with your Twitter handle
   },
 
-  // ✅ PWA CONFIGURATION
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "PriceZen",
   },
 
-  // ✅ ROBOTS META
   robots: {
     index: true,
     follow: true,
@@ -93,10 +105,9 @@ export const metadata: Metadata = {
     },
   },
 
-  // ✅ VERIFICATION (add your codes when you have them)
+  // Uncomment and add your Google Search Console verification code:
   // verification: {
-  //   google: "your-google-verification-code",
-  //   yandex: "your-yandex-verification-code",
+  //   google: "YOUR_GOOGLE_VERIFICATION_CODE",
   // },
 };
 
@@ -118,7 +129,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
       <head>
-        {/* ✅ STRUCTURED DATA FOR GOOGLE */}
+        {/* Structured Data: WebSite */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -126,20 +137,15 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "PriceZen",
-              url: "https://pricezen.in", // Update with your actual domain
+              url: "https://pricezen.in",
               logo: "https://pricezen.in/web-app-manifest-512x512.png",
               description:
                 "Automated competitor price intelligence for e-commerce brands",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://pricezen.in/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
             }),
           }}
         />
 
-        {/* ✅ ORGANIZATION STRUCTURED DATA */}
+        {/* Structured Data: Organization */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -148,17 +154,19 @@ export default function RootLayout({
               "@type": "Organization",
               name: "PriceZen",
               url: "https://pricezen.in",
-              logo: "https://pricezen.in/web-app-manifest-512x512.png",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://pricezen.in/web-app-manifest-512x512.png",
+                width: 512,
+                height: 512,
+              },
               contactPoint: {
                 "@type": "ContactPoint",
                 email: "pricezenalert@gmail.com",
                 contactType: "customer service",
+                areaServed: "IN",
+                availableLanguage: "English",
               },
-              sameAs: [
-                // Add your social media profiles here
-                // "https://twitter.com/pricezen",
-                // "https://www.linkedin.com/company/pricezen",
-              ],
             }),
           }}
         />
