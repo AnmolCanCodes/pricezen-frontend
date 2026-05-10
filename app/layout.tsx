@@ -21,7 +21,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL("https://pricezen.in"),
   title: {
-    default: "PriceZen — Pricing Intelligence for E-Commerce Brands",
+    default: "PriceZen - Pricing Intelligence for E-Commerce Brands",
     template: "%s | PriceZen",
   },
   description:
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 
   openGraph: {
-    title: "PriceZen — Stop Losing to Competitors",
+    title: "PriceZen - Stop Losing to Competitors",
     description:
       "Stop losing sales to competitors who changed their price before you noticed. Real-time alerts delivered to your inbox.",
     type: "website",
@@ -74,14 +74,14 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "PriceZen — Pricing Intelligence for E-Commerce Brands",
+        alt: "PriceZen - Pricing Intelligence for E-Commerce Brands",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "PriceZen — Stop Losing to Competitors",
+    title: "PriceZen - Stop Losing to Competitors",
     description:
       "Automated competitor price intelligence for e-commerce brands.",
     images: ["/og-image.jpg"],
@@ -138,7 +138,7 @@ export default function RootLayout({
               "@type": "WebSite",
               name: "PriceZen",
               url: "https://pricezen.in",
-              logo: "https://pricezen.in/web-app-manifest-512x512.png",
+              logo: "https://pricezen.in/logo.jpg",
               description:
                 "Automated competitor price intelligence for e-commerce brands",
             }),
@@ -156,10 +156,11 @@ export default function RootLayout({
               url: "https://pricezen.in",
               logo: {
                 "@type": "ImageObject",
-                url: "https://pricezen.in/web-app-manifest-512x512.png",
-                width: 512,
-                height: 512,
+                url: "https://pricezen.in/logo.jpg",
+                width: 1024,
+                height: 1024,
               },
+              image: "https://pricezen.in/logo.jpg",
               contactPoint: {
                 "@type": "ContactPoint",
                 email: "pricezenalert@gmail.com",
@@ -175,6 +176,18 @@ export default function RootLayout({
         suppressHydrationWarning
         style={{ margin: 0, padding: 0, width: "100%", minHeight: "100%" }}
       >
+        {/* Service Worker registration for offline support */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(function(err) {
+                  console.log('SW registration failed:', err);
+                });
+              }
+            `,
+          }}
+        />
         <Cursor />
         <CookieBanner />
         {children}
