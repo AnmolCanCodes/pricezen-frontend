@@ -279,7 +279,7 @@ export default function NotFound() {
             letterSpacing: "0.5px",
           }}
         >
-          PriceZen — Pricing Intelligence for E-Commerce Brands
+          PriceZen - Pricing Intelligence for E-Commerce Brands
         </p>
       </div>
     </main>
