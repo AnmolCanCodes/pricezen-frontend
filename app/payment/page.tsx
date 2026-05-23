@@ -30,7 +30,7 @@ function PaymentForm() {
 
   const isOpenRef = useRef(false);
 
-  // Load Razorpay script once on mount
+  // Load checkout provider script once on mount
   useEffect(() => {
     const script   = document.createElement("script");
     script.src     = "https://checkout.razorpay.com/v1/checkout.js";
@@ -102,7 +102,7 @@ function PaymentForm() {
         throw new Error("Payment script failed to load. Please refresh and try again.");
       }
 
-      // Step 2 — open Razorpay checkout
+      // Step 2 - open hosted checkout
       const rzp = new window.Razorpay({
         key:         order.key_id,
         amount:      order.amount,
@@ -470,7 +470,7 @@ function PaymentForm() {
               fontSize:"0.9em", 
               lineHeight:1.6 
             }}>
-              Secure payment via Razorpay.<br />
+              Secure payment via authorized payment gateway.<br />
               UPI · Cards · Net Banking · Wallets
             </p>
           </div>
@@ -538,7 +538,7 @@ function PaymentForm() {
             color:"#999"
           }}>
             <Lock size={12} />
-            <span>256-bit SSL · Secured by Razorpay</span>
+            <span>Secure checkout · Encrypted payment</span>
           </div>
 
           {/* Features included */}
@@ -655,7 +655,7 @@ function PaymentForm() {
             margin:0
           }}>
             <strong style={{ color:"#111" }}>10-day free trial</strong> · 
-            No questions asked refund · Cancel anytime
+            7-day full refund · Cancel anytime
           </p>
         </div>
       </motion.div>

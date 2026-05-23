@@ -81,9 +81,9 @@ export default function TermsOfServicePage() {
             <p>Delays in onboarding due to incomplete or incorrect data provided by the client do not qualify for refunds.</p>
 
             <h2>7. Pricing and Payment</h2>
-            <p>Payments may be made via invoice or through secure third-party payment providers such as Razorpay.</p>
+            <p>Payments may be made via invoice or through secure, authorized third-party payment gateways.</p>
             <p>By completing a payment, you agree to the pricing, billing cycle, and plan details at the time of purchase.</p>
-            <p>We do not store card or UPI details. Payment processing is handled by the respective provider.</p>
+            <p>We do not store card, UPI, net banking, wallet, or other sensitive payment details. Payment processing is handled directly by the respective payment gateway.</p>
             <p>Failure to complete payment within the specified time may result in suspension of the service.</p>
 
             <h2>8. Payment Disputes</h2>
@@ -94,18 +94,18 @@ export default function TermsOfServicePage() {
             <p>We want you to be satisfied with PriceZen. Our refund policy is as follows:</p>
             <ul>
               <li><strong>Within 7 days of payment:</strong> If you are not happy with the service for any reason, contact us within 7 days of your payment date and we will issue a full refund. No questions asked. Email us at <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a> with your payment details.</li>
-              <li><strong>After 7 days:</strong> Refund requests made after the 7-day window will be assessed on a pro-rata basis. We will refund 60% of the remaining unused portion of your billing period. The remaining 40% is retained to cover monitoring infrastructure, data collection work, and setup costs already incurred for your account.</li>
+              <li><strong>After 7 days:</strong> Refund requests made after the 7-day window are not calculated on a day-by-day or unused-time basis. If approved, we may refund 50% of the original payment amount for that billing period. The remaining 50% is retained to cover monitoring infrastructure, data collection work, reports already delivered, and setup costs already incurred for your account.</li>
               <li><strong>Non-refundable cases:</strong> Delays in onboarding caused by incomplete or incorrect data provided by you (such as invalid URLs or missing product information) do not qualify for refunds. Chargebacks initiated without first contacting us will result in immediate suspension of your account.</li>
               <li><strong>Free trial:</strong> The 10-day free trial has no charge, so this policy applies to paid subscriptions only.</li>
             </ul>
-            <p>To request a refund, email <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a> with your registered email address and payment reference. We process all refund requests within 5 to 7 business days.</p>
+            <p>To request a refund, email <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a> with your registered email address and payment reference. We review and initiate eligible refunds within 5 to 7 business days. After initiation, the payment gateway or bank may take additional time to reflect the refund in your original payment method.</p>
 
             <h2>10. Cancellation</h2>
             <ul>
               <li>You may cancel at any time by emailing us at <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a>.</li>
               <li>Cancellations take effect at the end of the current billing month.</li>
               <li>If you cancel within 7 days of payment, you are eligible for a full refund as described in Section 9.</li>
-              <li>If you cancel after 7 days, a partial refund of 60% of the remaining unused period will be issued.</li>
+              <li>If you cancel after 7 days, eligible refunds are limited to 50% of the original payment amount for that billing period and are not calculated based on unused days.</li>
             </ul>
 
             <h2>11. Service availability</h2>

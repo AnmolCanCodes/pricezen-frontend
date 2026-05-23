@@ -1,9 +1,26 @@
 "use client";
+import type { CSSProperties } from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { Settings, FlaskConical, IndianRupee, Mail, Lock, Search, HelpCircle, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+const CSS = `
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  animation: fadeSlideUp 0.6s ease both;
+}
+`;
 
 interface FAQItem { q: string; a: React.ReactNode }
 interface Section { title: string; icon: React.ElementType; items: FAQItem[] }
@@ -16,12 +33,13 @@ const sections: Section[] = [
         q: "How often are prices checked?",
         a: (
           <>
-            Prices are checked <strong>multiple times every day</strong>, including weekends.
-            The moment a competitor crosses your threshold, <strong>both Starter and Growth
-              subscribers get an instant alert</strong> straight to their inbox. No waiting
-            until the next morning. On top of that, every client gets a{" "}
-            <strong>Monday weekly report</strong> that summarises the full week regardless
-            of whether any alerts fired.
+            We check prices <strong>multiple times every single day</strong>, including
+            weekends and holidays. The moment any competitor crosses your alert threshold,
+            you get an email — right away, not at some scheduled time later. All plan types
+            get instant alerts the second they happen. On top of that, every client gets a{" "}
+            <strong>full week summary every Monday</strong> showing exactly what moved in
+            your category, regardless of whether any alerts fired. So you&apos;re never
+            caught off guard.
           </>
         ),
       },
@@ -82,11 +100,12 @@ const sections: Section[] = [
         q: "What exactly is the 10-day free trial?",
         a: (
           <>
-            The trial is a full, real version of whichever plan you sign up for,{" "}
-            <strong>Starter or Growth</strong>. Not a demo. Not a preview. Actual monitoring
-            on your actual products. Actual alerts when competitor prices move. You get 10
-            days free with no credit card required. If you like it, you subscribe. If not,
-            you do not. No awkward cancellation flow.
+            The trial is the real deal. It&apos;s not a demo or preview or watered-down
+            version — you get the actual plan you choose, <strong>Starter or Growth</strong>,
+            fully functional, monitoring your actual products in real time. You get real
+            alerts when competitor prices move, real reports every Monday, the whole thing.
+            For 10 days, completely free. No credit card required to start. If you love it,
+            you subscribe. If not, no hard feelings, you&apos;re done. Simple as that.
           </>
         ),
       },
@@ -130,16 +149,6 @@ const sections: Section[] = [
     title: "Plans & Billing", icon: IndianRupee,
     items: [
       {
-        q: "Can I change products mid-month?",
-        a: (
-          <>
-            Yes. Just <strong>email us</strong> with the new URLs and we will update your
-            monitoring within 24 hours at no extra charge. Up to{" "}
-            <strong>2 product swaps per billing month</strong> are included in both plans.
-          </>
-        ),
-      },
-      {
         q: "Can I upgrade from Starter to Growth later?",
         a: (
           <>
@@ -153,9 +162,10 @@ const sections: Section[] = [
         q: "Do I need to sign a contract?",
         a: (
           <>
-            No contracts. PriceZen is <strong>month-to-month</strong>. Cancel, upgrade, or
-            pause anytime by emailing us. Cancellations take effect at the end of the current
-            billing month.
+            No contracts at all. PriceZen is <strong>month-to-month</strong>. You can cancel,
+            upgrade, or pause by emailing us. Cancellations are handled according to our refund
+            policy, and we&apos;d rather have you staying because you love the product, not because
+            you&apos;re locked in.
           </>
         ),
       },
@@ -163,19 +173,20 @@ const sections: Section[] = [
         q: "What if I cancel, do I get a refund?",
         a: (
           <>
-            Yes, we offer refunds. If you are not happy and reach out to us{" "}
-            <strong>within 7 days of your payment</strong>, we will process a full refund,
-            Just email us at{" "}
+            Absolutely. We believe you should be happy with what you&apos;re paying for.{" "}
+            <strong>Within 7 days of your payment</strong>, if PriceZen isn&apos;t for you,
+            email us at{" "}
             <a href="mailto:pricezenalert@gmail.com" style={{ color: "#b8872c", fontWeight: 700 }}>
               pricezenalert@gmail.com
             </a>{" "}
-            with your payment details and we will sort it out promptly.
+            with your payment details and we&apos;ll review and initiate the eligible full refund
+            within 5 to 7 business days.
             <br /><br />
-            If you request a cancellation <strong>after the 7-day window</strong>, we will
-            stop your plan at the end of the current billing month. At that point a partial
-            refund of <strong>60% of the remaining unused period</strong> will be issued,
-            since a portion covers the monitoring work already done and infrastructure
-            already allocated for your account.
+            If you cancel <strong>after the 7-day period</strong>, refunds are not calculated
+            day by day. If approved, we refund <strong>50% of your original payment amount</strong>
+            for that billing period. The other 50% reflects the work we&apos;ve already done setting
+            up your monitoring, the server costs we&apos;ve incurred, and the reports we&apos;ve sent you.
+           
           </>
         ),
       },
@@ -188,11 +199,12 @@ const sections: Section[] = [
         q: "What does an alert email look like?",
         a: (
           <>
-            Each alert includes the product name, your current price, the competitor&apos;s
-            new price, the percentage change, your updated market position, and one recommended
-            action you can take. Growth plan alerts also include an{" "}
-            <strong>estimated rupee revenue impact</strong> calculated from your weekly order
-            volume, so you know in plain numbers what the move means for your business.
+            Each alert is straightforward: we tell you which product moved, what your price
+            is, what the competitor&apos;s new price is, the percentage change, your current
+            market position, and one clear action you can take right now. If you&apos;re on
+            Growth, we also calculate the <strong>rupee impact</strong> — how much revenue
+            this move means to you based on your order volume — so you know instantly if it
+            matters.
           </>
         ),
       },
@@ -208,14 +220,15 @@ const sections: Section[] = [
         q: "I am not getting alerts even though prices changed?",
         a: (
           <>
-            The most common reason is the price movement did not cross your threshold
-            percentage. If you set 5% and a competitor moved 3%, no alert fires. That is by
-            design, to keep your inbox clean and alerts meaningful.
-            if the numbers look right and alerts still are not arriving,{" "}
+            Usually it&apos;s because the price didn&apos;t quite hit your threshold. If you
+            set 5% and a competitor moved 3%, no alert fires — that&apos;s by design, so
+            we&apos;re not spamming your inbox with noise. Double-check your threshold percentage
+            and the actual move. If the math checks out and you&apos;re still not seeing
+            anything,{" "}
             <a href="mailto:pricezenalert@gmail.com" style={{ color: "#b8872c", fontWeight: 700 }}>
-              email us
-            </a>{" "}
-            and we will investigate within 24 hours.
+              send us an email
+            </a>
+            {" "}and we&apos;ll look into it the same day.
           </>
         ),
       },
@@ -228,10 +241,11 @@ const sections: Section[] = [
         q: "What data do you store about me?",
         a: (
           <>
-            We store your email, brand name, WhatsApp number if you provide it, your average
-            weekly orders, and the product and competitor URLs you submit. We{" "}
-            <strong>never sell, share, or use your data for any purpose other than
-              delivering your plan</strong>. Full details are in our{" "}
+            We store what you give us: your email, your brand name, any WhatsApp number
+            you share, your average weekly order count, and the product and competitor URLs
+            you want us to monitor. That&apos;s it. We <strong>never sell your data,
+            never share it with advertisers, and never train AI models on it</strong>. Your data
+            exists purely to deliver you alerts and reports. Full details are in our{" "}
             <Link href="/privacy-policy" style={{ color: "#b8872c", fontWeight: 700 }}>
               Privacy Policy
             </Link>
@@ -243,10 +257,12 @@ const sections: Section[] = [
         q: "Do you follow the DPDP Act?",
         a: (
           <>
-            Yes. We ask for your consent before any data processing begins and keep a record
-            of exactly when and how you accepted our terms. If you ever want your data
-            deleted, send us an email and we will take care of it within{" "}
-            <strong>7 business days</strong>,
+            Yes, completely. We comply with India&apos;s Digital Personal Data Protection
+            (DPDP) Act. That means we ask for your explicit consent before processing any
+            personal data, we keep detailed records of exactly when and how you consented,
+            and we give you full control. Want your data deleted? Email us and we&apos;ll
+            remove it within <strong>7 business days</strong>. We take data rights seriously
+            because they&apos;re your rights.
           </>
         ),
       },
@@ -257,6 +273,23 @@ const sections: Section[] = [
 /* --- FAQ accordion row -------------------------------- */
 function FAQRow({ item, defaultOpen = false }: { item: FAQItem; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
+  const toggleIconStyle: CSSProperties = {
+    width: 24,
+    height: 24,
+    borderRadius: "50%",
+    flexShrink: 0,
+    background: open ? "#1a1a1a" : "#ece7dd",
+    color: open ? "#fff" : "#888",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 16,
+    fontWeight: 700,
+    lineHeight: 1,
+    transition: "background 0.18s, transform 0.22s",
+    transform: open ? "rotate(45deg)" : "none",
+  };
+
   return (
     <div style={{ borderBottom: "1px solid #f4f0e8" }}>
       <button
@@ -270,15 +303,7 @@ function FAQRow({ item, defaultOpen = false }: { item: FAQItem; defaultOpen?: bo
         }}
       >
         <span style={{ fontWeight: 700, fontSize: 14, color: "#111", lineHeight: 1.5, flex: 1 }}>{item.q}</span>
-        <span style={{
-          width: 24, height: 24, borderRadius: "50%", flexShrink: 0,
-          background: open ? "#1a1a1a" : "#ece7dd",
-          color: open ? "#fff" : "#888",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: 16, fontWeight: 700, lineHeight: 1,
-          transition: "background 0.18s, transform 0.22s",
-          transform: open ? "rotate(45deg)" : "none",
-        }}>+</span>
+        <span style={toggleIconStyle}>+</span>
       </button>
       {open && (
         <div style={{
@@ -304,6 +329,7 @@ export default function FAQPage() {
 
   return (
     <>
+      <style>{CSS}</style>
       <main style={{ fontFamily: "'Sora', sans-serif", background: "#faf8f3", minHeight: "100vh" }}>
         <Navbar />
 
