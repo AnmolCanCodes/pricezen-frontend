@@ -201,7 +201,7 @@ export default function CookieBanner() {
   return (
     <>
       <style>{CSS}</style>
-      <div className={`cookie-banner ${leaving ? "leave" : "enter"}`}>
+      <div className={`cookie-banner ${leaving ? "leave" : "enter"}`} suppressHydrationWarning>
         <div style={{
           background: "#fff",
           border: "1px solid #e4ddd0",

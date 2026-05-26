@@ -1,10 +1,10 @@
 // app/api/consent/route.ts
 // ─────────────────────────────────────────────────────────────────
-// Stores privacy policy consent records to backend SQLite database.
+// Stores privacy policy consent records through the FastAPI backend.
 // Called when a user clicks "I Agree" on the Privacy Policy page.
 //
-// This route forwards requests to the Python backend API at GET /consent
-// which stores records in the SQLite database (clients.db/consent_records table).
+// This route forwards POST requests to /consent and admin GET requests to
+// /admin/consent on the Python backend.
 //
 // What this stores per record:
 //   timestamp        — ISO 8601 datetime (from client, validated)
@@ -16,6 +16,13 @@
 // ─────────────────────────────────────────────────────────────────
 
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
+
+function safeEqual(a: string, b: string): boolean {
+  const left = Buffer.from(a);
+  const right = Buffer.from(b);
+  return left.length === right.length && timingSafeEqual(left, right);
+}
 
 /* ── Helper: extract real IP from headers ──────────────────────── */
 function getClientIP(req: NextRequest): string {
@@ -93,13 +100,19 @@ export async function GET(req: NextRequest) {
   const secret = req.headers.get("x-admin-secret");
   const validSecret = process.env.ADMIN_SECRET;
 
-  if (!validSecret || secret !== validSecret) {
+  if (!validSecret || !secret || !safeEqual(secret, validSecret)) {
     return NextResponse.json({ detail: "Unauthorized" }, { status: 401 });
   }
 
   try {
     const backendUrl = process.env.BACKEND_URL || "http://localhost:8000";
-    const response = await fetch(`${backendUrl}/consent-records`, {
+    const url = new URL(req.url);
+    const query = new URLSearchParams({
+      ...(url.searchParams.get("email") ? { email: url.searchParams.get("email")! } : {}),
+      page: url.searchParams.get("page") || "1",
+      limit_: url.searchParams.get("limit") || "50",
+    }).toString();
+    const response = await fetch(`${backendUrl}/admin/consent?${query}`, {
       headers: {
         "X-Admin-Secret": validSecret,
       },

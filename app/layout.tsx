@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Cursor from "@/components/Cursor";
 import CookieBanner from "@/components/CookieBanner";
@@ -177,7 +178,9 @@ export default function RootLayout({
         style={{ margin: 0, padding: 0, width: "100%", minHeight: "100%" }}
       >
         {/* Service Worker registration for offline support */}
-        <script
+        <Script
+          id="service-worker-registration"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               if ('serviceWorker' in navigator) {

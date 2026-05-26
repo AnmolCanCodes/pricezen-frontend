@@ -731,3 +731,128 @@ select,
   flex-shrink: 0;
   margin-top: 2px;
 }
+
+/* ── Policy Pages (Privacy, Terms, Refund) ──────────────────── */
+.policy-page {
+  font-family: 'Sora', sans-serif;
+  background: #faf8f3;
+  min-height: 100vh;
+}
+
+.policy-header {
+  margin-bottom: 36px;
+}
+
+.policy-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #b8872c;
+  margin-bottom: 10px;
+}
+
+.policy-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  letter-spacing: -1.2px;
+  margin-bottom: 14px;
+  color: #0f0f0f;
+}
+
+.policy-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.policy-version-badge {
+  font-size: 11px;
+  background: #f0faf4;
+  color: #1a6640;
+  border: 1px solid #bbdfc8;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-weight: 700;
+}
+
+.policy-updated {
+  font-size: 11px;
+  color: #aaa;
+}
+
+.policy-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px clamp(20px, 4vw, 48px) 96px;
+}
+
+.policy-content {
+  background: #fff;
+  border: 1px solid #ece7dd;
+  border-radius: 18px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+}
+
+.policy-content h2 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+  margin: 28px 0 10px;
+  padding-top: 28px;
+  border-top: 1px solid #ede8de;
+}
+
+.policy-content h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.policy-content p {
+  font-size: 13.5px;
+  color: #555;
+  line-height: 1.85;
+  margin-bottom: 10px;
+}
+
+.policy-content ul {
+  padding-left: 20px;
+  margin-bottom: 12px;
+}
+
+.policy-content ul li {
+  font-size: 13.5px;
+  color: #555;
+  line-height: 1.85;
+  margin-bottom: 5px;
+}
+
+.policy-content a {
+  color: #b8872c;
+  text-decoration: none;
+}
+
+.policy-content a:hover {
+  text-decoration: underline;
+}
+
+.policy-content strong {
+  color: #333;
+}
+
+.policy-alert-box {
+  background: #fef3f2;
+  border-left: 3px solid #d32f2f;
+  padding: 12px 14px;
+  margin: 16px 0;
+  border-radius: 4px;
+}
+
+.policy-alert-box p {
+  font-size: 13px;
+  color: #b71c1c;
+  margin: 0;
+}

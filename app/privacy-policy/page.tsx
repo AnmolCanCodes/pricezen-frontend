@@ -1,88 +1,81 @@
 // app/privacy-policy/page.tsx
 "use client";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const POLICY_VERSION = "1.0.0";
 
-const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800;900&display=swap');
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:#faf8f3;color:#1a1a1a;-webkit-font-smoothing:antialiased;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.fade-in{animation:fadeUp 0.5s ease both;}
-.d1{animation-delay:0.08s}
-.pp h2{font-size:16px;font-weight:800;color:#111;margin:28px 0 10px;padding-top:28px;border-top:1px solid #ede8de;}
-.pp h2:first-child{margin-top:0;padding-top:0;border-top:none;}
-.pp p{font-size:13.5px;color:#555;line-height:1.85;margin-bottom:10px;}
-.pp ul{padding-left:20px;margin-bottom:12px;}
-.pp ul li{font-size:13.5px;color:#555;line-height:1.85;margin-bottom:5px;}
-.pp a{color:#b8872c;text-decoration:none;}
-.pp a:hover{text-decoration:underline;}
-.pp strong{color:#333;}
-code{background:#f6f3ee;padding:1px 6px;border-radius:4px;font-size:12px;color:#333;}
-`;
-
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <style>{CSS}</style>
-      <main style={{ fontFamily: "'Sora',sans-serif", background: "#faf8f3", minHeight: "100vh" }}>
+      <main className="policy-page">
         <Navbar />
 
-        <div style={{ maxWidth: 760, margin: "0 auto", padding: "56px clamp(20px,4vw,48px) 96px" }}>
+        <div className="policy-container">
 
           {/* Header */}
-          <div className="fade-in" style={{ marginBottom: 36 }}>
-            <p style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: 2, color: "#b8872c", marginBottom: 10 }}>Legal</p>
-            <h1 style={{ fontSize: "clamp(28px,4vw,44px)", fontWeight: 900, letterSpacing: -1.2, marginBottom: 14, color: "#0f0f0f" }}>Privacy Policy</h1>
-            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
-              <span style={{ fontSize: 11, background: "#f0faf4", color: "#1a6640", border: "1px solid #bbdfc8", borderRadius: 6, padding: "3px 10px", fontWeight: 700 }}>Version {POLICY_VERSION}</span>
-              <span style={{ fontSize: 11, color: "#aaa" }}>Last updated: April 2026</span>
+          <div className="fade-in policy-header">
+            <p className="policy-label">Legal</p>
+            <h1 className="policy-title">Privacy Policy</h1>
+            <div className="policy-meta">
+              <span className="policy-version-badge">Version {POLICY_VERSION}</span>
+              <span className="policy-updated">Last updated: May 2026</span>
             </div>
-          </div>          
+          </div>
 
           {/* Policy body */}
-          <div className="pp fade-in d1" style={{ background: "#fff", border: "1px solid #ece7dd", borderRadius: 18, padding: "32px 28px", marginBottom: 24 }}>
+          <div className="fade-in d1 policy-content">
 
-            <h2>1. Who we are</h2>
-            <p>PriceZen is a competitive pricing intelligence service built for D2C brands in India. We help you track competitor prices so you don't lose sales by being left behind. Payment processing is handled by authorized third-party payment gateways.</p>
+            <h2>1. Introduction</h2>
+            <p><strong>PriceZen</strong> is a subscription-based pricing intelligence platform for e-commerce brands and retailers in India. We offer a 10-day free trial and monthly subscription plans (Starter: ₹999/month, Growth: ₹2,499/month). The platform enables businesses to monitor publicly available competitor pricing, receive automated alerts, and access pricing intelligence reports.</p>
+            <p>This Privacy Policy explains how we collect, use, store, and protect your information. By using PriceZen, you agree to the collection and use of information as described here.</p>
 
-            <h2>2. What data we collect</h2>
+            <h2>2. Information We Collect</h2>
+            <p>To provide our services, we collect the following types of information:</p>
             <ul>
-              <li><strong>Account data:</strong> Email, brand name, and plan type provided during onboarding.</li>
-              <li><strong>Product data:</strong> URLs of your products and competitors&apos; products you ask us to monitor.</li>
+              <li><strong>Account Information:</strong> Business or brand name, email address, subscription plan details, and free trial status.</li>
+              <li><strong>Product & Monitoring Data:</strong> Product URLs submitted for monitoring,Competitor product URLs provided by users ,Configured pricing thresholds and monitoring preferences.</li>
               <li><strong>Alert thresholds:</strong> Minimum price change % you set per product. Used to trigger alerts when competitors breach that threshold.</li>
-              <li><strong>Usage data:</strong> Average weekly order volume (only for rupee impact calculations, revenue at risk estimates, and margin opportunity recommendations in reports).</li>
-              <li><strong>Compliance and consent records:</strong> Necessary information recorded when you accept our terms via the cookie banner, for legal verification and service security purposes.</li>
-              <li><strong>Communication data:</strong> Messages from our contact form used to provide support.</li>
+              <li><strong>Business Metrics Provided by Users</strong> Average weekly order volume (Business-related operational inputs used for generating analytical estimates and reports).</li>
+              <li><strong>Technical & Usage Information:</strong> Device and browser information, Log data required for security, fraud prevention, and service reliability, Consent and compliance records associated with acceptance of our policies.</li>
+              <li><strong>Support & Communication Data:</strong> Information submitted through contact forms, email communication, or support requests.</li>
             </ul>
 
-            <h2>3. What we do NOT collect</h2>
+            <h2>3. Information We Do Not Collect</h2>
+            <p>We do not collect or store:</p>
             <ul>
-              <li><strong>No payment card details ever.</strong> Payments are processed through secure third-party providers. We never see or store your card, UPI, or banking information.</li>
-              <li><strong>No tracking of your customers.</strong> We don't track people visiting your website. We don't use tracking pixels or analytics code on your site. We only know about your competitors' public product pages that you tell us to monitor.</li>
-              <li><strong>We never sell your data.</strong> No advertisers get access. No data brokers. Your business information stays between you and us.</li>
+              <li>Payment card information or banking credentials.</li>
+              <li>Your UPI, net banking, or wallet details.</li>
+              <li>End-customer or user data from your e-commerce store.</li>
+              <li>Personal data beyond what's needed to operate the service.</li>
             </ul>
+            <p>All payment transactions are securely processed by authorized third-party payment providers like Razorpay.</p>
 
-            <h2>4. How we use your data</h2>
+            <h2>4. How We Use Information</h2>
+            <p>We use collected information for the following purposes:</p>
             <ul>
-              <li>To send price change alerts based on your threshold % settings.</li>
-              <li>To calculate rupee impact estimates and monthly intelligence reports.</li>
-              <li>To generate revenue at risk and margin opportunity recommendations based on your average weekly orders.</li>
-              <li>To respond to support messages and improve our service.</li>
-              <li>To verify your consent and maintain legal compliance.</li>
+              <li>Providing and operating the PriceZen service (monitoring, alerts, reports).</li>
+              <li>Monitoring competitor pricing data you submit for tracking.</li>
+              <li>Generating pricing estimates and market insights based on your provided metrics.</li>
+              <li>Processing subscriptions, recurring monthly billing, and verifying payment status through Razorpay.</li>
+              <li>Responding to your support requests and managing cancellations or refunds.</li>
+              <li>Sending alert notifications and periodic reports via email.</li>
+              <li>Improving service reliability, security, and performance.</li>
+              <li>Maintaining legal and regulatory compliance with Indian consumer protection laws.</li>
             </ul>
-            <p><strong>Important Disclaimer:</strong> All insights, estimates, and recommendations provided by PriceZen are for informational purposes only and should not be construed as financial, investment, business, or legal advice. We make no representations or warranties regarding the accuracy or completeness of any information. You acknowledge that any business decisions made based on information from PriceZen are made entirely at your own discretion and risk. PriceZen shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service or reliance on any information provided.</p>
+            <p><strong>Analytics & Informational Disclaimer:</strong> PriceZen provides automated pricing intelligence, estimates, and business insights based on user-provided information and publicly accessible market data.
 
-            <h2>5. Your responsibility for data accuracy</h2>
-            <p>For the best results from PriceZen, please ensure the information you provide is accurate:</p>
-            <ul>
-              <li><strong>Alert thresholds:</strong> The minimum % price change that matters to your business. If these are set incorrectly, you may miss important price changes or receive alerts you don't find useful.</li>
-              <li><strong>Average weekly orders:</strong> Your actual average sales per week directly impacts the accuracy of rupee impact calculations and recommendations. We rely on this information as you provide it.</li>
-            </ul>
-            <p>PriceZen processes and uses data exactly as you provide it. We do not independently verify or validate the accuracy of the information you submit. We recommend reviewing your account settings periodically to ensure they reflect your current business needs.</p>
+              All reports, estimates, recommendations, and analytics are provided solely for informational purposes and should not be interpreted as financial, investment, legal, accounting, or business advice.
+
+              Users remain solely responsible for evaluating and implementing any pricing or commercial decisions based on the information provided through the service.</p>
+
+              <p>PriceZen does not guarantee the accuracy, completeness, or uninterrupted availability of any monitored data, reports, or analytical outputs.
+
+              To the maximum extent permitted under applicable law, PriceZen shall not be liable for any indirect, incidental, consequential, special, or business losses arising from the use of the service.</p>
+
+            <h2>5. User Responsibility</h2>
+            <p>You are responsible for ensuring that all information you submit to PriceZen is accurate, lawful, and current.</p>
+            <p>We rely on your inputs (product URLs, competitor URLs, price thresholds, order volume data) to generate alerts and reports. Inaccurate or outdated information will result in inaccurate monitoring and analysis. We are not liable for issues caused by inaccurate data you provide.</p>
 
             <h2>6. Payments &amp; Billing</h2>
             <p>All payment processing is handled securely by authorized third-party payment gateways. PriceZen does not directly collect, process, store, or have access to your payment card, UPI, net banking, or any other banking details. Your payment information is transmitted directly to and processed by the payment gateway in accordance with its security standards.</p>
@@ -90,16 +83,18 @@ export default function PrivacyPolicyPage() {
             <p>All billing inquiries, disputes, chargebacks, cancellations, and refunds are handled according to our Terms of Service and the applicable policies of the payment gateway.</p>
 
             <h2>7. Third-Party Services</h2>
-            <p>We use trusted third-party services to operate our platform, including:</p>
+            <p>We use trusted third-party services to operate our platform:</p>
             <ul>
-              <li>Authorized payment gateways and payment processors</li>
-              <li>Email delivery providers</li>
-              <li>Hosting and infrastructure services</li>
+              <li><strong>Payment Processing:</strong> Razorpay and other authorized payment gateways process your subscription payments. They do not share your card details with us.</li>
+              <li><strong>Email Delivery:</strong> Third-party email providers deliver your alerts and reports.</li>
+              <li><strong>Hosting & Infrastructure:</strong> Cloud providers host our servers and data.</li>
+              <li><strong>Third-Party Websites:</strong> We access and monitor publicly available pricing information from competitor websites per your instructions.</li>
             </ul>
-            <p>These providers only process data as necessary to deliver the service and are not permitted to use your data for their own purposes.</p>
+            <p>These providers process data only as necessary to deliver the service and are not permitted to use your data for their own purposes. We are not responsible for their privacy practices.</p>
 
-            <h2>8. Data storage and security</h2>
-            <p>All your data is stored on secured servers protected by HTTPS/TLS encryption. Access is restricted to authorized team members only. We retain data only for as long as necessary to provide our service and fulfill your requests. Upon your request to delete your account or data, we remove it within 7 business days. Inactive accounts may be removed after a reasonable period. Regular backups are maintained for service continuity and security.</p>
+            <h2>8. Data Storage and Retention</h2>
+            <p><strong>Security:</strong> All your data is stored on secured servers protected by HTTPS/TLS encryption. Access is restricted to authorized team members only. Regular backups are maintained for service continuity and security.</p>
+            <p><strong>Data Retention:</strong> We retain your account data and service information only while your subscription is active. If your subscription is cancelled or terminates, we retain data for 90 days to comply with billing and legal requirements. Upon your formal request to delete your account or data, we remove it within 7 business days. Inactive accounts (no login for 1+ year) may be removed after we attempt to notify you. Consent and compliance records are retained as required by law.</p>
 
             <h2>9. Your rights</h2>
             <ul>
@@ -120,20 +115,23 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p>This consent record is stored securely and is kept only as long as legally required to demonstrate compliance. It protects both you and us by creating a transparent record of your agreement to our terms.</p>
 
-            <h2>11. Policy changes</h2>
-            <p>We may update this policy periodically to reflect changes in our practices, technology, or legal requirements. When we make material changes, we'll notify all active users via email at least 30 days before the changes take effect. Continued use of PriceZen after the new policy goes into effect constitutes your acceptance of the updated terms. If you disagree with any changes, you may cancel your subscription.</p>
+            <h2>11. Policy Changes</h2>
+            <p>We may update this policy periodically to reflect changes in our practices, technology, or legal requirements. When we make material changes that affect your privacy rights or data handling, we'll notify all active users via email at least 30 days before the changes take effect. Continued use of PriceZen after the new policy goes into effect constitutes your acceptance of the updated terms. If you disagree with any changes, you may cancel your subscription without penalty within the notice period.</p>
 
             <h2>12. Jurisdiction</h2>
-            <p>This Privacy Policy is governed by the laws of India.</p>
+            <p>This Privacy Policy is governed by the laws of the Republic of India. Any disputes will be subject to the exclusive jurisdiction of the courts in Maharashtra.</p>
 
-            <h2>13. Contact</h2>
-            <p>Questions? <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a> or <Link href="/contact">Contact page</Link>.</p>
+            <h2>13. Contact & Support</h2>
+            <p>For questions about this Privacy Policy or your data, contact us:</p>
+            <ul>
+              <li><strong>Email:</strong> <a href="mailto:pricezenalert@gmail.com">pricezenalert@gmail.com</a></li>
+              <li><strong>Response Time:</strong> We typically respond within 1–2 business days (Monday–Friday, excluding Indian national holidays)</li>
+            </ul>
           </div>
 
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <Link href="/terms-of-service" style={{ display: "inline-block", background: "#fff", border: "1px solid #e4ddd0", borderRadius: 10, padding: "10px 20px", fontSize: 13, fontWeight: 700, color: "#333", textDecoration: "none" }}>Read Terms of Service →</Link>
-            <Link href="/contact" style={{ display: "inline-block", background: "#1a1a1a", borderRadius: 10, padding: "10px 20px", fontSize: 13, fontWeight: 700, color: "#fff", textDecoration: "none" }}>Contact Us →</Link>
-          </div>
+          {/* Footer spacing */}
+          <div style={{ marginTop: 48 }}></div>
+
         </div>
 
         <Footer />
@@ -141,3 +139,4 @@ export default function PrivacyPolicyPage() {
     </>
   );
 }
+
