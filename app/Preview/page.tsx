@@ -609,9 +609,9 @@ function MonthlyGrowth() {
             </thead>
             <tbody>
               {[
-                { n:"BeMinimalist SPF 50", ch:7, d:"📉 Mostly Falling", dc:"#27ae60", a:"₹449", nw:"₹404", m:"↓ ₹45", mc:"#27ae60", agg:"High", aggScore:7.5, aggStyle:"background:#fef2f2; color:#b91c1c; border:1px solid #fecaca;" },
-                { n:"Mamaearth SPF 50",    ch:5, d:"↕️ Mixed",          dc:"#e67e22", a:"₹420", nw:"₹399", m:"↓ ₹21", mc:"#27ae60", agg:"Medium", aggScore:4.0, aggStyle:"background:#fffbeb; color:#92400e; border:1px solid #fde68a;" },
-                { n:"Plum SPF 50",         ch:3, d:"📈 Mostly Rising",  dc:"#e74c3c", a:"₹449", nw:"₹469", m:"↑ ₹20", mc:"#e74c3c", agg:"Low", aggScore:2.5, aggStyle:"background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;" },
+                { n:"BeMinimalist SPF 50", ch:7, d:"📉 Mostly Falling", dc:"#27ae60", a:"₹449", nw:"₹404", m:"↓ ₹45", mc:"#27ae60", agg:"High", aggScore:7.5, aggStyle:{ background:"#fef2f2", color:"#b91c1c", border:"1px solid #fecaca" } },
+                { n:"Mamaearth SPF 50",    ch:5, d:"↕️ Mixed",          dc:"#e67e22", a:"₹420", nw:"₹399", m:"↓ ₹21", mc:"#27ae60", agg:"Medium", aggScore:4.0, aggStyle:{ background:"#fffbeb", color:"#92400e", border:"1px solid #fde68a" } },
+                { n:"Plum SPF 50",         ch:3, d:"📈 Mostly Rising",  dc:"#e74c3c", a:"₹449", nw:"₹469", m:"↑ ₹20", mc:"#e74c3c", agg:"Low", aggScore:2.5, aggStyle:{ background:"#f0fdf4", color:"#15803d", border:"1px solid #bbf7d0" } },
               ].map((r, i) => (
                 <tr key={i}>
                   <td style={{ padding:"8px 12px", borderBottom:"1px solid #eee", fontSize:"0.9em" }}><a href="#" style={{ color:"#1a0dab", textDecoration:"none" }}>{r.n}</a></td>
