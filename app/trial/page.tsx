@@ -107,13 +107,24 @@ function PlanBtn({ plan, selected, onSelect }: { plan: Plan; selected: boolean; 
       <div style={{ fontSize: 11, color: "#666", lineHeight: 2 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> {isG ? "6 products · 4 competitors" : "3 products · 3 competitors"}</div>
         <div style={{ color: isG ? "#b8872c" : "#666", fontWeight: isG ? 700 : 400, display: "flex", alignItems: "center", gap: 6 }}>
-          <Check size={12} strokeWidth={3} /> Instant alert when prices change
+          <Check size={12} strokeWidth={3} /> {isG ? "Regular price checks throughout the day" : "Price checks every 4 hours (6x/day)"}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Weekly Monday report</div>
-        {isG && <>
-          <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Rupee impact estimates</div>
-          <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> 30-day trend + monthly report</div>
-        </>}
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Instant alert when competitor crosses threshold</div>
+        {isG ? (
+          <>
+            <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Estimated lost revenue this week</div>
+            <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Estimated profit gain opportunity</div>
+            <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> One clear weekly action with rupee impact</div>
+            <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> 30-day price history with trend</div>
+            <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Monthly intelligence summary</div>
+          </>
+        ) : (
+          <>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Competitor snapshot in every alert</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Basic business analysis</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}><Check size={12} strokeWidth={3} /> Weekly Monday report with 7-day summary</div>
+          </>
+        )}
       </div>
       {selected && (
         <span style={{ position: "absolute", top: 14, right: 14, width: 20, height: 20, borderRadius: "50%", background: isG ? "#c9a84c" : "#1a1a1a", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -315,15 +326,21 @@ function SuccessScreen({ email, plan, productCount }: { email: string; plan: Pla
           <div style={{ fontSize: 11, color: "#777", lineHeight: 2 }}>
             {(plan === "growth" ? [
               "6 products · 4 competitors each",
-              "First alert when a competitor crosses your threshold",
-              "Weekly report with rupee impact (lost revenue + margin opportunity)",
-              "30-day price history + trend",
+              "Regular price checks throughout the day",
+              "Instant alerts when competitor changes cross thresholds",
+              "Estimated lost revenue this week (per product group)",
+              "Estimated profit gain opportunity this week (per product group)",
+              "One clear weekly action with rupee impact",
+              "30-day price history with trend",
               "Monthly intelligence summary",
+              "Business impact analysis (loss/gain/stable cards)",
             ] : [
               "3 products · 3 competitors each",
-              "Instant alert when a competitor crosses your threshold",
-              "Weekly report every Monday with competitor snapshot",
-              "Two clear options per alert",
+              "Price checks every 4 hours (6x/day)",
+              "Instant alert when competitor crosses threshold",
+              "Competitor snapshot in every alert",
+              "Basic business analysis (overpriced/underpriced/competitive)",
+              "Weekly Monday report with 7-day price summary",
             ]).map((f, i) => (
               <div key={i} style={{ display: "flex", gap: 8 }}>
                 <span style={{ color: "#c9a84c", fontWeight: 900, flexShrink: 0 }}><Check size={14} strokeWidth={3} /></span>{f}

@@ -546,57 +546,83 @@ function MonthlyGrowth() {
           <p style={{ margin:0, color:"#aac", fontSize:"0.88em" }}>April 2026 · Growth Plan · Generated 28 Apr 2026 at 10:00 AM</p>
         </div>
 
-        {/* Part 1 :- _part1_month_in_numbers() */}
+        {/* Part 1 :- _part1_month_in_numbers() - REDESIGNED with 6 stats in 2x3 grid */}
         <div style={{ marginBottom:28 }}>
-          <h3 style={{ margin:"0 0 12px 0", color:"#2c3e50", fontSize:"1em", fontWeight:"bold" }}>📋 April 2026 :- Month in Numbers</h3>
-          <table cellSpacing={0} cellPadding={0} style={{ width:"100%", borderCollapse:"collapse", border:"1px solid #e8e8e8", borderRadius:8, overflow:"hidden" }}>
+          <h3 style={{ margin:"0 0 12px 0", color:"#2c3e50", fontSize:"1em", fontWeight:"bold" }}>📋 April 2026 - Month in Numbers</h3>
+          <table cellSpacing={8} cellPadding={0} style={{ width:"100%", borderCollapse:"separate", borderSpacing:"8px" }}>
             <tbody>
               <tr>
-                {[
-                  { v:"17", l:["Competitor price","changes detected"],  c:"#e74c3c" },
-                  { v:"3",  l:["Competitors","monitored"],               c:"#2c3e50" },
-                  { v:"2",  l:["Weeks your price","was above market"],   c:"#e67e22" },
-                  { v:"1",  l:["Weeks you had","a margin opportunity"],  c:"#27ae60" },
-                ].map((s, i) => (
-                  <td key={i} style={{ padding:16, textAlign:"center", borderRight:"1px solid #e8e8e8" }}>
-                    <p style={{ margin:0, fontSize:"2em", fontWeight:"bold", color:s.c }}>{s.v}</p>
-                    <p style={{ margin:"4px 0 0 0", color:"#888", fontSize:"0.8em", lineHeight:1.4 }}>
-                      {s.l[0]}<br/>{s.l[1]}
-                    </p>
-                  </td>
-                ))}
+                <td style={{ background:"#f4f3ef", borderRadius:8, padding:"14px 16px", verticalAlign:"top" }}>
+                  <p style={{ margin:"0 0 4px 0", fontSize:"11.5px", color:"#888", lineHeight:1.4 }}>Competitor price changes</p>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"24px", fontWeight:"bold", color:"#c0392b", lineHeight:1.1 }}>17</p>
+                  <p style={{ margin:0, fontSize:"11px", color:"#aaa", lineHeight:1.4 }}>across 3 competitors tracked</p>
+                </td>
+                <td style={{ background:"#f4f3ef", borderRadius:8, padding:"14px 16px", verticalAlign:"top" }}>
+                  <p style={{ margin:"0 0 4px 0", fontSize:"11.5px", color:"#888", lineHeight:1.4 }}>Price checks completed</p>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"24px", fontWeight:"bold", color:"#1a1a1a", lineHeight:1.1 }}>186</p>
+                  <p style={{ margin:0, fontSize:"11px", color:"#aaa", lineHeight:1.4 }}>94.2% success rate this month</p>
+                </td>
+                <td style={{ background:"#f4f3ef", borderRadius:8, padding:"14px 16px", verticalAlign:"top" }}>
+                  <p style={{ margin:"0 0 4px 0", fontSize:"11.5px", color:"#888", lineHeight:1.4 }}>Weeks your price was above market</p>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"24px", fontWeight:"bold", color:"#e67e22", lineHeight:1.1 }}>2 of 4</p>
+                  <p style={{ margin:0, fontSize:"11px", color:"#aaa", lineHeight:1.4 }}>weeks you were overpriced</p>
+                </td>
+              </tr>
+              <tr>
+                <td style={{ background:"#f4f3ef", borderRadius:8, padding:"14px 16px", verticalAlign:"top" }}>
+                  <p style={{ margin:"0 0 4px 0", fontSize:"11.5px", color:"#888", lineHeight:1.4 }}>Weeks with margin opportunity</p>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"24px", fontWeight:"bold", color:"#27ae60", lineHeight:1.1 }}>1 of 4</p>
+                  <p style={{ margin:0, fontSize:"11px", color:"#aaa", lineHeight:1.4 }}>safe raise available but unused</p>
+                </td>
+                <td style={{ background:"#fef2f2", border:"1px solid #fecaca", borderRadius:8, padding:"14px 16px", verticalAlign:"top" }}>
+                  <p style={{ margin:"0 0 4px 0", fontSize:"11.5px", color:"#b91c1c", lineHeight:1.4 }}>Est. revenue at risk this month</p>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"24px", fontWeight:"bold", color:"#b91c1c", lineHeight:1.1 }}>₹18,000</p>
+                  <p style={{ margin:0, fontSize:"11px", color:"#b91c1c", lineHeight:1.4, opacity:0.8 }}>from overpriced periods - based on ~643 orders/month</p>
+                </td>
+                <td style={{ background:"#f0fdf4", border:"1px solid #bbf7d0", borderRadius:8, padding:"14px 16px", verticalAlign:"top" }}>
+                  <p style={{ margin:"0 0 4px 0", fontSize:"11.5px", color:"#15803d", lineHeight:1.4 }}>Margin left uncaptured</p>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"24px", fontWeight:"bold", color:"#15803d", lineHeight:1.1 }}>₹6,000</p>
+                  <p style={{ margin:0, fontSize:"11px", color:"#15803d", lineHeight:1.4, opacity:0.85 }}>safe raise × avg orders × 30 days - based on ~643 orders/month</p>
+                </td>
               </tr>
             </tbody>
           </table>
-          <p style={{ margin:"8px 0 0 0", color:"#aaa", fontSize:"0.82em" }}>Competitor changes that cross your threshold trigger an instant alert :- automatically, 24/7.</p>
+          <p style={{ margin:"8px 0 0 0", color:"#aaa", fontSize:"0.82em" }}>Price check success rate = valid price returned ÷ total scheduled checks (inferred from median scrape interval). Revenue estimates use avg_weekly_orders from your database - keep it updated for accuracy.</p>
         </div>
 
-        {/* Part 2 :- _part2_competitor_activity() */}
+        {/* Part 2 :- _part2_competitor_activity() - with Aggression column */}
         <div style={{ marginBottom:28 }}>
           <h3 style={{ margin:"0 0 4px 0", color:"#2c3e50", fontSize:"1em", fontWeight:"bold" }}>🔍 Competitor Activity This Month</h3>
-          <p style={{ margin:"0 0 12px 0", color:"#777", fontSize:"0.85em" }}>How much each competitor moved :- and in which direction. High change counts mean active price testing.</p>
+          <p style={{ margin:"0 0 12px 0", color:"#777", fontSize:"0.85em" }}>How much each competitor moved - and in which direction. <strong>Aggression score</strong> = (changes × 2.5) + direction urgency weight, capped 0-10. Scores ≥ 6 mean you should react to their next move within 24 hours.</p>
           <h4 style={{ margin:"0 0 6px 0", color:"#555", fontSize:"0.88em", textTransform:"uppercase", letterSpacing:"0.05em" }}>Sunscreen</h4>
           <table cellSpacing={0} cellPadding={0} style={{ width:"100%", borderCollapse:"collapse", marginBottom:12 }}>
             <thead>
               <tr style={{ background:"#2c3e50", color:"#fff", textAlign:"left" }}>
-                {["Competitor","Changes","Direction","30d Ago","Now","Movement"].map(h => (
-                  <th key={h} style={{ padding:"8px 12px", fontSize:"0.88em" }}>{h}</th>
-                ))}
+                <th style={{ padding:"8px 12px", fontSize:"0.88em" }}>Competitor</th>
+                <th style={{ padding:"8px 12px", textAlign:"center", fontSize:"0.88em" }}>Changes</th>
+                <th style={{ padding:"8px 12px", textAlign:"center", fontSize:"0.88em" }}>Direction</th>
+                <th style={{ padding:"8px 12px", textAlign:"right", fontSize:"0.88em" }}>30d Ago</th>
+                <th style={{ padding:"8px 12px", textAlign:"right", fontSize:"0.88em" }}>Now</th>
+                <th style={{ padding:"8px 12px", textAlign:"right", fontSize:"0.88em" }}>Movement</th>
+                <th style={{ padding:"8px 12px", textAlign:"center", fontSize:"0.88em" }} title="Score = (changes × 2.5) + (downs - ups) × 0.5, capped 0-10. High ≥ 6 · Medium ≥ 3 · Low < 3 · Stable = 0 changes">Aggression ℹ️</th>
               </tr>
             </thead>
             <tbody>
               {[
-                { n:"BeMinimalist SPF 50", ch:7, d:"📉 Mostly Falling", dc:"#27ae60", a:"₹449", nw:"₹404", m:"↓ ₹45", mc:"#27ae60" },
-                { n:"Mamaearth SPF 50",    ch:5, d:"↕️ Mixed",          dc:"#e67e22", a:"₹420", nw:"₹399", m:"↓ ₹21", mc:"#27ae60" },
-                { n:"Plum SPF 50",         ch:3, d:"📈 Mostly Rising",  dc:"#e74c3c", a:"₹449", nw:"₹469", m:"↑ ₹20", mc:"#e74c3c" },
+                { n:"BeMinimalist SPF 50", ch:7, d:"📉 Mostly Falling", dc:"#27ae60", a:"₹449", nw:"₹404", m:"↓ ₹45", mc:"#27ae60", agg:"High", aggScore:7.5, aggStyle:"background:#fef2f2; color:#b91c1c; border:1px solid #fecaca;" },
+                { n:"Mamaearth SPF 50",    ch:5, d:"↕️ Mixed",          dc:"#e67e22", a:"₹420", nw:"₹399", m:"↓ ₹21", mc:"#27ae60", agg:"Medium", aggScore:4.0, aggStyle:"background:#fffbeb; color:#92400e; border:1px solid #fde68a;" },
+                { n:"Plum SPF 50",         ch:3, d:"📈 Mostly Rising",  dc:"#e74c3c", a:"₹449", nw:"₹469", m:"↑ ₹20", mc:"#e74c3c", agg:"Low", aggScore:2.5, aggStyle:"background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0;" },
               ].map((r, i) => (
                 <tr key={i}>
-                  <td style={{ padding:"8px 12px", borderBottom:"1px solid #eee", fontSize:"0.9em" }}><a href="#" style={{ color:"#1a0dab" }}>{r.n}</a></td>
+                  <td style={{ padding:"8px 12px", borderBottom:"1px solid #eee", fontSize:"0.9em" }}><a href="#" style={{ color:"#1a0dab", textDecoration:"none" }}>{r.n}</a></td>
                   <td style={{ padding:"8px 12px", textAlign:"center", borderBottom:"1px solid #eee", fontSize:"0.9em", fontWeight:"bold", color:r.ch>=4?"#e74c3c":"#333" }}>{r.ch}</td>
                   <td style={{ padding:"8px 12px", textAlign:"center", borderBottom:"1px solid #eee", fontSize:"0.88em", color:r.dc, fontWeight:"bold" }}>{r.d}</td>
                   <td style={{ padding:"8px 12px", textAlign:"right", borderBottom:"1px solid #eee", fontSize:"0.9em" }}>{r.a}</td>
                   <td style={{ padding:"8px 12px", textAlign:"right", borderBottom:"1px solid #eee", fontSize:"0.9em", fontWeight:"bold" }}>{r.nw}</td>
                   <td style={{ padding:"8px 12px", textAlign:"right", borderBottom:"1px solid #eee", fontSize:"0.9em", color:r.mc, fontWeight:"bold" }}>{r.m}</td>
+                  <td style={{ padding:"8px 12px", textAlign:"center", borderBottom:"1px solid #eee" }}>
+                    <span style={{ ...r.aggStyle, fontSize:"10.5px", fontWeight:"bold", padding:"2px 8px", borderRadius:"5px", whiteSpace:"nowrap" }}>{r.agg} {r.aggScore}</span>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -635,21 +661,89 @@ function MonthlyGrowth() {
           <h3 style={{ margin:"0 0 4px 0", color:"#2c3e50", fontSize:"1em", fontWeight:"bold" }}>🔭 Monthly Summary &amp; What to Watch Next Month</h3>
           <p style={{ margin:"0 0 14px 0", color:"#777", fontSize:"0.85em" }}>Based on 30 days of price data across your products and competitors.</p>
           <div style={{ marginBottom:20, padding:"16px 20px", border:"1px solid #e8e8e8", borderRadius:8, borderTop:"4px solid #2c3e50" }}>
-            <h4 style={{ margin:"0 0 4px 0", color:"#2c3e50", fontSize:"0.95em" }}>Sunscreen :- Monthly Summary</h4>
-            <p style={{ margin:"0 0 8px 0", color:"#888", fontSize:"0.83em" }}>Your avg price this month: ₹449 · Market avg: ₹417 · Range: ₹399 – ₹469</p>
+            <h4 style={{ margin:"0 0 4px 0", color:"#2c3e50", fontSize:"0.95em", textTransform:"capitalize" }}>Sunscreen - Monthly Summary</h4>
+            <p style={{ margin:"0 0 8px 0", color:"#888", fontSize:"0.83em" }}>Your avg price this month: ₹449 · Market avg: ₹417 · Range: ₹399 - ₹469</p>
             {/* Revenue impact block */}
             <div style={{ margin:"10px 0", padding:"10px 14px", background:"#fdecea", borderLeft:"4px solid #e74c3c", borderRadius:4 }}>
               <p style={{ margin:0, color:"#c0392b", fontSize:"0.9em", lineHeight:1.6 }}>
-                📉 <strong>Est. revenue impact this month: ₹18,000</strong> :- your price was above market average for over 40% of the month (based on 150 avg orders/week).
+                📉 <strong>Est. revenue impact this month: ₹18,000</strong> - your price was above market average for approximately 42% of the month (based on 150 avg orders/week).
               </p>
             </div>
             {/* Forward signal block */}
             <div style={{ marginTop:12, padding:"12px 14px", background:"#f8f9fa", borderRadius:4 }}>
               <p style={{ margin:"0 0 4px 0", color:"#2c3e50", fontSize:"0.85em", fontWeight:"bold" }}>⚠️ What to watch next month:</p>
               <p style={{ margin:0, color:"#555", fontSize:"0.88em", lineHeight:1.7 }}>
-                BeMinimalist dropped price 7 times this month :- likely clearing inventory or testing a lower price point. Watch for a price rebound in the next 2–3 weeks before following their move.
+                BeMinimalist dropped price 7 times this month - likely clearing inventory or testing a lower price point. Watch for a price rebound in the next 2-3 weeks before following their move.
               </p>
             </div>
+          </div>
+        </div>
+
+        {/* Part 5 :- _part5_alert_response() - NEW SECTION */}
+        <div style={{ marginBottom:28 }}>
+          <h3 style={{ margin:"0 0 4px 0", color:"#2c3e50", fontSize:"1em", fontWeight:"bold" }}>⏱️ Alert Response Window</h3>
+          <p style={{ margin:"0 0 14px 0", color:"#777", fontSize:"0.85em" }}>How fast you acted after each instant alert this month. Longer gaps = more days of revenue exposure after a competitor undercut you.</p>
+          <table cellSpacing={1} cellPadding={0} style={{ width:"100%", borderCollapse:"separate", borderSpacing:"1px", background:"#e4e2dc", borderRadius:8, overflow:"hidden", marginBottom:12 }}>
+            <tbody>
+              <tr>
+                <td style={{ background:"#f4f3ef", padding:"14px 16px", textAlign:"center" }}>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"10.5px", color:"#888", textTransform:"uppercase", letterSpacing:"0.07em" }}>Alerts fired</p>
+                  <p style={{ margin:0, fontSize:"22px", fontWeight:"bold", color:"#1a1a1a" }}>3</p>
+                </td>
+                <td style={{ background:"#f4f3ef", padding:"14px 16px", textAlign:"center" }}>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"10.5px", color:"#888", textTransform:"uppercase", letterSpacing:"0.07em" }}>Avg response gap</p>
+                  <p style={{ margin:0, fontSize:"22px", fontWeight:"bold", color:"#e67e22" }}>2 days</p>
+                </td>
+                <td style={{ background:"#f4f3ef", padding:"14px 16px", textAlign:"center" }}>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"10.5px", color:"#888", textTransform:"uppercase", letterSpacing:"0.07em" }}>Longest gap</p>
+                  <p style={{ margin:0, fontSize:"22px", fontWeight:"bold", color:"#c0392b" }}>4 days</p>
+                </td>
+                <td style={{ background:"#f4f3ef", padding:"14px 16px", textAlign:"center" }}>
+                  <p style={{ margin:"0 0 3px 0", fontSize:"10.5px", color:"#888", textTransform:"uppercase", letterSpacing:"0.07em" }}>Still open</p>
+                  <p style={{ margin:0, fontSize:"22px", fontWeight:"bold", color:"#c0392b" }}>1</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div style={{ padding:"10px 14px", background:"#fffbeb", border:"1px solid #fde68a", borderRadius:6, display:"flex", alignItems:"flex-start", gap:8 }}>
+            <span style={{ fontSize:14, flexShrink:0 }}>⏰</span>
+            <p style={{ margin:0, fontSize:"0.88em", color:"#92400e", lineHeight:1.6 }}>
+              A 2-day average response means several days of lost orders per alert. Aim to react within 24 hours of each alert.
+            </p>
+          </div>
+          <div style={{ marginTop:12, padding:"10px 14px", background:"#fdecea", borderLeft:"4px solid #e74c3c", borderRadius:4 }}>
+            <p style={{ margin:0, color:"#c0392b", fontSize:"0.88em", lineHeight:1.6 }}>
+              ⚠️ <strong>1 alert still open</strong> - no price change detected after this alert. Check your listing and update if competitors are still below your threshold.
+            </p>
+          </div>
+        </div>
+
+        {/* Part 6 :- _part6_net_pricing_outcome() - NEW SECTION */}
+        <div style={{ marginBottom:28 }}>
+          <h3 style={{ margin:"0 0 4px 0", color:"#2c3e50", fontSize:"1em", fontWeight:"bold" }}>💵 Net Pricing Outcome - April 2026</h3>
+          <p style={{ margin:"0 0 14px 0", color:"#777", fontSize:"0.85em" }}>One number that answers: did your pricing work <em>for</em> you or <em>against</em> you this month? Net = revenue at risk - margin uncaptured.</p>
+          <table cellSpacing={10} cellPadding={0} style={{ width:"100%", borderCollapse:"separate", borderSpacing:"10px", marginBottom:14 }}>
+            <tbody>
+              <tr>
+                <td style={{ background:"#fef2f2", border:"1px solid #fecaca", borderRadius:8, padding:"14px 16px", textAlign:"center", verticalAlign:"top" }}>
+                  <p style={{ margin:"0 0 4px 0", fontSize:"10.5px", color:"#b91c1c", textTransform:"uppercase", letterSpacing:"0.07em" }}>Revenue at risk</p>
+                  <p style={{ margin:0, fontSize:"22px", fontWeight:"bold", color:"#b91c1c" }}>−₹18,000</p>
+                </td>
+                <td style={{ background:"#f0fdf4", border:"1px solid #bbf7d0", borderRadius:8, padding:"14px 16px", textAlign:"center", verticalAlign:"top" }}>
+                  <p style={{ margin:"0 0 4px 0", fontSize:"10.5px", color:"#15803d", textTransform:"uppercase", letterSpacing:"0.07em" }}>Margin uncaptured</p>
+                  <p style={{ margin:0, fontSize:"22px", fontWeight:"bold", color:"#15803d" }}>+₹6,000</p>
+                </td>
+                <td style={{ background:"#fef2f2", border:"1px solid #fecaca", borderRadius:8, padding:"14px 16px", textAlign:"center", verticalAlign:"top" }}>
+                  <p style={{ margin:"0 0 4px 0", fontSize:"10.5px", color:"#b91c1c", textTransform:"uppercase", letterSpacing:"0.07em" }}>Net pricing impact</p>
+                  <p style={{ margin:0, fontSize:"22px", fontWeight:"bold", color:"#b91c1c" }}>−₹12,000</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div style={{ padding:"12px 16px", border:"1px solid #e4e2dc", borderRadius:8 }}>
+            <p style={{ margin:0, fontSize:"0.88em", color:"#444", lineHeight:1.7 }}>
+              Pricing cost you an estimated <strong>₹12,000</strong> this month. Acting on each weekly report and instant alert earlier would have recovered most of this.
+            </p>
           </div>
         </div>
 

@@ -130,18 +130,39 @@ function PlanOption({ plan, selected, onSelect }: {
           {isG ? "6 products · 4 competitors" : "3 products · 3 competitors"}
         </div>
         <div style={{ color: isG ? "#b8872c" : "#666", fontWeight: isG ? 700 : 400, display: "flex", alignItems: "center", gap: 6 }}>
-          <Check size={12} strokeWidth={3} /> Instant alert on threshold breach
+          <Check size={12} strokeWidth={3} /> {isG ? "Regular price checks throughout the day" : "Price checks every 4 hours (6x/day)"}
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          <Check size={12} strokeWidth={3} /> Weekly Monday report
+          <Check size={12} strokeWidth={3} /> Instant alert when competitor crosses threshold
         </div>
-        {isG && (
+        {isG ? (
           <>
             <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
-              <Check size={12} strokeWidth={3} /> ₹ Rupee impact estimates
+              <Check size={12} strokeWidth={3} /> Estimated lost revenue this week
             </div>
             <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
-              <Check size={12} strokeWidth={3} /> 30-day trend + monthly report
+              <Check size={12} strokeWidth={3} /> Estimated profit gain opportunity
+            </div>
+            <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
+              <Check size={12} strokeWidth={3} /> One clear weekly action with rupee impact
+            </div>
+            <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
+              <Check size={12} strokeWidth={3} /> 30-day price history with trend
+            </div>
+            <div style={{ color: "#b8872c", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
+              <Check size={12} strokeWidth={3} /> Monthly intelligence summary
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <Check size={12} strokeWidth={3} /> Competitor snapshot in every alert
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <Check size={12} strokeWidth={3} /> Basic business analysis
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <Check size={12} strokeWidth={3} /> Weekly Monday report with 7-day summary
             </div>
           </>
         )}

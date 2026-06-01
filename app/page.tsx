@@ -156,7 +156,7 @@ export default function Home() {
           </h1>
 
           <p className="ha h3" style={{ fontSize: "clamp(15px,2vw,18px)", color: "#5a5040", maxWidth: 560, lineHeight: 1.75, marginBottom: 32, fontWeight: 500 }}>
-            Automated price tracking for brands. We monitor your competitors 24/7 and deliver instant alerts with exact rupee impact to your inbox. See your monthly ROI. One clear action every Monday.
+            Automated price tracking for brands. We monitor your competitors all day and send instant alerts with exact rupee impact to your inbox. See your monthly ROI. One clear action every Monday.
           </p>
 
           <div className="ha h4" style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center", marginBottom: 56 }}>
@@ -211,33 +211,33 @@ export default function Home() {
               {[
                 {
                   icon: Zap,
-                  title: "Know the moment they move",
-                  body: "The instant a competitor changes price, you get an email. Not tomorrow. Not when you remember to check. Right now, while you can still do something about it.",
+                  title: "You know the moment they move",
+                  body: "Competitors change prices. You find out right when it happens. Not when a customer complains. Not when orders drop. The email shows up while you can still do something about it.",
                 },
                 {
                   icon: IndianRupee,
-                  title: "See the money at stake",
-                  body: "We do not just tell you a competitor dropped prices. We tell you exactly how much revenue is at risk. Every number is calculated from your actual sales, not some generic guess.",
+                  title: "See the actual cost",
+                  body: "Most tools just tell you a competitor changed their price. That alone doesn’t really help much. We show what that change actually means for your business, like how much revenue you could lose this week or how much extra you could make if you react fast. The numbers aren’t random estimates either. They’re based on your own sales data.",
                 },
                 {
                   icon: Target,
-                  title: "One clear move. Not endless analysis.",
-                  body: "Every weekly report ends with one sentence: what to change, which product, what price, and why. Act on it in two minutes or skip it. Either way, you always know the right move.",
+                  title: "One action this week",
+                  body: "Every week, you get one simple recommendation. Change this product to this price, here’s why, and here’s the estimated impact in rupees. You look at it, decide, and move on in two minutes. No dashboards full of useless charts or hours spent analyzing data.",
                 },
                 {
                   icon: FolderOpen,
                   title: "Everything in your inbox",
-                  body: "Every email has 30 days of price history for all your products and competitors, formatted cleanly. Read it, forward it to your team, done. No login. No waiting. No extra work.",
+                  body: "Email includes the last 30 days of price history for everything you track. Your products, competitor prices, and the overall trend whether prices are going up, dropping, or staying stable. Everything you need is right there in the email..",
                 },
                 {
                   icon: ScanLine,
-                  title: "Know your market position",
-                  body: "Cheapest in the market? Middle of the pack? Premium option? Every alert shows exactly where you stand compared to competitors right now, not some outdated industry report.",
+                  title: "Know where you stand",
+                  body: "Every alert shows where you stand in the market right now. Are you overpriced, cheaper than everyone else, or sitting in a good spot? You instantly see your price next to competitor pricing, so there’s no guessing. The weekly reports also make it obvious whether you’re losing margin, gaining ground, or staying stable.",
                 },
                 {
                   icon: CalendarDays,
-                  title: "See your monthly return",
-                  body: "Every monthly report shows exactly how much revenue you protected or recovered that month. You will know at a glance whether the service paid for itself. It almost always has.",
+                  title: "Your month in numbers",
+                  body: "Once a month, you get the complete picture. How often competitors changed prices, how aggressive those changes were, where your pricing stood each week, and how quickly you reacted. You also see whether your pricing decisions actually made money or ended up costing you revenue.",
                 },
               ].map((c, i) => (
                 <div key={i} className={`reveal d${(i % 4) + 1}`}>
@@ -259,13 +259,12 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody>
-                    <CompRow label="Check 4 competitors × 10 products" s="~2 times/day at best" g="Every hour, automatically" />
-                    <CompRow label="Know when a price changed" s="Days later, if you notice" g="Alerted immediately" />
-                    <CompRow label="Know what the change costs you" s={false} g={true} />
-                    <CompRow label="Know exactly what to do next" s={false} g={true} />
-                    <CompRow label="30-day price trend in one file" s={false} g={true} />
-                    <CompRow label="30-day price trend analysis" s={false} g={true} />
-                    <CompRow label="Monthly ₹ ROI proof" s={false} g={true} />
+                    <CompRow label="Check competitor prices" s="Maybe twice a day if you remember" g="Automatically all day" />
+                    <CompRow label="Know when something changed" s="Days later if you notice" g="Right when it crosses your threshold" />
+                    <CompRow label="See the rupee impact" s={false} g={true} />
+                    <CompRow label="Know exactly what to do" s={false} g={true} />
+                    <CompRow label="30 day price trends" s={false} g={true} />
+                    <CompRow label="Monthly performance summary" s={false} g={true} />
                   </tbody>
                 </table>
               </div>
@@ -290,17 +289,17 @@ export default function Home() {
               {
                 n: "01", bg: "#1a1a1a",
                 title: "Tell us what you sell",
-                body: "Share your product pages and the competitors you want to watch. Under 10 minutes and you are done. No technical setup, no complicated configuration.",
+                body: "Share your product pages and the competitors you want to watch. Takes under 10 minutes. No technical setup or complicated configuration.",
               },
               {
                 n: "02", bg: "#b85c1a",
                 title: "We watch every move",
-                body: "We check prices all day, every day. The moment something important happens, you know about it. No delays, no waiting for scheduled updates.",
+                body: "We check prices all day every day. The moment something important happens you know about it. No delays or waiting for scheduled updates.",
               },
               {
                 n: "03", bg: "#1a6640",
                 title: "Get clear answers in your inbox",
-                body: "Every alert tells you the revenue impact and what to do next. Every Monday, get your week summarized: what changed, what it cost you, and your one move for the week ahead.",
+                body: "Every alert tells you the revenue impact and what to do next. Every Monday you get your week summarized with what changed, what it cost you and your one move for the week ahead.",
               },
             ].map((s, i) => (
               <div key={i} className={`reveal d${i + 1}`} style={{ textAlign: "center", border: "1px solid #d4cfc2", borderRadius: 24, padding: "32px 26px", background: "#fff", boxShadow: "0 14px 30px rgba(0,0,0,0.05)" }}>
@@ -320,20 +319,20 @@ export default function Home() {
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 14 }}>
               {[
                 {
-                  icon: Zap, title: "Instant Price Alert", when: "The moment a threshold is crossed",
-                  body: "Know immediately when a competitor moves. Every alert shows your revenue impact, where you stand in the market, and the one action worth considering right now.",
+                  icon: Zap, title: "Instant Alert", when: "The moment something happens",
+                  body: "The moment a competitor crosses your pricing threshold, you get an email instantly. You can immediately see where your pricing stands compared to theirs, whether you’re overpriced or underpriced, and what actions you could take next.",
                 },
                 {
-                  icon: BarChart3, title: "Monday Weekly Report", when: "Every Monday · 10:00 AM",
-                  body: "Start your week knowing exactly where you stand. See if you gained or lost ground, the rupee impact, and one clear move to make before your competitors wake up.",
+                  icon: BarChart3, title: "Monday Report", when: "Every Week morning",
+                  body: "Start your week knowing where you stand. See if you gained or lost ground, how much revenue is at risk, and where you’re losing margin. Plus, get one clear action to take this week.",
                 },
                 {
-                  icon: TrendingUp, title: "Price Trend", when: "Inside every weekly report",
-                  body: "See the full picture across 30 days. Spot patterns you would miss looking at one week at a time. Know which way prices are moving before everyone else does.",
+                  icon: TrendingUp, title: "30 Day Trends", when: "Inside every weekly email",
+                  body: "See long-term pricing trends, not just weekly changes. Spot patterns early and understand where the market is heading before competitors do.",
                 },
                 {
-                  icon: Mail, title: "Monthly ROI Report", when: "Last Monday of each month",
-                  body: "See exactly how much revenue you protected or recovered this month. Includes your complete month in numbers: competitor moves, your positioning journey, and what to watch next month.",
+                  icon: Mail, title: "Monthly Summary", when: "Once a month",
+                  body: "Get the full picture of your month in one report. See how aggressive competitors were with pricing, how quickly you reacted, where you stood each week, and whether your pricing decisions actually made or lost money.",
                 },
               ].map((e, i) => (
                 <div key={i} className={`reveal d${(i % 4) + 1}`} style={{ background: "#fff", border: "1px solid #ece7dd", borderRadius: 16, padding: "22px 20px" }}>
@@ -375,13 +374,15 @@ export default function Home() {
                 <div style={{ borderTop: "1px solid #d4cfc2", paddingTop: 20, marginBottom: 24 }}>
                   {[
                     [true, "3 products · 3 competitors each"],
-                    [true, "Hourly price monitoring, 24/7"],
-                    [true, "Instant alert on threshold breach"],
-                    [true, "Two clear action options per alert"],
-                    [true, "Weekly Monday report"],
-                    [false, "Rupee ₹ impact estimates"],
-                    [false, "30-day trend analysis"],
-                    [false, "Monthly intelligence report"],
+                    [true, "Price checks every 4 hours (6x/day)"],
+                    [true, "Instant alert when competitor crosses threshold"],
+                    [true, "Competitor snapshot in every alert"],
+                    [true, "Basic business analysis (overpriced/underpriced/competitive)"],
+                    [true, "Weekly Monday report with 7-day price summary"],
+                    [false, "Estimated lost revenue calculations"],
+                    [false, "Profit gain opportunity analysis"],
+                    [false, "30-day price history with trend"],
+                    [false, "Monthly intelligence summary"],
                   ].map(([on, label], i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 9 }}>
                       <span style={{ display: "flex", color: on ? "#1a6640" : "#ddd", marginTop: 1, flexShrink: 0 }}>{on ? <Check size={14} strokeWidth={3} /> : <X size={14} strokeWidth={3} />}</span>
@@ -402,14 +403,15 @@ export default function Home() {
                 <p style={{ fontSize: 12, color: "#aaa", marginBottom: 16 }}>For a bigger catalogue that needs more coverage and deeper insights.</p>
                 <div style={{ borderTop: "1px solid #d4cfc2", paddingTop: 20, marginBottom: 24 }}>
                   {[
-                    [false, "6 products · 4 competitors each"],
-                    [false, "Hourly price monitoring, 24/7"],
-                    [false, "Instant alert on threshold breach"],
-                    [true, "Rupee ₹ impact estimate per alert"],
-                    [true, "Weekly report with ₹ gain/loss breakdown"],
-                    [true, "30-day price history + trend chart"],
+                    [true, "6 products · 4 competitors each"],
+                    [true, "Regular price checks throughout the day"],
+                    [true, "Instant alerts when competitor changes cross thresholds"],
+                    [true, "Estimated lost revenue this week (per product group)"],
+                    [true, "Estimated profit gain opportunity this week (per product group)"],
+                    [true, "One clear weekly action with rupee impact"],
+                    [true, "30-day price history with trend"],
                     [true, "Monthly intelligence summary"],
-                    [false, "One clear weekly action with ₹ reason"],
+                    [true, "Business impact analysis (loss/gain/stable cards)"],
                   ].map(([badge, label], i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 9 }}>
                       <span style={{ fontSize: 12, color: "#c9a84c", fontWeight: 800, marginTop: 1, flexShrink: 0 }}>✓</span>
@@ -434,7 +436,7 @@ export default function Home() {
               Ready?{" "}<span style={{ fontFamily: "'Instrument Serif',serif", fontStyle: "italic", color: "#b85c1a" }}>Let's go.</span>
             </h2>
             <p style={{ color: "#6e6d6d", fontSize: 15, maxWidth: 380, margin: "0 auto 32px", lineHeight: 1.75 }}>
-              You share the URLs, we handle the setup. Your first alert fires the next time a competitor moves.
+              Share the URLs and we handle the setup. Your first alert fires the next time a competitor moves.
             </p>
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center" }}>
               <Link href="/audit" className="btn-dark" style={{ padding: "16px 48px", fontSize: 15, fontWeight: 800, background: "#b85c1a", borderRadius: 50 }}>
