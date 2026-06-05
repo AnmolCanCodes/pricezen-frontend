@@ -31,7 +31,7 @@ import Link from "next/link";
 const STORAGE_KEY    = "pi_consent";
 const STORAGE_TS_KEY = "pi_consent_ts";
 const POLICY_VERSION = "1.0.0";
-const BACKEND        = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+const BACKEND        = (process.env.NEXT_PUBLIC_API_URL || "");
 
 type ConsentState = "accepted" | "declined" | "pending" | null;
 

@@ -5,9 +5,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     const backendUrl =
-      process.env.BACKEND_URL ||
-      process.env.NEXT_PUBLIC_BACKEND_URL ||
-      "http://localhost:8000";
+      (process.env.NEXT_PUBLIC_API_URL || "");
 
     const res = await fetch(`${backendUrl}/submit`, {
       method: "POST",

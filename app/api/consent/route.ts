@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
     };
 
     // Forward to Python backend API
-    const backendUrl = process.env.BACKEND_URL || "http://localhost:8000";
+    const backendUrl = (process.env.NEXT_PUBLIC_API_URL || "");
     const response = await fetch(`${backendUrl}/consent`, {
       method: "POST",
       headers: {
@@ -105,7 +105,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const backendUrl = process.env.BACKEND_URL || "http://localhost:8000";
+    const backendUrl = (process.env.NEXT_PUBLIC_API_URL || "");
     const url = new URL(req.url);
     const query = new URLSearchParams({
       ...(url.searchParams.get("email") ? { email: url.searchParams.get("email")! } : {}),

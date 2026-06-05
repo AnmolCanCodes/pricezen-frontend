@@ -8,7 +8,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     }
 
     const { id } = await params;
-    const backendUrl = process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+    const backendUrl = (process.env.NEXT_PUBLIC_API_URL || "");
     const res = await fetch(`${backendUrl}/admin/activate/${id}`, {
       method: "POST",
       headers: { "x-admin-secret": authHeader },

@@ -12,9 +12,7 @@ export async function POST(
 
     const { id } = await params;
     const backendUrl =
-      process.env.BACKEND_URL ||
-      process.env.NEXT_PUBLIC_BACKEND_URL ||
-      "http://localhost:8000";
+      (process.env.NEXT_PUBLIC_API_URL || "");
 
     const res = await fetch(`${backendUrl}/admin/deactivate/${id}`, {
       method: "POST",

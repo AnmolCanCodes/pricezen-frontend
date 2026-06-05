@@ -13,7 +13,7 @@ interface Product { url: string; group: string; threshold: string; avg_weekly_or
 
 const MAX_P: Record<Plan, number> = { starter: 3, growth: 6 };
 const MAX_C: Record<Plan, number> = { starter: 3, growth: 4 };
-const BACKEND = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+const BACKEND = (process.env.NEXT_PUBLIC_API_URL || "");
 
 const emptyProduct = (): Product => ({
   url: "", group: "", threshold: "5", avg_weekly_orders: "", competitors: [{ url: "" }],
