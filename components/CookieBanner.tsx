@@ -12,7 +12,7 @@
 //
 // WHERE DATA IS SAVED:
 //   - localStorage:  "pi_consent" = "accepted" | "declined"  +  "pi_consent_ts" = ISO timestamp
-//   - FastAPI DB:    POST to NEXT_PUBLIC_BACKEND_URL/consent
+//   - FastAPI DB:    POST to NEXT_PUBLIC_API_URL/consent
 //                   → stored in consent_records table in clients.db
 //                   → IP added server-side automatically
 //

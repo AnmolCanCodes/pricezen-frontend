@@ -11,8 +11,8 @@ export async function POST(
     }
 
     const { id } = await params;
-    const backendUrl =
-      (process.env.NEXT_PUBLIC_API_URL || "");
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!backendUrl) throw new Error("NEXT_PUBLIC_API_URL must be set");
 
     const res = await fetch(`${backendUrl}/admin/deactivate/${id}`, {
       method: "POST",

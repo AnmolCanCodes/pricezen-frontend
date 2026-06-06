@@ -7,7 +7,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ detail: "Unauthorized" }, { status: 401 });
     }
 
-    const backendUrl = (process.env.NEXT_PUBLIC_API_URL || "");
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!backendUrl) throw new Error("NEXT_PUBLIC_API_URL must be set");
     const res = await fetch(`${backendUrl}/admin/clients`, {
       headers: { "x-admin-secret": authHeader },
     });

@@ -1,7 +1,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 
-const BACKEND = (process.env.NEXT_PUBLIC_API_URL || "");
+const BACKEND = process.env.NEXT_PUBLIC_API_URL;
+if (!BACKEND) throw new Error("NEXT_PUBLIC_API_URL must be set");
 
 export async function POST(req: NextRequest) {
   try {

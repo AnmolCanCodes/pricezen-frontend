@@ -61,7 +61,8 @@ export async function POST(req: NextRequest) {
     };
 
     // Forward to Python backend API
-    const backendUrl = (process.env.NEXT_PUBLIC_API_URL || "");
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!backendUrl) throw new Error("NEXT_PUBLIC_API_URL must be set");
     const response = await fetch(`${backendUrl}/consent`, {
       method: "POST",
       headers: {
@@ -105,7 +106,8 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const backendUrl = (process.env.NEXT_PUBLIC_API_URL || "");
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!backendUrl) throw new Error("NEXT_PUBLIC_API_URL must be set");
     const url = new URL(req.url);
     const query = new URLSearchParams({
       ...(url.searchParams.get("email") ? { email: url.searchParams.get("email")! } : {}),
