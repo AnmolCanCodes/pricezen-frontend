@@ -176,7 +176,7 @@ export default function CookieBanner() {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email:             "anonymous@visitor",   // placeholder — no email collected here
+          email:             "no-reply@pricezen.in",   // placeholder — no email collected here
           timestamp:          new Date().toISOString(),
           policy_version:     POLICY_VERSION,
           terms_version:      POLICY_VERSION,
