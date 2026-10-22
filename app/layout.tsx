@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Cursor from "@/components/Cursor";
 import CookieBanner from "@/components/CookieBanner";
+import { Analytics } from "@vercel/analytics/next";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -194,6 +195,7 @@ export default function RootLayout({
         <Cursor />
         <CookieBanner />
         {children}
+        <Analytics />
       </body>
     </html>
   );
